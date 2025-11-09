@@ -27,4 +27,5 @@ jobs:
             cdn77/*.txt
             cloudflare/*.txt
             hetzner/*.txt
+            oracle/*.txt
             ovh/*.txt
