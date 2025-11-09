@@ -7,7 +7,7 @@ import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable, List, Sequence, Tuple
+from typing import Callable, Iterable, List, Sequence, Tuple, Union
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -130,6 +130,31 @@ def normalize_prefixes(provider: str, prefixes: Iterable[str]) -> List[str]:
     return [entry[-1] for entry in normalized]
 
 
+def aggregate_prefixes(provider: str, prefixes: Sequence[str]) -> List[str]:
+    if not prefixes:
+        raise RuntimeError(f"{provider}: empty prefix list before aggregation")
+
+    networks = [ipaddress.ip_network(prefix, strict=False) for prefix in prefixes]
+    collapsed: List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]] = []
+
+    for version in (4, 6):
+        version_networks = [net for net in networks if net.version == version]
+        if not version_networks:
+            continue
+        collapsed.extend(ipaddress.collapse_addresses(version_networks))
+
+    collapsed.sort(key=lambda net: (net.version, int(net.network_address), net.prefixlen))
+    aggregated = [str(network) for network in collapsed]
+
+    if len(aggregated) != len(prefixes):
+        print(
+            f"{provider}: aggregated {len(prefixes)} prefixes down to {len(aggregated)}",
+            file=sys.stderr,
+        )
+
+    return aggregated
+
+
 def write_plain(path: Path, prefixes: Sequence[str]) -> None:
     path.write_text("\n".join(prefixes) + ("\n" if prefixes else ""), encoding="utf-8")
 
@@ -176,8 +201,9 @@ def main() -> int:
     for spec in providers:
         raw_prefixes = list(spec.fetcher())
         prefixes = normalize_prefixes(spec.name, raw_prefixes)
-        write_provider_outputs(spec.name, prefixes)
-        print(f"Generated {len(prefixes):>5} prefixes for {spec.name}")
+        aggregated = aggregate_prefixes(spec.name, prefixes)
+        write_provider_outputs(spec.name, aggregated)
+        print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
 
     return 0
 
