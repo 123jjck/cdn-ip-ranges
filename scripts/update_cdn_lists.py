@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate CDN IP range lists in plain and Clash formats."""
+"""Generate CDN IP range lists in plain text formats."""
 from __future__ import annotations
 
 import ipaddress
@@ -173,17 +173,6 @@ def write_plain(path: Path, prefixes: Sequence[str]) -> None:
     path.write_text("\n".join(prefixes) + ("\n" if prefixes else ""), encoding="utf-8")
 
 
-def write_clash(path: Path, prefixes: Sequence[str]) -> None:
-    lines = []
-    for prefix in prefixes:
-        network = ipaddress.ip_network(prefix, strict=False)
-        is_ipv6 = network.version == 6 or ":" in prefix
-        tag = "IP-CIDR6" if is_ipv6 else "IP-CIDR"
-        normalized = f"{network.network_address}/{network.prefixlen}"
-        lines.append(f"{tag},{normalized}")
-    path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
-
-
 def write_provider_outputs(provider: str, prefixes: Sequence[str]) -> None:
     provider_dir = REPO_ROOT / provider
     provider_dir.mkdir(parents=True, exist_ok=True)
@@ -194,13 +183,9 @@ def write_provider_outputs(provider: str, prefixes: Sequence[str]) -> None:
 
     plain_path = provider_dir / f"{provider}_plain.txt"
     plain_ipv4_path = provider_dir / f"{provider}_plain_ipv4.txt"
-    clash_path = provider_dir / f"{provider}_clash.txt"
-    clash_ipv4_path = provider_dir / f"{provider}_clash_ipv4.txt"
 
     write_plain(plain_path, prefixes)
     write_plain(plain_ipv4_path, ipv4_prefixes)
-    write_clash(clash_path, prefixes)
-    write_clash(clash_ipv4_path, ipv4_prefixes)
 
 
 def main() -> int:

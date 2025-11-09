@@ -4,12 +4,24 @@
 
 `cdn_ip_ranges` collects IPv4/IPv6 subnet lists for popular CDN providers (Hetzner, AWS, CDN77, OVH, Cloudflare, Oracle) and stores them inside per-provider folders. Each folder (e.g., `aws/`, `hetzner/`) contains:
 
-- `<provider>_plain.txt` – one subnet per line.
+- `<provider>_plain.txt` – one subnet per line (IPv4 + IPv6).
 - `<provider>_plain_ipv4.txt` – the same, but IPv4-only.
-- `<provider>_clash.txt` – `IP-CIDR` / `IP-CIDR6` entries for Clash/Meta.
-- `<provider>_clash_ipv4.txt` – Clash rules limited to IPv4.
 
-Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same four files.
+Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same two files.
+
+### Using the data in Clash/Meta
+
+Clash can load the plain lists directly. Define a ruleset with `behavior: ipcidr` and point it at the raw GitHub URL, for example:
+
+```yaml
+hetzner:
+  behavior: ipcidr
+  type: http
+  url: "https://raw.githubusercontent.com/123jjck/cdn-ip-ranges/refs/heads/main/hetzner/hetzner_plain_ipv4.txt"
+  interval: 86400
+  path: ./ruleset/hetzner.txt
+  format: text
+```
 
 ### Refreshing the data
 
@@ -27,14 +39,26 @@ GitHub Actions (`.github/workflows/update-cdn-lists.yml`) executes the script ev
 
 ## Русский
 
-`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN (Hetzner, AWS, CDN77, OVH, Cloudflare, Oracle) и складывает их по папкам провайдеров (например, `aws/`, `hetzner/`). Внутри каждой папки:
+`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN (Hetzner, AWS, CDN77, OVH, Cloudflare, Oracle) и складывает их по папкам провайдеров (например, `aws/`, `hetzнер/`). Внутри каждой папки:
 
-- `<провайдер>_plain.txt` — по одной подсети на строку.
+- `<провайдер>_plain.txt` — по одной подсети на строку (IPv4+IPv6).
 - `<провайдер>_plain_ipv4.txt` — только IPv4-вариант.
-- `<провайдер>_clash.txt` — записи `IP-CIDR` / `IP-CIDR6` для Clash/Meta.
-- `<провайдер>_clash_ipv4.txt` — Clash-правила с IPv4.
 
-Нужен единый набор правил сразу для всех CDN? Берите файлы из папки `all/` — туда попадают все подсети перед генерацией стандартных четырёх файлов.
+Нужен единый набор правил сразу для всех CDN? Берите файлы из папки `all/` — туда попадают все подсети перед генерацией тех же двух файлов.
+
+### Использование в Clash/Meta
+
+Clash может подцепить plain-файлы напрямую через ruleset с `behavior: ipcidr`. Пример конфигурации:
+
+```yaml
+hetzner:
+  behavior: ipcidr
+  type: http
+  url: "https://raw.githubusercontent.com/123jjck/cdn-ip-ranges/refs/heads/main/hetzner/hetzner_plain_ipv4.txt"
+  interval: 86400
+  path: ./ruleset/hetzner.txt
+  format: text
+```
 
 ### Как обновить данные
 
