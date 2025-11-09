@@ -1,31 +1,45 @@
 # cdn_ip_ranges
 
-Автоматически собирает списки IP подсетей для популярных CDN (Hetzner, AWS, CDN77 и OVH) и сохраняет их в двух форматах:
+## English
 
-- `plain.txt` — обычный список подсетей, по одной записи на строку.
-- `clash.txt` — строки вида `IP-CIDR,<IPv4-подсеть>` или `IP-CIDR6,<IPv6-подсеть>` (например, `IP-CIDR,127.0.0.1/32` или `IP-CIDR6,2a01:4f9::/32`) для Clash/Meta.
+`cdn_ip_ranges` collects IPv4/IPv6 subnet lists for popular CDN providers (Hetzner, AWS, CDN77, OVH, Cloudflare) and stores them inside per-provider folders. Each folder (e.g., `aws/`, `hetzner/`) contains:
 
-## Обновление списков
+- `<provider>_plain.txt` – one subnet per line.
+- `<provider>_plain_ipv4.txt` – the same, but IPv4-only.
+- `<provider>_clash.txt` – `IP-CIDR` / `IP-CIDR6` entries for Clash/Meta.
+- `<provider>_clash_ipv4.txt` – Clash rules limited to IPv4.
 
-Локально можно перегенерировать данные командой:
+### Refreshing the data
 
-```bash
-python3 scripts/update_cdn_lists.py
-```
+Run `python3 scripts/update_cdn_lists.py` locally to pull the latest ranges and rewrite the text files.
 
-Скрипт обращается к официальным источникам:
+### Where the data comes from
 
-- Hetzner, CDN77 и OVH — публичный API RIPE Stat для соответствующих ASN (AS24940, AS60068, AS16276).
-- AWS — https://ip-ranges.amazonaws.com/ip-ranges.json.
+The script reads official public endpoints provided by the vendors (RIPE Stat for Hetzner/CDN77/OVH, AWS JSON feed, Cloudflare IPv4/IPv6 lists) so you always get upstream information without manual copy/paste.
 
-## Проверки качества
+### Automation
 
-Скрипт валидирует результаты перед сохранением:
+GitHub Actions (`.github/workflows/update-cdn-lists.yml`) executes the script every 12 hours and commits changes whenever new prefixes appear.
 
-- гарантирует, что источники вернули непустой список;
-- нормализует и сортирует подсети через `ipaddress`;
-- удаляет дубликаты и сообщает их количество в stderr, чтобы в репозиторий попадали только уникальные записи.
+---
 
-## График обновления
+## Русский
 
-GitHub Actions workflow `Update CDN IP Lists` (`.github/workflows/update-cdn-lists.yml`) запускается каждые 12 часов и при необходимости коммитит свежие данные в репозиторий.
+`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN (Hetzner, AWS, CDN77, OVH, Cloudflare) и складывает их по папкам провайдеров (например, `aws/`, `hetzner/`). Внутри каждой папки:
+
+- `<провайдер>_plain.txt` — по одной подсети на строку.
+- `<провайдер>_plain_ipv4.txt` — только IPv4-вариант.
+- `<провайдер>_clash.txt` — записи `IP-CIDR` / `IP-CIDR6` для Clash/Meta.
+- `<провайдер>_clash_ipv4.txt` — Clash-правила с IPv4.
+
+### Как обновить данные
+
+Запустите локально `python3 scripts/update_cdn_lists.py`, чтобы скачать актуальные диапазоны и перезаписать файлы.
+
+### Источники информации
+
+Скрипт использует официальные публичные точки доступа провайдеров (RIPE Stat для Hetzner/CDN77/OVH, JSON‑фид AWS, страницы Cloudflare с IPv4/IPv6), поэтому данные всегда поступают напрямую от владельцев сетей.
+
+### Автоматизация
+
+GitHub Actions (`.github/workflows/update-cdn-lists.yml`) выполняет скрипт каждые 12 часов и коммитит изменения, когда появляются новые подсети.

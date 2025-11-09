@@ -25,5 +25,6 @@ jobs:
           file_pattern: |
             aws/*.txt
             cdn77/*.txt
+            cloudflare/*.txt
             hetzner/*.txt
             ovh/*.txt
