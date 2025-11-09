@@ -23,6 +23,7 @@ jobs:
         with:
           commit_message: 'chore: refresh CDN IP lists'
           file_pattern: |
+            all/*.txt
             aws/*.txt
             cdn77/*.txt
             cloudflare/*.txt

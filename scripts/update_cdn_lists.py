@@ -213,12 +213,20 @@ def main() -> int:
         ProviderSpec("oracle", fetch_oracle_ranges),
     )
 
+    all_prefixes: List[str] = []
     for spec in providers:
         raw_prefixes = list(spec.fetcher())
         prefixes = normalize_prefixes(spec.name, raw_prefixes)
         aggregated = aggregate_prefixes(spec.name, prefixes)
         write_provider_outputs(spec.name, aggregated)
         print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
+        all_prefixes.extend(aggregated)
+
+    if all_prefixes:
+        normalized_all = normalize_prefixes("all", all_prefixes)
+        aggregated_all = aggregate_prefixes("all", normalized_all)
+        write_provider_outputs("all", aggregated_all)
+        print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
 
     return 0
 

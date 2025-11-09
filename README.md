@@ -9,6 +9,8 @@
 - `<provider>_clash.txt` – `IP-CIDR` / `IP-CIDR6` entries for Clash/Meta.
 - `<provider>_clash_ipv4.txt` – Clash rules limited to IPv4.
 
+Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same four files.
+
 ### Refreshing the data
 
 Run `python3 scripts/update_cdn_lists.py` locally to pull the latest ranges and rewrite the text files.
@@ -31,6 +33,8 @@ GitHub Actions (`.github/workflows/update-cdn-lists.yml`) executes the script ev
 - `<провайдер>_plain_ipv4.txt` — только IPv4-вариант.
 - `<провайдер>_clash.txt` — записи `IP-CIDR` / `IP-CIDR6` для Clash/Meta.
 - `<провайдер>_clash_ipv4.txt` — Clash-правила с IPv4.
+
+Нужен единый набор правил сразу для всех CDN? Берите файлы из папки `all/` — туда попадают все подсети перед генерацией стандартных четырёх файлов.
 
 ### Как обновить данные
 
