@@ -14,8 +14,6 @@ from urllib.request import Request, urlopen
 REPO_ROOT = Path(__file__).resolve().parents[1]
 USER_AGENT = "cdn-ip-range-updater/1.0 (+https://github.com/tajjck/cdnip)"
 AWS_IP_RANGES_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
-CLOUDFLARE_IPV4_URL = "https://www.cloudflare.com/ips-v4"
-CLOUDFLARE_IPV6_URL = "https://www.cloudflare.com/ips-v6"
 ORACLE_IP_RANGES_URL = "https://docs.oracle.com/iaas/tools/public_ip_ranges.json"
 RIPE_DATA_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource={resource}"
 
@@ -58,20 +56,6 @@ def fetch_aws_ranges() -> Sequence[str]:
     for entry in raw.get("ipv6_prefixes", []):
         prefix = entry.get("ipv6_prefix")
         if prefix:
-            prefixes.append(prefix)
-
-    return prefixes
-
-
-def fetch_cloudflare_ranges() -> Sequence[str]:
-    prefixes: List[str] = []
-
-    for url in (CLOUDFLARE_IPV4_URL, CLOUDFLARE_IPV6_URL):
-        body = fetch_text(url)
-        for line in body.splitlines():
-            prefix = line.strip()
-            if not prefix:
-                continue
             prefixes.append(prefix)
 
     return prefixes
@@ -194,7 +178,11 @@ def main() -> int:
         ProviderSpec("aws", fetch_aws_ranges),
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
         ProviderSpec("ovh", lambda: fetch_ripe_prefixes("16276")),
-        ProviderSpec("cloudflare", fetch_cloudflare_ranges),
+        ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
+        ProviderSpec("contabo", lambda: fetch_ripe_prefixes("51167")),
+        ProviderSpec("constant", lambda: fetch_ripe_prefixes("20473")),
+        ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
+        ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
         ProviderSpec("oracle", fetch_oracle_ranges),
     )
 
