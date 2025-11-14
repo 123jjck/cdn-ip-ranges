@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import ipaddress
 import json
+import os
 import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, List, Sequence, Tuple, Union
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +18,7 @@ USER_AGENT = "cdn-ip-range-updater/1.0 (+https://github.com/tajjck/cdnip)"
 AWS_IP_RANGES_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 ORACLE_IP_RANGES_URL = "https://docs.oracle.com/iaas/tools/public_ip_ranges.json"
 RIPE_DATA_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource={resource}"
+NETWORKSDB_ORG_NETWORKS_URL = "https://networksdb.io/api/org-networks"
 
 
 @dataclass(frozen=True)
@@ -70,6 +73,49 @@ def fetch_oracle_ranges() -> Sequence[str]:
             prefix = entry.get("cidr")
             if prefix:
                 prefixes.append(prefix)
+
+    return prefixes
+
+
+def fetch_vercel_ranges() -> Sequence[str]:
+    api_key = os.environ.get("NETWORKSDB_API_KEY")
+    if not api_key:
+        raise RuntimeError("vercel: NETWORKSDB_API_KEY environment variable is not set")
+
+    payload = urlencode({"id": "vercel-inc"}).encode("utf-8")
+    request = Request(
+        NETWORKSDB_ORG_NETWORKS_URL,
+        data=payload,
+        headers={
+            "User-Agent": USER_AGENT,
+            "X-Api-Key": api_key,
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    )
+
+    try:
+        with urlopen(request, timeout=60) as response:  # nosec: B310 - trusted endpoint
+            charset = response.headers.get_content_charset() or "utf-8"
+            body = response.read().decode(charset)
+    except HTTPError as exc:  # pragma: no cover - defensive
+        raise RuntimeError(
+            f"vercel: HTTP error {exc.code} while fetching {NETWORKSDB_ORG_NETWORKS_URL}"
+        ) from exc
+    except URLError as exc:  # pragma: no cover - defensive
+        raise RuntimeError(
+            f"vercel: network error while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc.reason}"
+        ) from exc
+
+    try:
+        payload_json = json.loads(body)
+    except json.JSONDecodeError as exc:  # pragma: no cover - defensive
+        raise RuntimeError("vercel: invalid JSON payload from networksdb API") from exc
+
+    prefixes: List[str] = []
+    for entry in payload_json.get("results", []):
+        prefix = entry.get("cidr")
+        if prefix:
+            prefixes.append(prefix)
 
     return prefixes
 
@@ -184,6 +230,7 @@ def main() -> int:
         ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
         ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
         ProviderSpec("oracle", fetch_oracle_ranges),
+        ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
     all_prefixes: List[str] = []
