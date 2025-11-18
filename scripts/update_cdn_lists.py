@@ -24,9 +24,15 @@ DIGITALOCEAN_GEO_CSV_URL = "https://digitalocean.com/geo/google.csv"
 
 
 @dataclass(frozen=True)
+class PrefixEntry:
+    cidr: str
+    region: str = ""
+
+
+@dataclass(frozen=True)
 class ProviderSpec:
     name: str
-    fetcher: Callable[[], Sequence[str]]
+    fetcher: Callable[[], Sequence[PrefixEntry]]
 
 
 def fetch_text(url: str) -> str:
@@ -49,51 +55,53 @@ def fetch_json(url: str) -> dict:
         raise RuntimeError(f"Invalid JSON payload from {url}") from exc
 
 
-def fetch_aws_ranges() -> Sequence[str]:
+def fetch_aws_ranges() -> Sequence[PrefixEntry]:
     raw = fetch_json(AWS_IP_RANGES_URL)
-    prefixes: List[str] = []
+    prefixes: List[PrefixEntry] = []
 
     for entry in raw.get("prefixes", []):
         prefix = entry.get("ip_prefix")
         if prefix:
-            prefixes.append(prefix)
+            prefixes.append(PrefixEntry(prefix, entry.get("region", "")))
 
     for entry in raw.get("ipv6_prefixes", []):
         prefix = entry.get("ipv6_prefix")
         if prefix:
-            prefixes.append(prefix)
+            prefixes.append(PrefixEntry(prefix, entry.get("region", "")))
 
     return prefixes
 
 
-def fetch_oracle_ranges() -> Sequence[str]:
+def fetch_oracle_ranges() -> Sequence[PrefixEntry]:
     payload = fetch_json(ORACLE_IP_RANGES_URL)
-    prefixes: List[str] = []
+    prefixes: List[PrefixEntry] = []
 
     for region in payload.get("regions", []):
+        region_name = region.get("region", "")
         for entry in region.get("cidrs", []):
             prefix = entry.get("cidr")
             if prefix:
-                prefixes.append(prefix)
+                prefixes.append(PrefixEntry(prefix, region_name))
 
     return prefixes
 
 
-def fetch_digitalocean_ranges() -> Sequence[str]:
+def fetch_digitalocean_ranges() -> Sequence[PrefixEntry]:
     body = fetch_text(DIGITALOCEAN_GEO_CSV_URL)
-    prefixes: List[str] = []
+    prefixes: List[PrefixEntry] = []
 
     for row in csv.reader(body.splitlines()):
         if not row:
             continue
         prefix = row[0].strip()
         if prefix:
-            prefixes.append(prefix)
+            region = row[2].strip() if len(row) > 2 else ""
+            prefixes.append(PrefixEntry(prefix, region))
 
     return prefixes
 
 
-def fetch_vercel_ranges() -> Sequence[str]:
+def fetch_vercel_ranges() -> Sequence[PrefixEntry]:
     api_key = os.environ.get("NETWORKSDB_API_KEY")
     if not api_key:
         raise RuntimeError("vercel: NETWORKSDB_API_KEY environment variable is not set")
@@ -127,42 +135,43 @@ def fetch_vercel_ranges() -> Sequence[str]:
     except json.JSONDecodeError as exc:  # pragma: no cover - defensive
         raise RuntimeError("vercel: invalid JSON payload from networksdb API") from exc
 
-    prefixes: List[str] = []
+    prefixes: List[PrefixEntry] = []
     for entry in payload_json.get("results", []):
         prefix = entry.get("cidr")
         if prefix:
-            prefixes.append(prefix)
+            prefixes.append(PrefixEntry(prefix))
 
     return prefixes
 
 
-def fetch_ripe_prefixes(asn: str) -> Sequence[str]:
+def fetch_ripe_prefixes(asn: str) -> Sequence[PrefixEntry]:
     normalized = asn.upper()
     if not normalized.startswith("AS"):
         normalized = f"AS{normalized}"
 
     url = RIPE_DATA_URL.format(resource=normalized)
     payload = fetch_json(url)
-    prefixes: List[str] = []
+    prefixes: List[PrefixEntry] = []
 
     for entry in payload.get("data", {}).get("prefixes", []):
         prefix = entry.get("prefix")
         if prefix:
-            prefixes.append(prefix)
+            prefixes.append(PrefixEntry(prefix))
 
     return prefixes
 
 
-def normalize_prefixes(provider: str, prefixes: Iterable[str]) -> List[str]:
+def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[PrefixEntry]:
     pref_list = list(prefixes)
     if not pref_list:
         raise RuntimeError(f"{provider}: empty prefix list fetched")
 
-    normalized: List[Tuple[int, int, int, str]] = []
+    normalized: List[Tuple[int, int, int, str, str]] = []
     seen: set[str] = set()
     duplicates: set[str] = set()
 
-    for prefix in pref_list:
+    for entry in pref_list:
+        prefix = entry.cidr
         if not prefix:
             continue
         try:
@@ -174,7 +183,9 @@ def normalize_prefixes(provider: str, prefixes: Iterable[str]) -> List[str]:
             duplicates.add(canonical)
             continue
         seen.add(canonical)
-        normalized.append((network.version, int(network.network_address), network.prefixlen, canonical))
+        normalized.append(
+            (network.version, int(network.network_address), network.prefixlen, canonical, entry.region)
+        )
 
     if duplicates:
         sample = ", ".join(sorted(duplicates)[:10])
@@ -187,14 +198,14 @@ def normalize_prefixes(provider: str, prefixes: Iterable[str]) -> List[str]:
         raise RuntimeError(f"{provider}: no valid prefixes after validation")
 
     normalized.sort()
-    return [entry[-1] for entry in normalized]
+    return [PrefixEntry(entry[3], entry[4]) for entry in normalized]
 
 
-def aggregate_prefixes(provider: str, prefixes: Sequence[str]) -> List[str]:
+def aggregate_prefixes(provider: str, prefixes: Sequence[PrefixEntry]) -> List[PrefixEntry]:
     if not prefixes:
         raise RuntimeError(f"{provider}: empty prefix list before aggregation")
 
-    networks = [ipaddress.ip_network(prefix, strict=False) for prefix in prefixes]
+    networks = [ipaddress.ip_network(entry.cidr, strict=False) for entry in prefixes]
     collapsed: List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]] = []
 
     for version in (4, 6):
@@ -204,7 +215,7 @@ def aggregate_prefixes(provider: str, prefixes: Sequence[str]) -> List[str]:
         collapsed.extend(ipaddress.collapse_addresses(version_networks))
 
     collapsed.sort(key=lambda net: (net.version, int(net.network_address), net.prefixlen))
-    aggregated = [str(network) for network in collapsed]
+    aggregated = [PrefixEntry(str(network)) for network in collapsed]
 
     if len(aggregated) != len(prefixes):
         print(
@@ -215,16 +226,19 @@ def aggregate_prefixes(provider: str, prefixes: Sequence[str]) -> List[str]:
     return aggregated
 
 
-def write_plain(path: Path, prefixes: Sequence[str]) -> None:
-    path.write_text("\n".join(prefixes) + ("\n" if prefixes else ""), encoding="utf-8")
+def write_plain(path: Path, prefixes: Sequence[PrefixEntry]) -> None:
+    lines = [entry.cidr for entry in prefixes]
+    path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
 
 
-def write_provider_outputs(provider: str, prefixes: Sequence[str]) -> None:
+def write_provider_outputs(provider: str, prefixes: Sequence[PrefixEntry]) -> None:
     provider_dir = REPO_ROOT / provider
     provider_dir.mkdir(parents=True, exist_ok=True)
 
     ipv4_prefixes = [
-        prefix for prefix in prefixes if ipaddress.ip_network(prefix, strict=False).version == 4
+        prefix
+        for prefix in prefixes
+        if ipaddress.ip_network(prefix.cidr, strict=False).version == 4
     ]
 
     plain_path = provider_dir / f"{provider}_plain.txt"
@@ -232,6 +246,18 @@ def write_provider_outputs(provider: str, prefixes: Sequence[str]) -> None:
 
     write_plain(plain_path, prefixes)
     write_plain(plain_ipv4_path, ipv4_prefixes)
+
+
+def write_all_csv(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
+    all_dir = REPO_ROOT / "all"
+    all_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = all_dir / "all.csv"
+
+    with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["provider", "cidr", "region"])
+        for provider, entry in entries:
+            writer.writerow([provider, entry.cidr, entry.region])
 
 
 def main() -> int:
@@ -250,7 +276,8 @@ def main() -> int:
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
-    all_prefixes: List[str] = []
+    all_prefixes: List[PrefixEntry] = []
+    all_csv_entries: List[tuple[str, PrefixEntry]] = []
     for spec in providers:
         raw_prefixes = list(spec.fetcher())
         prefixes = normalize_prefixes(spec.name, raw_prefixes)
@@ -258,11 +285,13 @@ def main() -> int:
         write_provider_outputs(spec.name, aggregated)
         print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
         all_prefixes.extend(aggregated)
+        all_csv_entries.extend((spec.name, entry) for entry in prefixes)
 
     if all_prefixes:
         normalized_all = normalize_prefixes("all", all_prefixes)
         aggregated_all = aggregate_prefixes("all", normalized_all)
         write_provider_outputs("all", aggregated_all)
+        write_all_csv(all_csv_entries)
         print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
 
     return 0
