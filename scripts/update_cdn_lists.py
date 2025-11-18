@@ -95,7 +95,7 @@ def fetch_digitalocean_ranges() -> Sequence[PrefixEntry]:
             continue
         prefix = row[0].strip()
         if prefix:
-            region = row[1].strip() if len(row) > 1 else ""
+            region = row[2].strip() if len(row) > 2 else ""
             prefixes.append(PrefixEntry(prefix, region))
 
     return prefixes
