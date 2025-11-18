@@ -2,6 +2,7 @@
 """Generate CDN IP range lists in plain text formats."""
 from __future__ import annotations
 
+import csv
 import ipaddress
 import json
 import os
@@ -19,6 +20,7 @@ AWS_IP_RANGES_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 ORACLE_IP_RANGES_URL = "https://docs.oracle.com/iaas/tools/public_ip_ranges.json"
 RIPE_DATA_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource={resource}"
 NETWORKSDB_ORG_NETWORKS_URL = "https://networksdb.io/api/org-networks"
+DIGITALOCEAN_GEO_CSV_URL = "https://digitalocean.com/geo/google.csv"
 
 
 @dataclass(frozen=True)
@@ -73,6 +75,20 @@ def fetch_oracle_ranges() -> Sequence[str]:
             prefix = entry.get("cidr")
             if prefix:
                 prefixes.append(prefix)
+
+    return prefixes
+
+
+def fetch_digitalocean_ranges() -> Sequence[str]:
+    body = fetch_text(DIGITALOCEAN_GEO_CSV_URL)
+    prefixes: List[str] = []
+
+    for row in csv.reader(body.splitlines()):
+        if not row:
+            continue
+        prefix = row[0].strip()
+        if prefix:
+            prefixes.append(prefix)
 
     return prefixes
 
@@ -230,6 +246,7 @@ def main() -> int:
         ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
         ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
         ProviderSpec("oracle", fetch_oracle_ranges),
+        ProviderSpec("digitalocean", fetch_digitalocean_ranges),
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
