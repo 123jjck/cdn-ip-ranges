@@ -2,7 +2,7 @@
 
 ## English
 
-`cdn_ip_ranges` collects IPv4/IPv6 subnet lists for popular CDN providers (Hetzner, AWS, CDN77, OVH, Cloudflare, Contabo, Constant, Scaleway, Akamai, Oracle, DigitalOcean) and stores them inside per-provider folders. Each folder (e.g., `aws/`, `hetzner/`) contains:
+`cdn_ip_ranges` collects IPv4/IPv6 subnet lists for popular CDN providers (Hetzner, AWS, CDN77, OVH, Cloudflare, Contabo, Constant, Scaleway, Akamai, Oracle, DigitalOcean and Vercel) and stores them inside per-provider folders. Each folder (e.g., `aws/`, `hetzner/`) contains:
 
 - `<provider>_plain.txt` – one subnet per line (IPv4 + IPv6).
 - `<provider>_plain_ipv4.txt` – the same, but IPv4-only.
@@ -39,16 +39,22 @@ GitHub Actions (`.github/workflows/update-cdn-lists.yml`) executes the script ev
 
 ## Русский
 
-`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN (Hetzner, AWS, CDN77, OVH, Cloudflare, Contabo, Constant, Scaleway, Akamai, Oracle, DigitalOcean) и складывает их по папкам провайдеров (например, `aws/`, `hetzner/`). Внутри каждой папки:
+`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN  
+(Hetzner, AWS, CDN77, OVH, Cloudflare, Contabo, Constant, Scaleway, Akamai, Oracle, DigitalOcean и Vercel)  
+и складывает их по папкам провайдеров (например, `aws/`, `hetzner/`).  
+Внутри каждой папки:
 
 - `<провайдер>_plain.txt` — по одной подсети на строку (IPv4+IPv6).
 - `<провайдер>_plain_ipv4.txt` — только IPv4-вариант.
 
-Нужен единый набор правил сразу для всех CDN? Берите файлы из папки `all/` — туда попадают все подсети перед генерацией тех же двух файлов.
+Нужен единый набор правил сразу для всех CDN?  
+Берите файлы из папки `all/` — туда попадают все подсети перед генерацией тех же двух файлов.
+
+Также доступен сервис [cheburcheck.ru](https://github.com/LowderPlay/cheburcheck) — он позволяет проверить домен или IP-адрес на наличие в любых списках проекта, а также в списках РКН.
 
 ### Использование в Clash/Meta
 
-Clash может подцепить plain-файлы напрямую через ruleset с `behavior: ipcidr`. Пример конфигурации:
+Clash может подцепить plain-файлы напрямую через ruleset с `behavior: ipcidr`. Пример:
 
 ```yaml
 hetzner:
@@ -62,7 +68,13 @@ hetzner:
 
 ### Как обновить данные
 
-Запустите локально `python3 scripts/update_cdn_lists.py`, чтобы скачать актуальные диапазоны и перезаписать файлы.
+Запустите локально:
+
+~~~bash
+python3 scripts/update_cdn_lists.py
+~~~
+
+Скрипт скачает актуальные диапазоны и перезапишет файлы.
 
 ### Источники информации
 
@@ -70,4 +82,4 @@ hetzner:
 
 ### Автоматизация
 
-GitHub Actions (`.github/workflows/update-cdn-lists.yml`) выполняет скрипт каждые 12 часов и коммитит изменения, когда появляются новые подсети.
+GitHub Actions (`.github/workflows/update-cdn-lists.yml`) выполняет обновление каждые 12 часов и коммитит изменения, если появились новые подсети.
