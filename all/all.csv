@@ -3618,6 +3618,7 @@ aws,43.218.222.160/28,ap-southeast-3
 aws,43.218.222.176/28,ap-southeast-3
 aws,43.220.0.0/16,ap-southeast-2
 aws,43.221.0.0/16,ap-southeast-2
+aws,43.226.24.0/23,ap-southeast-2
 aws,43.249.44.0/24,ap-southeast-2
 aws,43.249.45.0/24,ap-northeast-2
 aws,43.249.46.0/24,ap-south-1
@@ -3794,10 +3795,6 @@ aws,51.0.96.0/21,eu-west-3
 aws,51.0.104.0/21,GLOBAL
 aws,51.0.112.0/21,GLOBAL
 aws,51.0.128.0/21,eusc-de-east-1
-aws,51.0.136.0/23,eusc-de-east-1
-aws,51.0.138.0/23,eusc-de-east-1
-aws,51.0.140.0/23,eusc-de-east-1
-aws,51.0.142.0/23,eusc-de-east-1
 aws,51.0.252.0/24,eusc-de-east-1
 aws,51.16.0.0/15,il-central-1
 aws,51.16.96.192/26,il-central-1
@@ -3840,6 +3837,7 @@ aws,51.48.13.32/30,eu-south-2
 aws,51.48.16.0/22,eu-south-2
 aws,51.72.0.0/15,eusc-de-east-1
 aws,51.74.0.0/20,eusc-de-east-1
+aws,51.74.16.0/24,eusc-de-east-1
 aws,51.84.0.0/16,il-central-1
 aws,51.85.0.0/16,il-central-1
 aws,51.86.0.0/15,il-central-1
@@ -9700,6 +9698,7 @@ cdn77,89.222.113.0/24,
 cdn77,89.222.114.0/24,
 cdn77,89.222.115.0/24,
 cdn77,89.222.116.0/24,
+cdn77,89.222.117.0/24,
 cdn77,89.222.118.0/23,
 cdn77,89.222.120.0/24,
 cdn77,89.222.121.0/24,
@@ -9788,6 +9787,7 @@ cdn77,152.233.30.0/24,
 cdn77,152.233.32.0/23,
 cdn77,152.233.34.0/23,
 cdn77,152.233.36.0/24,
+cdn77,152.233.123.0/24,
 cdn77,156.146.33.0/24,
 cdn77,156.146.34.0/23,
 cdn77,156.146.36.0/24,
@@ -9927,6 +9927,7 @@ cdn77,2a02:6ea0:700::/40,
 cdn77,2a02:6ea0:900::/40,
 cdn77,2a02:6ea0:a00::/40,
 cdn77,2a02:6ea0:b00::/40,
+cdn77,2a02:6ea0:c00::/40,
 cdn77,2a02:6ea0:d00::/40,
 cdn77,2a02:6ea0:e00::/40,
 cdn77,2a02:6ea0:f00::/40,
@@ -13770,6 +13771,7 @@ cloudflare,2400:cb00:a113::/48,
 cloudflare,2400:cb00:a114::/48,
 cloudflare,2400:cb00:a115::/48,
 cloudflare,2400:cb00:a116::/48,
+cloudflare,2400:cb00:a117::/48,
 cloudflare,2400:cb00:a118::/48,
 cloudflare,2400:cb00:a119::/48,
 cloudflare,2400:cb00:a131::/48,
@@ -14131,6 +14133,7 @@ cloudflare,2400:cb00:b6b3::/48,
 cloudflare,2400:cb00:b6b4::/48,
 cloudflare,2400:cb00:b6b5::/48,
 cloudflare,2400:cb00:b6b6::/48,
+cloudflare,2400:cb00:b6b7::/48,
 cloudflare,2400:cb00:b6b8::/48,
 cloudflare,2400:cb00:b6b9::/48,
 cloudflare,2400:cb00:b701::/48,
@@ -14139,6 +14142,7 @@ cloudflare,2400:cb00:b703::/48,
 cloudflare,2400:cb00:b704::/48,
 cloudflare,2400:cb00:b705::/48,
 cloudflare,2400:cb00:b706::/48,
+cloudflare,2400:cb00:b707::/48,
 cloudflare,2400:cb00:b708::/48,
 cloudflare,2400:cb00:b709::/48,
 cloudflare,2400:cb00:b711::/48,
@@ -14147,6 +14151,7 @@ cloudflare,2400:cb00:b713::/48,
 cloudflare,2400:cb00:b714::/48,
 cloudflare,2400:cb00:b715::/48,
 cloudflare,2400:cb00:b716::/48,
+cloudflare,2400:cb00:b717::/48,
 cloudflare,2400:cb00:b718::/48,
 cloudflare,2400:cb00:b719::/48,
 cloudflare,2400:cb00:b761::/48,
@@ -15035,6 +15040,7 @@ cloudflare,2400:cb00:dd43::/48,
 cloudflare,2400:cb00:dd44::/48,
 cloudflare,2400:cb00:dd45::/48,
 cloudflare,2400:cb00:dd46::/48,
+cloudflare,2400:cb00:dd47::/48,
 cloudflare,2400:cb00:dd48::/48,
 cloudflare,2400:cb00:dd49::/48,
 cloudflare,2400:cb00:dd51::/48,
@@ -15043,6 +15049,7 @@ cloudflare,2400:cb00:dd53::/48,
 cloudflare,2400:cb00:dd54::/48,
 cloudflare,2400:cb00:dd55::/48,
 cloudflare,2400:cb00:dd56::/48,
+cloudflare,2400:cb00:dd57::/48,
 cloudflare,2400:cb00:dd58::/48,
 cloudflare,2400:cb00:dd59::/48,
 cloudflare,2400:cb00:dd61::/48,
@@ -15258,6 +15265,7 @@ cloudflare,2400:cb00:e173::/48,
 cloudflare,2400:cb00:e174::/48,
 cloudflare,2400:cb00:e175::/48,
 cloudflare,2400:cb00:e176::/48,
+cloudflare,2400:cb00:e177::/48,
 cloudflare,2400:cb00:e178::/48,
 cloudflare,2400:cb00:e179::/48,
 cloudflare,2400:cb00:e191::/48,
@@ -16893,7 +16901,6 @@ constant,45.143.239.0/24,
 constant,45.151.98.0/23,
 constant,45.155.68.0/24,
 constant,45.156.1.0/24,
-constant,45.196.200.0/24,
 constant,45.197.158.0/24,
 constant,45.197.159.0/24,
 constant,45.198.96.0/24,
@@ -18250,6 +18257,7 @@ constant,2a0e:7d45:7664::/48,
 constant,2a0e:7d45:7690::/48,
 constant,2a0e:7d45:7701::/48,
 constant,2a0e:7d45:771d::/48,
+constant,2a0e:7d45:77c5::/48,
 constant,2a0e:7d45:77d5::/48,
 constant,2a0e:7d45:77dc::/48,
 constant,2a0e:7d45:aa00::/40,
