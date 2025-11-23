@@ -24,4 +24,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: refresh CDN IP lists'
-          file_pattern: "all/*.txt all/*.csv akamai/*.txt aws/*.txt cdn77/*.txt cloudflare/*.txt constant/*.txt contabo/*.txt hetzner/*.txt oracle/*.txt ovh/*.txt scaleway/*.txt vercel/*.txt"
+          file_pattern: "all/*.txt all/*.csv akamai/*.txt aws/*.txt cdn77/*.txt cloudflare/*.txt constant/*.txt contabo/*.txt cogent/*.txt hetzner/*.txt oracle/*.txt ovh/*.txt scaleway/*.txt vercel/*.txt"

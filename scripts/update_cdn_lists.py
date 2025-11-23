@@ -22,7 +22,6 @@ RIPE_DATA_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resourc
 NETWORKSDB_ORG_NETWORKS_URL = "https://networksdb.io/api/org-networks"
 DIGITALOCEAN_GEO_CSV_URL = "https://digitalocean.com/geo/google.csv"
 
-
 @dataclass(frozen=True)
 class PrefixEntry:
     cidr: str
@@ -273,6 +272,7 @@ def main() -> int:
         ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
         ProviderSpec("oracle", fetch_oracle_ranges),
         ProviderSpec("digitalocean", fetch_digitalocean_ranges),
+        ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
