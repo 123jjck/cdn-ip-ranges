@@ -272,7 +272,7 @@ def main() -> int:
         ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
         ProviderSpec("oracle", fetch_oracle_ranges),
         ProviderSpec("digitalocean", fetch_digitalocean_ranges),
-        ProviderSpec("cogent", fetch_ripe_prefixes("174")),
+        ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
