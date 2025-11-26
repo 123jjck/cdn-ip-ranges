@@ -7,6 +7,7 @@ import ipaddress
 import json
 import os
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, List, Sequence, Tuple, Union
@@ -34,10 +35,26 @@ class ProviderSpec:
     fetcher: Callable[[], Sequence[PrefixEntry]]
 
 
+def _urlopen_with_retries(
+    request: Request, timeout: int = 60, attempts: int = 3, delay: float = 1.0
+):
+    last_exc: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            return urlopen(request, timeout=timeout)  # nosec: B310 - trusted endpoints
+        except (HTTPError, URLError) as exc:
+            last_exc = exc
+            if attempt == attempts:
+                raise
+            time.sleep(delay * attempt)
+
+    raise RuntimeError("Unreachable: retries exhausted without exception") from last_exc
+
+
 def fetch_text(url: str) -> str:
     request = Request(url, headers={"User-Agent": USER_AGENT})
     try:
-        with urlopen(request, timeout=60) as response:  # nosec: B310 - trusted endpoints
+        with _urlopen_with_retries(request) as response:
             charset = response.headers.get_content_charset() or "utf-8"
             return response.read().decode(charset)
     except HTTPError as exc:  # pragma: no cover - defensive
@@ -117,7 +134,7 @@ def fetch_vercel_ranges() -> Sequence[PrefixEntry]:
     )
 
     try:
-        with urlopen(request, timeout=60) as response:  # nosec: B310 - trusted endpoint
+        with _urlopen_with_retries(request) as response:
             charset = response.headers.get_content_charset() or "utf-8"
             body = response.read().decode(charset)
     except HTTPError as exc:  # pragma: no cover - defensive
