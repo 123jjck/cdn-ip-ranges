@@ -167,8 +167,6 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
         raise RuntimeError(f"{provider}: empty prefix list fetched")
 
     normalized: List[Tuple[int, int, int, str, str]] = []
-    seen: set[str] = set()
-    duplicates: set[str] = set()
 
     for entry in pref_list:
         prefix = entry.cidr
@@ -179,19 +177,8 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
         except ValueError as exc:
             raise RuntimeError(f"{provider}: invalid prefix '{prefix}'") from exc
         canonical = str(network)
-        if canonical in seen:
-            duplicates.add(canonical)
-            continue
-        seen.add(canonical)
         normalized.append(
             (network.version, int(network.network_address), network.prefixlen, canonical, entry.region)
-        )
-
-    if duplicates:
-        sample = ", ".join(sorted(duplicates)[:10])
-        print(
-            f"{provider}: removed {len(duplicates)} duplicate prefixes (e.g., {sample})",
-            file=sys.stderr,
         )
 
     if not normalized:
@@ -206,6 +193,7 @@ def aggregate_prefixes(provider: str, prefixes: Sequence[PrefixEntry]) -> List[P
         raise RuntimeError(f"{provider}: empty prefix list before aggregation")
 
     networks = [ipaddress.ip_network(entry.cidr, strict=False) for entry in prefixes]
+    regions = [entry.region for entry in prefixes]
     collapsed: List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]] = []
 
     for version in (4, 6):
@@ -215,7 +203,17 @@ def aggregate_prefixes(provider: str, prefixes: Sequence[PrefixEntry]) -> List[P
         collapsed.extend(ipaddress.collapse_addresses(version_networks))
 
     collapsed.sort(key=lambda net: (net.version, int(net.network_address), net.prefixlen))
-    aggregated = [PrefixEntry(str(network)) for network in collapsed]
+    aggregated: List[PrefixEntry] = []
+
+    for network in collapsed:
+        contributing_regions = {
+            region
+            for original_net, region in zip(networks, regions)
+            if original_net.version == network.version
+            and original_net.subnet_of(network)
+        }
+        region = contributing_regions.pop() if len(contributing_regions) == 1 else ""
+        aggregated.append(PrefixEntry(str(network), region))
 
     if len(aggregated) != len(prefixes):
         print(
@@ -285,7 +283,7 @@ def main() -> int:
         write_provider_outputs(spec.name, aggregated)
         print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
         all_prefixes.extend(aggregated)
-        all_csv_entries.extend((spec.name, entry) for entry in prefixes)
+        all_csv_entries.extend((spec.name, entry) for entry in aggregated)
 
     if all_prefixes:
         normalized_all = normalize_prefixes("all", all_prefixes)
