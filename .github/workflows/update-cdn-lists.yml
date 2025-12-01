@@ -20,8 +20,11 @@ jobs:
       - name: Generate CDN lists
         run: python3 scripts/update_cdn_lists.py
 
+      - name: Set commit name
+        run: echo "COMMIT_NAME=$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
+
       - name: Commit and push if changes exist
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore: refresh CDN IP lists'
+          commit_message: "${{ env.COMMIT_NAME }}"
           file_pattern: "all/*.txt all/*.csv akamai/*.txt aws/*.txt cdn77/*.txt cloudflare/*.txt constant/*.txt contabo/*.txt cogent/*.txt hetzner/*.txt oracle/*.txt ovh/*.txt scaleway/*.txt vercel/*.txt"
