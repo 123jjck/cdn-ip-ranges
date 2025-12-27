@@ -276,6 +276,23 @@ def write_all_csv(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
             writer.writerow([provider, entry.cidr, entry.region])
 
 
+def write_all_no_akamai_plain_ipv4(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
+    all_dir = REPO_ROOT / "all"
+    all_dir.mkdir(parents=True, exist_ok=True)
+    output_path = all_dir / "all_no_akamai_plain_ipv4.txt"
+
+    non_akamai_entries = [entry for provider, entry in entries if provider != "akamai"]
+    ipv4_entries = [
+        entry
+        for entry in non_akamai_entries
+        if ipaddress.ip_network(entry.cidr, strict=False).version == 4
+    ]
+
+    normalized = normalize_prefixes("all_no_akamai_ipv4", ipv4_entries)
+    aggregated = aggregate_prefixes("all_no_akamai_ipv4", normalized)
+    write_plain(output_path, aggregated)
+
+
 def main() -> int:
     providers: Sequence[ProviderSpec] = (
         ProviderSpec("hetzner", lambda: fetch_ripe_prefixes("24940")),
@@ -310,6 +327,7 @@ def main() -> int:
         aggregated_all = aggregate_prefixes("all", normalized_all)
         write_provider_outputs("all", aggregated_all)
         write_all_csv(all_csv_entries)
+        write_all_no_akamai_plain_ipv4(all_csv_entries)
         print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
 
     return 0
