@@ -17824,7 +17824,6 @@ constant,185.224.140.0/24,
 constant,185.224.141.0/24,
 constant,185.224.142.0/24,
 constant,185.224.143.0/24,
-constant,185.225.170.0/24,
 constant,185.225.171.0/24,
 constant,185.227.69.0/24,
 constant,185.227.163.0/24,
@@ -24928,6 +24927,8 @@ digitalocean,165.232.128.0/20,US-CA
 digitalocean,165.232.144.0/20,US-CA
 digitalocean,165.232.160.0/20,SG-05
 digitalocean,165.232.176.0/20,IN-KA
+digitalocean,165.245.128.0/20,US-GA
+digitalocean,165.245.144.0/22,SG-05
 digitalocean,167.71.0.0/20,NL-NH
 digitalocean,167.71.16.0/20,US-NJ
 digitalocean,167.71.32.0/20,DE-HE
