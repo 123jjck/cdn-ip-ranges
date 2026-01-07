@@ -109,6 +109,9 @@ aws,1.178.93.0/24,eu-north-1
 aws,1.178.94.0/24,eu-west-2
 aws,1.178.95.0/24,sa-east-1
 aws,1.178.100.0/24,us-west-1
+aws,1.178.101.0/24,ap-northeast-3
+aws,1.178.102.0/24,ap-southeast-6
+aws,1.178.103.0/24,ap-east-1
 aws,1.178.174.0/24,eu-north-1
 aws,3.0.0.0/15,ap-southeast-1
 aws,3.0.5.32/29,ap-southeast-1
@@ -8817,6 +8820,9 @@ aws,2600:f0f0:c049::/48,ap-southeast-2
 aws,2600:f0f1:80::/48,eu-west-2
 aws,2600:f0f1:81::/48,sa-east-1
 aws,2600:f0f1:82::/48,us-west-1
+aws,2600:f0f1:83::/48,ap-northeast-3
+aws,2600:f0f1:84::/48,ap-southeast-6
+aws,2600:f0f1:85::/48,ap-east-1
 aws,2600:f0f1:4000::/42,eu-north-1
 aws,2600:f0f1:4040::/42,me-south-1
 aws,2600:f0f1:40c0::/42,ap-south-1
@@ -10401,7 +10407,6 @@ ovh,109.110.184.0/24,
 ovh,109.122.1.0/24,
 ovh,109.122.15.0/24,
 ovh,109.122.20.0/24,
-ovh,109.122.21.0/24,
 ovh,109.122.194.0/24,
 ovh,109.122.195.0/24,
 ovh,109.176.40.0/21,
@@ -10493,6 +10498,7 @@ ovh,147.135.128.0/17,
 ovh,148.113.0.0/18,
 ovh,148.113.72.0/24,
 ovh,148.113.128.0/17,
+ovh,148.135.192.0/24,
 ovh,148.222.40.0/22,
 ovh,148.222.120.0/22,
 ovh,149.56.0.0/16,
@@ -11773,6 +11779,7 @@ cloudflare,143.14.224.0/24,
 cloudflare,143.14.229.0/24,
 cloudflare,143.14.251.0/24,
 cloudflare,143.20.247.0/24,
+cloudflare,144.124.208.0/24,
 cloudflare,144.124.211.0/24,
 cloudflare,147.189.42.0/24,
 cloudflare,147.189.43.0/24,
@@ -18340,6 +18347,7 @@ constant,2a13:1002::/48,
 constant,2a13:5681:a181::/48,
 constant,2a13:9500:61::/48,
 constant,2a13:9500:cf::/48,
+constant,2a14:7580:100::/46,
 constant,2a14:7581:fa0::/48,
 constant,2a14:7581:fa1::/48,
 constant,2a14:7581:fa3::/48,
@@ -18347,6 +18355,7 @@ constant,2a14:7581:fa5::/48,
 constant,2a14:7581:fa7::/48,
 constant,2a14:7581:fa9::/48,
 constant,2a14:7581:faf::/48,
+constant,2a14:7581:3e00::/46,
 constant,2a14:7583:f018::/46,
 constant,2a14:7583:f01c::/46,
 constant,2a14:7583:f020::/46,
@@ -19615,12 +19624,14 @@ akamai,23.48.168.0/24,
 akamai,23.48.169.0/24,
 akamai,23.48.172.0/24,
 akamai,23.48.173.0/24,
+akamai,23.48.174.0/24,
 akamai,23.48.200.0/24,
 akamai,23.48.201.0/24,
 akamai,23.48.202.0/24,
 akamai,23.48.203.0/24,
 akamai,23.48.212.0/24,
 akamai,23.48.213.0/24,
+akamai,23.48.214.0/24,
 akamai,23.48.215.0/24,
 akamai,23.48.224.0/24,
 akamai,23.48.227.0/24,
@@ -20486,6 +20497,7 @@ akamai,23.200.85.0/24,
 akamai,23.200.86.0/23,
 akamai,23.200.88.0/24,
 akamai,23.200.89.0/24,
+akamai,23.200.93.0/24,
 akamai,23.200.94.0/24,
 akamai,23.200.95.0/24,
 akamai,23.200.133.0/24,
@@ -23207,6 +23219,8 @@ oracle,80.225.192.0/18,ap-mumbai-1
 oracle,81.208.160.0/20,me-jeddah-1
 oracle,81.208.188.0/22,me-jeddah-1
 oracle,81.208.192.0/19,eu-jovanovac-1
+oracle,82.70.224.0/20,eu-marseille-1
+oracle,82.70.248.0/22,eu-marseille-1
 oracle,84.8.64.0/22,me-riyadh-1
 oracle,84.8.68.0/25,me-riyadh-1
 oracle,84.8.72.0/22,me-riyadh-1
@@ -23224,6 +23238,9 @@ oracle,89.168.16.0/20,eu-milan-1
 oracle,89.168.32.0/19,eu-paris-1
 oracle,89.168.64.0/18,eu-frankfurt-1
 oracle,92.4.64.0/19,ap-mumbai-1
+oracle,92.4.128.0/19,af-johannesburg-1
+oracle,92.4.160.0/20,eu-milan-1
+oracle,92.4.232.0/23,eu-milan-1
 oracle,92.5.0.0/17,eu-frankfurt-1
 oracle,92.5.128.0/18,eu-frankfurt-1
 oracle,92.5.192.0/19,eu-amsterdam-1
@@ -23770,7 +23787,14 @@ oracle,147.154.189.128/25,eu-frankfurt-1
 oracle,147.154.224.0/20,uk-london-1
 oracle,147.154.240.0/21,uk-london-1
 oracle,147.154.255.128/25,uk-london-1
+oracle,147.224.128.0/18,us-chicago-1
+oracle,147.224.192.0/19,us-chicago-1
+oracle,147.224.224.0/20,sa-valparaiso-1
+oracle,147.224.240.0/20,us-phoenix-1
+oracle,148.116.64.0/19,ca-montreal-1
 oracle,148.116.104.0/21,sa-valparaiso-1
+oracle,148.116.112.0/22,sa-santiago-1
+oracle,149.118.64.0/20,ap-sydney-1
 oracle,149.130.136.0/23,sa-vinhedo-1
 oracle,149.130.160.0/19,sa-bogota-1
 oracle,149.130.208.0/20,us-chicago-1
@@ -26552,6 +26576,7 @@ cogent,38.108.66.0/24,
 cogent,38.108.74.0/24,
 cogent,38.108.77.0/24,
 cogent,38.108.100.0/23,
+cogent,38.108.109.0/24,
 cogent,38.108.114.0/24,
 cogent,38.108.122.0/23,
 cogent,38.108.126.0/24,
@@ -26930,6 +26955,14 @@ cogent,38.132.205.0/24,
 cogent,38.132.213.0/24,
 cogent,38.132.224.0/21,
 cogent,38.132.232.0/22,
+cogent,38.133.24.0/24,
+cogent,38.133.25.0/24,
+cogent,38.133.26.0/24,
+cogent,38.133.27.0/24,
+cogent,38.133.28.0/24,
+cogent,38.133.29.0/24,
+cogent,38.133.30.0/24,
+cogent,38.133.31.0/24,
 cogent,38.133.64.0/24,
 cogent,38.133.80.0/20,
 cogent,38.133.135.0/24,
@@ -28441,8 +28474,6 @@ cogent,63.117.79.0/24,
 cogent,63.160.0.0/12,
 cogent,63.160.43.0/24,
 cogent,63.160.93.0/24,
-cogent,63.161.7.0/24,
-cogent,63.161.75.0/24,
 cogent,63.161.112.0/24,
 cogent,63.162.80.0/20,
 cogent,63.162.80.0/24,
@@ -30941,6 +30972,7 @@ cogent,2001:550:4001::/48,
 cogent,2001:550:4100:1::/64,
 cogent,2001:550:4102::/48,
 cogent,2001:550:4103::/48,
+cogent,2001:550:4104::/48,
 cogent,2001:550:4200::/48,
 cogent,2001:550:4600::/48,
 cogent,2001:550:4601::/48,
