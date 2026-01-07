@@ -107,6 +107,8 @@ aws,1.178.91.0/24,ap-northeast-2
 aws,1.178.92.0/24,ca-central-1
 aws,1.178.93.0/24,eu-north-1
 aws,1.178.94.0/24,eu-west-2
+aws,1.178.95.0/24,sa-east-1
+aws,1.178.100.0/24,us-west-1
 aws,1.178.174.0/24,eu-north-1
 aws,3.0.0.0/15,ap-southeast-1
 aws,3.0.5.32/29,ap-southeast-1
@@ -8813,18 +8815,31 @@ aws,2600:f0f0:c047::/48,ap-northeast-1
 aws,2600:f0f0:c048::/48,ap-southeast-1
 aws,2600:f0f0:c049::/48,ap-southeast-2
 aws,2600:f0f1:80::/48,eu-west-2
+aws,2600:f0f1:81::/48,sa-east-1
+aws,2600:f0f1:82::/48,us-west-1
+aws,2600:f0f1:4000::/42,eu-north-1
 aws,2600:f0f1:4040::/42,me-south-1
 aws,2600:f0f1:40c0::/42,ap-south-1
+aws,2600:f0f1:4100::/42,eu-west-3
+aws,2600:f0f1:4140::/42,us-east-2
 aws,2600:f0f1:4180::/42,af-south-1
+aws,2600:f0f1:41c0::/42,eu-west-1
+aws,2600:f0f1:4200::/42,eu-central-1
+aws,2600:f0f1:4240::/42,sa-east-1
 aws,2600:f0f1:4280::/42,ap-east-1
 aws,2600:f0f1:42c0::/42,us-east-1
 aws,2600:f0f1:4300::/42,ap-northeast-2
 aws,2600:f0f1:4340::/42,ap-northeast-3
 aws,2600:f0f1:4380::/42,ap-southeast-5
+aws,2600:f0f1:43c0::/42,eu-west-2
+aws,2600:f0f1:4400::/42,eu-south-1
 aws,2600:f0f1:4440::/42,ap-northeast-1
 aws,2600:f0f1:4480::/42,us-west-2
+aws,2600:f0f1:44c0::/42,us-west-1
 aws,2600:f0f1:4500::/42,ap-southeast-1
 aws,2600:f0f1:4540::/42,ap-southeast-2
+aws,2600:f0f1:4580::/42,ca-central-1
+aws,2600:f0f1:4840::/42,ap-southeast-7
 aws,2600:f0f1:8801::/48,us-east-1
 aws,2600:f0f1:8802::/48,ap-south-1
 aws,2600:f0f1:8a00::/40,us-east-1
@@ -10919,6 +10934,7 @@ cloudflare,64.239.31.0/24,
 cloudflare,65.110.63.0/24,
 cloudflare,66.71.220.0/24,
 cloudflare,66.84.82.0/24,
+cloudflare,66.92.62.0/24,
 cloudflare,66.93.178.0/24,
 cloudflare,66.203.249.0/24,
 cloudflare,66.235.200.0/24,
@@ -17051,6 +17067,7 @@ constant,78.141.192.0/20,
 constant,78.141.208.0/20,
 constant,78.141.224.0/19,
 constant,80.240.16.0/20,
+constant,80.240.88.0/24,
 constant,80.240.92.0/24,
 constant,82.97.196.0/24,
 constant,82.97.197.0/24,
@@ -18264,7 +18281,6 @@ constant,2a0f:9400:6167::/48,
 constant,2a0f:9400:690a::/48,
 constant,2a0f:9400:690b::/48,
 constant,2a0f:9400:8020::/48,
-constant,2a10:ccc1:443::/48,
 constant,2a10:ccc1:445::/48,
 constant,2a10:ccc1:446::/48,
 constant,2a10:ccc1:447::/48,
@@ -18330,7 +18346,7 @@ constant,2a14:7581:fa3::/48,
 constant,2a14:7581:fa5::/48,
 constant,2a14:7581:fa7::/48,
 constant,2a14:7581:fa9::/48,
-constant,2a14:7581:faa::/48,
+constant,2a14:7581:faf::/48,
 constant,2a14:7583:f018::/46,
 constant,2a14:7583:f01c::/46,
 constant,2a14:7583:f020::/46,
@@ -32087,6 +32103,7 @@ datacamp,93.123.116.0/24,
 datacamp,93.152.73.0/24,
 datacamp,93.152.87.0/24,
 datacamp,93.190.246.0/24,
+datacamp,94.74.147.0/24,
 datacamp,94.74.157.0/24,
 datacamp,94.101.112.0/24,
 datacamp,94.103.249.0/24,
@@ -33297,7 +33314,6 @@ datacamp,185.244.137.0/24,
 datacamp,185.244.226.0/24,
 datacamp,185.245.5.0/24,
 datacamp,185.245.255.0/24,
-datacamp,185.252.84.0/24,
 datacamp,185.255.7.0/24,
 datacamp,185.255.128.0/24,
 datacamp,185.255.129.0/24,
@@ -33639,6 +33655,7 @@ datacamp,209.101.252.0/23,
 datacamp,209.101.254.0/23,
 datacamp,209.200.252.0/24,
 datacamp,212.11.27.0/24,
+datacamp,212.11.29.0/24,
 datacamp,212.15.86.0/24,
 datacamp,212.16.92.0/24,
 datacamp,212.30.33.0/24,
