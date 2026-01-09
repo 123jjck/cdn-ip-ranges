@@ -16,7 +16,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-USER_AGENT = "cdn-ip-range-updater/1.0 (+https://github.com/tajjck/cdnip)"
+USER_AGENT = "cdn-ip-range-updater/1.0 (+https://github.com/123jjck/cdn-ip-ranges)"
 AWS_IP_RANGES_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 ORACLE_IP_RANGES_URL = "https://docs.oracle.com/iaas/tools/public_ip_ranges.json"
 RIPE_DATA_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource={resource}"
