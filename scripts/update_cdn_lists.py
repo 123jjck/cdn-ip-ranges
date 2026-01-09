@@ -309,6 +309,7 @@ def main() -> int:
         ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
         ProviderSpec("datacamp", lambda: fetch_ripe_prefixes("212238")),
         ProviderSpec("vercel", fetch_vercel_ranges),
+        ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697")),
     )
 
     all_prefixes: List[PrefixEntry] = []
