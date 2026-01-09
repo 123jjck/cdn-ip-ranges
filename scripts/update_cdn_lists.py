@@ -313,14 +313,20 @@ def main() -> int:
 
     all_prefixes: List[PrefixEntry] = []
     all_csv_entries: List[tuple[str, PrefixEntry]] = []
+    failed_providers: List[str] = []
+
     for spec in providers:
-        raw_prefixes = list(spec.fetcher())
-        prefixes = normalize_prefixes(spec.name, raw_prefixes)
-        aggregated = aggregate_prefixes(spec.name, prefixes)
-        write_provider_outputs(spec.name, aggregated)
-        print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
-        all_prefixes.extend(aggregated)
-        all_csv_entries.extend((spec.name, entry) for entry in prefixes)
+        try:
+            raw_prefixes = list(spec.fetcher())
+            prefixes = normalize_prefixes(spec.name, raw_prefixes)
+            aggregated = aggregate_prefixes(spec.name, prefixes)
+            write_provider_outputs(spec.name, aggregated)
+            print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
+            all_prefixes.extend(aggregated)
+            all_csv_entries.extend((spec.name, entry) for entry in prefixes)
+        except Exception as exc:
+            print(f"FAILED  {spec.name}: {exc}", file=sys.stderr)
+            failed_providers.append(spec.name)
 
     if all_prefixes:
         normalized_all = normalize_prefixes("all", all_prefixes)
@@ -329,6 +335,13 @@ def main() -> int:
         write_all_csv(all_csv_entries)
         write_all_no_akamai_plain_ipv4(all_csv_entries)
         print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
+
+    if failed_providers:
+        print(
+            f"\nFailed providers ({len(failed_providers)}): {', '.join(failed_providers)}",
+            file=sys.stderr,
+        )
+        return 1
 
     return 0
 
