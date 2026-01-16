@@ -295,21 +295,22 @@ def write_all_no_akamai_plain_ipv4(entries: Sequence[tuple[str, PrefixEntry]]) -
 
 def main() -> int:
     providers: Sequence[ProviderSpec] = (
-        ProviderSpec("hetzner", lambda: fetch_ripe_prefixes("24940")),
+        ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
         ProviderSpec("aws", fetch_aws_ranges),
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
-        ProviderSpec("ovh", lambda: fetch_ripe_prefixes("16276")),
         ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
-        ProviderSpec("contabo", lambda: fetch_ripe_prefixes("51167")),
-        ProviderSpec("constant", lambda: fetch_ripe_prefixes("20473")),
-        ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
-        ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
-        ProviderSpec("oracle", fetch_oracle_ranges),
-        ProviderSpec("digitalocean", fetch_digitalocean_ranges),
         ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
+        ProviderSpec("constant", lambda: fetch_ripe_prefixes("20473")),
+        ProviderSpec("contabo", lambda: fetch_ripe_prefixes("51167")),
         ProviderSpec("datacamp", lambda: fetch_ripe_prefixes("212238")),
-        ProviderSpec("vercel", fetch_vercel_ranges),
+        ProviderSpec("digitalocean", fetch_digitalocean_ranges),
+        ProviderSpec("fastly", lambda: fetch_ripe_prefixes("54113")),
+        ProviderSpec("hetzner", lambda: fetch_ripe_prefixes("24940")),
+        ProviderSpec("oracle", fetch_oracle_ranges),
+        ProviderSpec("ovh", lambda: fetch_ripe_prefixes("16276")),
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697")),
+        ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
+        ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
     all_prefixes: List[PrefixEntry] = []
