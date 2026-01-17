@@ -295,7 +295,7 @@ def write_all_no_akamai_plain_ipv4(entries: Sequence[tuple[str, PrefixEntry]]) -
 
 def main() -> int:
     providers: Sequence[ProviderSpec] = (
-        ProviderSpec("akamai", lambda: fetch_ripe_prefixes("20940")),
+        ProviderSpec("akamai", lambda: list(fetch_ripe_prefixes("20940")) + list(fetch_ripe_prefixes("63949"))),
         ProviderSpec("aws", fetch_aws_ranges),
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
         ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
