@@ -300,7 +300,7 @@ def main() -> int:
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
         ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
         ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
-        ProviderSpec("constant", lambda: fetch_ripe_prefixes("20473")),
+        ProviderSpec("constant", lambda: fetch_ripe_prefixes("394406")),
         ProviderSpec("contabo", lambda: fetch_ripe_prefixes("51167")),
         ProviderSpec("datacamp", lambda: fetch_ripe_prefixes("212238")),
         ProviderSpec("digitalocean", fetch_digitalocean_ranges),
@@ -311,6 +311,7 @@ def main() -> int:
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697")),
         ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
         ProviderSpec("vercel", fetch_vercel_ranges),
+        ProviderSpec("vultr", lambda: fetch_ripe_prefixes("20473")),
     )
 
     all_prefixes: List[PrefixEntry] = []
