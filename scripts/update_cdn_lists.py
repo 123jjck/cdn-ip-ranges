@@ -300,7 +300,6 @@ def main() -> int:
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
         ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
         ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
-        ProviderSpec("constant", lambda: fetch_ripe_prefixes("394406")),
         ProviderSpec("contabo", lambda: fetch_ripe_prefixes("51167")),
         ProviderSpec("datacamp", lambda: fetch_ripe_prefixes("212238")),
         ProviderSpec("digitalocean", fetch_digitalocean_ranges),
