@@ -9,19 +9,9 @@
 
 Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same two files.
 
-### Using the data in Clash/Meta
+### Usage
 
-Clash can load the plain lists directly. Define a ruleset with `behavior: ipcidr` and point it at the raw GitHub URL, for example:
-
-```yaml
-hetzner:
-  behavior: ipcidr
-  type: http
-  url: "https://raw.githubusercontent.com/123jjck/cdn-ip-ranges/refs/heads/main/hetzner/hetzner_plain_ipv4.txt"
-  interval: 86400
-  path: ./ruleset/hetzner.txt
-  format: text
-```
+Guides for different apps are available in the wiki: https://github.com/123jjck/cdn-ip-ranges/wiki/Usage-(EN)
 
 ### Refreshing the data
 
@@ -52,19 +42,9 @@ GitHub Actions (`.github/workflows/update-cdn-lists.yml`) executes the script ev
 
 Также доступен сервис [cheburcheck.ru](https://github.com/LowderPlay/cheburcheck) — он позволяет проверить домен или IP-адрес на наличие в любых списках проекта, а также в списках РКН.
 
-### Использование в Clash/Meta
+### Использование
 
-Clash может подцепить plain-файлы напрямую через ruleset с `behavior: ipcidr`. Пример:
-
-```yaml
-hetzner:
-  behavior: ipcidr
-  type: http
-  url: "https://raw.githubusercontent.com/123jjck/cdn-ip-ranges/refs/heads/main/hetzner/hetzner_plain_ipv4.txt"
-  interval: 86400
-  path: ./ruleset/hetzner.txt
-  format: text
-```
+Гайды для разных приложений есть в вики: https://github.com/123jjck/cdn-ip-ranges/wiki/Usage-(RU)
 
 ### Как обновить данные
 
