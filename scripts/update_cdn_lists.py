@@ -247,6 +247,11 @@ def write_plain(path: Path, prefixes: Sequence[PrefixEntry]) -> None:
     path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
 
 
+def write_amnezia_ipv4_json(path: Path, prefixes: Sequence[PrefixEntry]) -> None:
+    payload = [{"hostname": entry.cidr, "ip": ""} for entry in prefixes]
+    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
 def write_provider_outputs(provider: str, prefixes: Sequence[PrefixEntry]) -> None:
     provider_dir = REPO_ROOT / provider
     provider_dir.mkdir(parents=True, exist_ok=True)
@@ -259,9 +264,11 @@ def write_provider_outputs(provider: str, prefixes: Sequence[PrefixEntry]) -> No
 
     plain_path = provider_dir / f"{provider}_plain.txt"
     plain_ipv4_path = provider_dir / f"{provider}_plain_ipv4.txt"
+    amnezia_ipv4_path = provider_dir / f"{provider}_amnezia_ipv4.json"
 
     write_plain(plain_path, prefixes)
     write_plain(plain_ipv4_path, ipv4_prefixes)
+    write_amnezia_ipv4_json(amnezia_ipv4_path, ipv4_prefixes)
 
 
 def write_all_csv(entries: Sequence[tuple[str, PrefixEntry]]) -> None:

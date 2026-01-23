@@ -27,4 +27,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "${{ env.COMMIT_NAME }}"
-          file_pattern: "**/*.txt **/*.csv"
+          file_pattern: "**/*.txt **/*.csv **/*.json"
