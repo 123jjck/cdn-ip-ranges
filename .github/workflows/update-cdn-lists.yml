@@ -20,6 +20,14 @@ jobs:
       - name: Generate CDN lists
         run: python3 scripts/update_cdn_lists.py
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Generate GeoIP dat files
+        run: python3 scripts/generate_geoip_dat.py
+
       - name: Set commit name
         run: echo "COMMIT_NAME=$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
 
@@ -27,4 +35,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "${{ env.COMMIT_NAME }}"
-          file_pattern: "**/*.txt **/*.csv **/*.json"
+          file_pattern: "**/*.txt **/*.csv **/*.json **/*.dat"
