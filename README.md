@@ -8,8 +8,11 @@
 
 - `<provider>_plain.txt` – one subnet per line (IPv4 + IPv6).
 - `<provider>_plain_ipv4.txt` – the same, but IPv4-only.
+- `<provider>_amnezia_ipv4.json` – JSON for [Amnezia VPN](https://amnezia.org/) (IPv4-only, array of objects with `hostname`/`ip` fields).
+- `<provider>_geoip.dat` – binary [V2Ray GeoIP](https://github.com/v2fly/geoip) format (IPv4 + IPv6).
+- `<provider>_geoip_ipv4.dat` – the same, but IPv4-only.
 
-Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same two files.
+Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same files.
 
 ### Usage
 
