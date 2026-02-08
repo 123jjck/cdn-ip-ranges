@@ -14,6 +14,8 @@
 - `<провайдер>_amnezia_ipv4.json` — JSON для [Amnezia VPN](https://amnezia.org/) (только IPv4, массив объектов с полями `hostname`/`ip`).
 - `<провайдер>_geoip.dat` — бинарный формат [V2Ray GeoIP](https://github.com/v2fly/geoip) (IPv4+IPv6).
 - `<провайдер>_geoip_ipv4.dat` — то же самое, но только IPv4.
+- `<провайдер>_singbox.srs` — бинарный формат [sing-box ruleset](https://sing-box.sagernet.org/configuration/rule-set) (IPv4+IPv6).
+- `<провайдер>_singbox_ipv4.dat` — то же самое, но только IPv4.
 
 Нужен единый набор правил сразу для всех CDN?
 Берите файлы из папки `all/` — туда попадают все подсети перед генерацией тех же файлов.

@@ -28,6 +28,22 @@ jobs:
       - name: Generate GeoIP dat files
         run: python3 scripts/generate_geoip_dat.py
 
+      - name: Install sing-box
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(curl -fs -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/SagerNet/sing-box/releases/latest | jq -r '.tag_name')
+          arch=$(dpkg --print-architecture)
+          package_name="sing-box_${tag#v}_linux_${arch}.deb"
+          package_url="https://github.com/SagerNet/sing-box/releases/download/${tag}/${package_name}"
+
+          curl -fLo "$package_name" -H "Authorization: token $GITHUB_TOKEN" "$package_url"
+          sudo dpkg -i "$package_name"
+          rm -f "$package_name"
+
+      - name: Generate sing-box ruleset files
+        run: python3 scripts/generate_sing_box_rulesets.py
+
       - name: Set commit name
         run: echo "COMMIT_NAME=$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
 
@@ -35,4 +51,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "${{ env.COMMIT_NAME }}"
-          file_pattern: "**/*.txt **/*.csv **/*.json **/*.dat"
+          file_pattern: "**/*.txt **/*.csv **/*.json **/*.dat **/*.srs"

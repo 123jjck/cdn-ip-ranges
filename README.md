@@ -11,6 +11,8 @@
 - `<provider>_amnezia_ipv4.json` – JSON for [Amnezia VPN](https://amnezia.org/) (IPv4-only, array of objects with `hostname`/`ip` fields).
 - `<provider>_geoip.dat` – binary [V2Ray GeoIP](https://github.com/v2fly/geoip) format (IPv4 + IPv6).
 - `<provider>_geoip_ipv4.dat` – the same, but IPv4-only.
+- `<provider>_singbox.srs` – binary [sing-box ruleset](https://sing-box.sagernet.org/configuration/rule-set) format (IPv4 + IPv6).
+- `<provider>_singbox_ipv4.srs` – the same, but IPv4-only.
 
 Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same files.
 
