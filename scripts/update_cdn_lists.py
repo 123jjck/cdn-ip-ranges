@@ -22,6 +22,7 @@ ORACLE_IP_RANGES_URL = "https://docs.oracle.com/iaas/tools/public_ip_ranges.json
 RIPE_DATA_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource={resource}"
 NETWORKSDB_ORG_NETWORKS_URL = "https://networksdb.io/api/org-networks"
 DIGITALOCEAN_GEO_CSV_URL = "https://digitalocean.com/geo/google.csv"
+TELEGRAM_STATIC_PREFIXES = ("5.28.192.0/18", "109.239.140.0/24", "2a0a:f280::/32")
 
 @dataclass(frozen=True)
 class PrefixEntry:
@@ -33,6 +34,7 @@ class PrefixEntry:
 class ProviderSpec:
     name: str
     fetcher: Callable[[], Sequence[PrefixEntry]]
+    include_in_all: bool = True
 
 
 def _urlopen_with_retries(
@@ -317,6 +319,18 @@ def main() -> int:
         ProviderSpec("ovh", lambda: fetch_ripe_prefixes("16276")),
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697")),
         ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
+        ProviderSpec(
+            "telegram",
+            lambda: (
+                list(fetch_ripe_prefixes("62041"))
+                + list(fetch_ripe_prefixes("62014"))
+                + list(fetch_ripe_prefixes("211157"))
+                + list(fetch_ripe_prefixes("44907"))
+                + list(fetch_ripe_prefixes("59930"))
+                + [PrefixEntry(prefix) for prefix in TELEGRAM_STATIC_PREFIXES]
+            ),
+            include_in_all=False,
+        ),
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
@@ -331,8 +345,9 @@ def main() -> int:
             aggregated = aggregate_prefixes(spec.name, prefixes)
             write_provider_outputs(spec.name, aggregated)
             print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
-            all_prefixes.extend(aggregated)
-            all_csv_entries.extend((spec.name, entry) for entry in prefixes)
+            if spec.include_in_all:
+                all_prefixes.extend(aggregated)
+                all_csv_entries.extend((spec.name, entry) for entry in prefixes)
         except Exception as exc:
             print(f"FAILED  {spec.name}: {exc}", file=sys.stderr)
             failed_providers.append(spec.name)
