@@ -27,6 +27,7 @@ PROVIDERS = [
     "roblox",
     "scaleway",
     "vercel",
+    "telegram",
     "all",
 ]
 
