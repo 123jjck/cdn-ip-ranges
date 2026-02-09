@@ -273,6 +273,79 @@ def write_provider_outputs(provider: str, prefixes: Sequence[PrefixEntry]) -> No
     write_amnezia_ipv4_json(amnezia_ipv4_path, ipv4_prefixes)
 
 
+def aggregate_csv_entries(
+    entries: Sequence[tuple[str, PrefixEntry]],
+) -> List[tuple[str, PrefixEntry]]:
+    """Aggregate IP prefixes within each provider+region group.
+
+    For providers that have no region data at all, all prefixes are collapsed
+    together.  For providers with regions, prefixes are collapsed within each
+    region separately.
+    """
+    from collections import defaultdict
+
+    # Group entries by provider
+    provider_entries: dict[str, List[PrefixEntry]] = defaultdict(list)
+    for provider, entry in entries:
+        provider_entries[provider].append(entry)
+
+    result: List[tuple[str, PrefixEntry]] = []
+
+    for provider in sorted(provider_entries):
+        pref_list = provider_entries[provider]
+        has_regions = any(entry.region for entry in pref_list)
+
+        if not has_regions:
+            # Provider has no regions at all — aggregate everything
+            collapsed = _collapse_networks(
+                [ipaddress.ip_network(e.cidr, strict=False) for e in pref_list]
+            )
+            before = len(pref_list)
+            after = len(collapsed)
+            if before != after:
+                print(
+                    f"{provider} (all.csv): aggregated {before} → {after} prefixes",
+                    file=sys.stderr,
+                )
+            for net in collapsed:
+                result.append((provider, PrefixEntry(str(net), "")))
+        else:
+            # Aggregate within each region
+            region_groups: dict[str, List[PrefixEntry]] = defaultdict(list)
+            for entry in pref_list:
+                region_groups[entry.region].append(entry)
+
+            for region in sorted(region_groups):
+                region_entries = region_groups[region]
+                collapsed = _collapse_networks(
+                    [ipaddress.ip_network(e.cidr, strict=False) for e in region_entries]
+                )
+                before = len(region_entries)
+                after = len(collapsed)
+                if before != after:
+                    print(
+                        f"{provider}/{region or '(no region)'} (all.csv): aggregated {before} → {after} prefixes",
+                        file=sys.stderr,
+                    )
+                for net in collapsed:
+                    result.append((provider, PrefixEntry(str(net), region)))
+
+    return result
+
+
+def _collapse_networks(
+    networks: List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]],
+) -> List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]]:
+    """Collapse a list of networks, handling IPv4 and IPv6 separately."""
+    collapsed: List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]] = []
+    for version in (4, 6):
+        version_nets = [n for n in networks if n.version == version]
+        if version_nets:
+            collapsed.extend(ipaddress.collapse_addresses(version_nets))
+    collapsed.sort(key=lambda n: (n.version, int(n.network_address), n.prefixlen))
+    return collapsed
+
+
 def write_all_csv(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
     all_dir = REPO_ROOT / "all"
     all_dir.mkdir(parents=True, exist_ok=True)
@@ -356,8 +429,9 @@ def main() -> int:
         normalized_all = normalize_prefixes("all", all_prefixes)
         aggregated_all = aggregate_prefixes("all", normalized_all)
         write_provider_outputs("all", aggregated_all)
-        write_all_csv(all_csv_entries)
-        write_all_no_akamai_plain_ipv4(all_csv_entries)
+        aggregated_csv = aggregate_csv_entries(all_csv_entries)
+        write_all_csv(aggregated_csv)
+        write_all_no_akamai_plain_ipv4(aggregated_csv)
         print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
 
     if failed_providers:
