@@ -2045,6 +2045,7 @@ aws,2406:daf9:2800::/40,ap-southeast-6
 aws,2406:dafe:2800::/40,ap-southeast-6
 aws,2406:daff:2800::/40,ap-southeast-6
 aws,2600:f0f2:7021::/48,ap-southeast-6
+aws,2606:7b40:1b05::/56,ap-southeast-6
 aws,1.178.28.0/24,ap-southeast-7
 aws,3.2.88.0/24,ap-southeast-7
 aws,3.5.60.0/22,ap-southeast-7
@@ -5763,7 +5764,7 @@ aws,2606:7b40:1a2f:c310::/60,us-west-2
 aws,2606:7b40:1a2f:c320::/59,us-west-2
 aws,2606:7b40:1a3f:c200::/60,us-west-2
 aws,2606:7b40:1a3f:c310::/60,us-west-2
-aws,2606:7b40:1a3f:c320::/60,us-west-2
+aws,2606:7b40:1a3f:c320::/59,us-west-2
 aws,2606:7b40:1a4f:c200::/60,us-west-2
 aws,2606:7b40:1a4f:c240::/60,us-west-2
 aws,2606:7b40:1a4f:c310::/60,us-west-2
@@ -6449,6 +6450,7 @@ cloudflare,162.159.240.0/20,
 cloudflare,162.251.82.0/24,
 cloudflare,162.251.205.0/24,
 cloudflare,165.101.60.0/23,
+cloudflare,166.88.240.0/24,
 cloudflare,167.1.137.0/24,
 cloudflare,167.74.94.0/23,
 cloudflare,167.74.130.0/24,
@@ -7386,6 +7388,7 @@ cloudflare,2400:cb00:a8f2::/48,
 cloudflare,2400:cb00:a941::/48,
 cloudflare,2400:cb00:a971::/48,
 cloudflare,2400:cb00:a972::/48,
+cloudflare,2400:cb00:a981::/48,
 cloudflare,2400:cb00:a982::/48,
 cloudflare,2400:cb00:a9a1::/48,
 cloudflare,2400:cb00:a9f1::/48,
@@ -9385,7 +9388,6 @@ cogent,217.151.240.0/20,
 cogent,2001:550::/32,
 cogent,2001:978::/32,
 cogent,2001:49f0:d011::/48,
-cogent,2401:86a0::/34,
 cogent,2401:a420:3:8002::/64,
 cogent,2402:4480::/32,
 cogent,2403:a800::/32,
@@ -11873,7 +11875,6 @@ datacamp,185.155.54.0/24,
 datacamp,185.155.103.0/24,
 datacamp,185.156.46.0/24,
 datacamp,185.159.71.0/24,
-datacamp,185.160.24.0/24,
 datacamp,185.160.26.0/24,
 datacamp,185.164.120.0/23,
 datacamp,185.164.122.0/24,
@@ -11941,7 +11942,8 @@ datacamp,185.240.76.0/23,
 datacamp,185.240.78.0/24,
 datacamp,185.240.120.0/23,
 datacamp,185.241.150.0/24,
-datacamp,185.244.64.0/22,
+datacamp,185.244.64.0/23,
+datacamp,185.244.67.0/24,
 datacamp,185.244.137.0/24,
 datacamp,185.244.226.0/24,
 datacamp,185.245.5.0/24,
@@ -12432,6 +12434,7 @@ datacamp,2a0c:b641:420::/44,
 datacamp,2a0d:5c0::/29,
 datacamp,2a0d:3900::/29,
 datacamp,2a0d:4480::/30,
+datacamp,2a0d:aa40::/30,
 datacamp,2a0d:ab00::/30,
 datacamp,2a0d:af00::/30,
 datacamp,2a0e:6c00::/30,
@@ -14041,8 +14044,7 @@ oracle,70.40.194.0/23,
 oracle,70.40.208.0/21,
 oracle,72.22.67.0/24,
 oracle,74.81.189.0/24,
-oracle,74.91.128.0/23,
-oracle,74.91.132.0/22,
+oracle,74.91.128.0/21,
 oracle,74.91.136.0/24,
 oracle,74.91.138.0/23,
 oracle,74.91.150.0/23,
