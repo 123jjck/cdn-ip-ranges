@@ -375,25 +375,6 @@ def write_all_no_akamai_plain_ipv4(entries: Sequence[tuple[str, PrefixEntry]]) -
     write_plain(output_path, aggregated)
 
 
-def write_all_no_akamai_fastly_plain_ipv4(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
-    all_dir = REPO_ROOT / "all"
-    all_dir.mkdir(parents=True, exist_ok=True)
-    output_path = all_dir / "all_no_akamai_fastly_plain_ipv4.txt"
-
-    filtered_entries = [
-        entry for provider, entry in entries if provider not in ("akamai", "fastly")
-    ]
-    ipv4_entries = [
-        entry
-        for entry in filtered_entries
-        if ipaddress.ip_network(entry.cidr, strict=False).version == 4
-    ]
-
-    normalized = normalize_prefixes("all_no_akamai_fastly_ipv4", ipv4_entries)
-    aggregated = aggregate_prefixes("all_no_akamai_fastly_ipv4", normalized)
-    write_plain(output_path, aggregated)
-
-
 def main() -> int:
     providers: Sequence[ProviderSpec] = (
         ProviderSpec("akamai", lambda: list(fetch_ripe_prefixes("20940")) + list(fetch_ripe_prefixes("63949"))),
@@ -453,7 +434,6 @@ def main() -> int:
         aggregated_csv = aggregate_csv_entries(all_csv_entries)
         write_all_csv(aggregated_csv)
         write_all_no_akamai_plain_ipv4(aggregated_csv)
-        write_all_no_akamai_fastly_plain_ipv4(aggregated_csv)
         print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
 
     if failed_providers:
