@@ -23,6 +23,7 @@ PROVIDERS = [
     "fastly",
     "gcore",
     "hetzner",
+    "melbicom",
     "meta",
     "oracle",
     "ovh",
