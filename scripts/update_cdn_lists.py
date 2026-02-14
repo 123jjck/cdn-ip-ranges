@@ -385,7 +385,7 @@ def main() -> int:
         ProviderSpec("constant", lambda: fetch_ripe_prefixes("20473")),
         ProviderSpec("contabo", lambda: fetch_ripe_prefixes("51167")),
         ProviderSpec("datacamp", lambda: fetch_ripe_prefixes("212238")),
-        ProviderSpec("digitalocean", fetch_digitalocean_ranges),
+        ProviderSpec("digitalocean", lambda: list(fetch_digitalocean_ranges()) + list(fetch_ripe_prefixes("14061"))),
         ProviderSpec("fastly", lambda: fetch_ripe_prefixes("54113")),
         ProviderSpec("hetzner", lambda: list(fetch_ripe_prefixes("24940")) + list(fetch_ripe_prefixes("213230"))),
         ProviderSpec("melbicom", lambda: fetch_ripe_prefixes("8849")),
