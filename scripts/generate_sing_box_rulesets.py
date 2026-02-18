@@ -7,29 +7,15 @@ import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PROVIDERS = [
-    "akamai",
-    "aws",
-    "cdn77",
-    "cloudflare",
-    "cogent",
-    "constant",
-    "contabo",
-    "datacamp",
-    "digitalocean",
-    "fastly",
-    "gcore",
-    "hetzner",
-    "melbicom",
-    "meta",
-    "oracle",
-    "ovh",
-    "roblox",
-    "scaleway",
-    "vercel",
-    "telegram",
-    "all",
-]
+
+
+def discover_providers(repo_root: Path) -> list[str]:
+    providers = sorted(
+        d.name for d in repo_root.iterdir()
+        if d.is_dir() and (d / f"{d.name}_plain.txt").exists() and d.name != "all"
+    )
+    providers.append("all")
+    return providers
 
 
 def convert_ruleset(singbox_path: Path, source_path: Path, binary_path: Path):
@@ -82,7 +68,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    for provider in PROVIDERS:
+    for provider in discover_providers(REPO_ROOT):
         print(f"Processing {provider}")
 
         provider_dir = REPO_ROOT / provider

@@ -10,36 +10,22 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PROVIDERS = [
-    "akamai",
-    "aws",
-    "cdn77",
-    "cloudflare",
-    "cogent",
-    "constant",
-    "contabo",
-    "datacamp",
-    "digitalocean",
-    "fastly",
-    "gcore",
-    "hetzner",
-    "melbicom",
-    "meta",
-    "oracle",
-    "ovh",
-    "roblox",
-    "scaleway",
-    "vercel",
-    "telegram",
-    "all",
-]
+
+
+def discover_providers(repo_root: Path) -> list[str]:
+    providers = sorted(
+        d.name for d in repo_root.iterdir()
+        if d.is_dir() and (d / f"{d.name}_plain.txt").exists() and d.name != "all"
+    )
+    providers.append("all")
+    return providers
 
 
 def build_geoip_config() -> dict[str, Any]:
     inputs = []
     outputs = []
 
-    for provider in PROVIDERS:
+    for provider in discover_providers(REPO_ROOT):
         provider_dir = REPO_ROOT / provider
         source_path = provider_dir / f"{provider}_plain.txt"
         if not source_path.exists():
