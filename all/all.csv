@@ -478,7 +478,6 @@ aws,2600:f0f0:602::/47,GLOBAL
 aws,2600:f0f0:1100::/40,GLOBAL
 aws,2600:f0f0:4100::/40,GLOBAL
 aws,2600:f0f0:5504::/46,GLOBAL
-aws,2600:f0f2:7000::/44,GLOBAL
 aws,2600:f0f2:7100::/40,GLOBAL
 aws,2600:f0f3:f000::/44,GLOBAL
 aws,2600:f0fb:f000::/44,GLOBAL
@@ -3941,7 +3940,7 @@ aws,76.223.170.112/28,me-west-1
 aws,150.222.55.0/26,me-west-1
 aws,150.222.55.64/27,me-west-1
 aws,2a01:578:0:7a00::/56,me-west-1
-aws,2a05:d000:800::/64,me-west-1
+aws,2a05:d000:800::/40,me-west-1
 aws,2a05:d010:8000::/36,me-west-1
 aws,2a05:d020:8000::/36,me-west-1
 aws,2a05:d030:800::/40,me-west-1
@@ -4032,6 +4031,7 @@ aws,3.5.232.0/22,sa-east-1
 aws,3.44.192.0/18,sa-east-1
 aws,13.248.104.0/24,sa-east-1
 aws,13.248.114.0/24,sa-east-1
+aws,15.129.30.0/24,sa-east-1
 aws,15.177.70.0/23,sa-east-1
 aws,15.177.88.0/24,sa-east-1
 aws,15.193.172.0/22,sa-east-1
@@ -5127,9 +5127,10 @@ aws,2600:1ffc:5000::/40,us-gov-east-1
 aws,2600:1ffe:5000::/40,us-gov-east-1
 aws,2600:1fff:5000::/40,us-gov-east-1
 aws,2600:f0f0:78::/45,us-gov-east-1
-aws,2600:f0f0:400::/47,us-gov-east-1
+aws,2600:f0f0:400::/44,us-gov-east-1
 aws,2600:f0f0:4141::/48,us-gov-east-1
 aws,2600:f0f0:6124::/48,us-gov-east-1
+aws,2600:f0f2:7000::/44,us-gov-east-1
 aws,2600:f0f2:7028::/48,us-gov-east-1
 aws,2606:8140:200::/40,us-gov-east-1
 aws,2620:107:4000:7a00::/56,us-gov-east-1
