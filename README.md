@@ -4,7 +4,7 @@
 
 ---
 
-`cdn_ip_ranges` collects IPv4/IPv6 subnet lists for popular CDN providers (Akamai, AWS, CDN77, Cloudflare, Cogent, Constant, Contabo, DataCamp, DigitalOcean, Fastly, Hetzner, Oracle, OVH, Roblox, Scaleway, and Vercel) and stores them inside per-provider folders. Each folder (e.g., `aws/`, `hetzner/`) contains:
+`cdn_ip_ranges` collects IPv4/IPv6 subnet lists for popular CDN and hosting providers and stores them inside per-provider folders. Each folder (e.g., `aws/`, `hetzner/`) contains:
 
 - `<provider>_plain.txt` – one subnet per line (IPv4 + IPv6).
 - `<provider>_plain_ipv4.txt` – the same, but IPv4-only.
@@ -15,6 +15,32 @@
 - `<provider>_singbox_ipv4.srs` – the same, but IPv4-only.
 
 Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same files.
+
+### Providers
+
+| Provider | AS | In `all` |
+|---|---|:---:|
+| Akamai | AS20940, AS63949 | ✅ |
+| AWS | — | ✅ |
+| CDN77 | AS60068 | ✅ |
+| Cloudflare | AS13335 | ✅ |
+| Cogent | AS174 | ✅ |
+| Constant | AS20473 | ✅ |
+| Contabo | AS51167 | ✅ |
+| DataCamp | AS212238 | ✅ |
+| DigitalOcean | AS14061 | ✅ |
+| Fastly | AS54113 | ✅ |
+| GCore | AS199524 | ✅ |
+| GleSYS | AS42708 | ✅ |
+| Hetzner | AS24940, AS213230, AS212317 | ✅ |
+| MelBiCom | AS8849, AS56630 | ✅ |
+| Meta | AS32934 | ❌ |
+| Oracle | AS31898 | ✅ |
+| OVH | AS16276 | ✅ |
+| Roblox | AS22697 | ❌ |
+| Scaleway | AS12876 | ✅ |
+| Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ❌ |
+| Vercel | — | ✅ |
 
 ### Usage
 

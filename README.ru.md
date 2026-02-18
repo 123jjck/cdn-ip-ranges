@@ -4,9 +4,8 @@
 
 ---
 
-`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN
-(Akamai, AWS, CDN77, Cloudflare, Cogent, Constant, Contabo, DataCamp, DigitalOcean, Fastly, Hetzner, Oracle, OVH, Roblox, Scaleway и Vercel)
-и складывает их по папкам провайдеров (например, `aws/`, `hetzner/`).
+`cdn_ip_ranges` собирает списки IPv4/IPv6 подсетей для популярных CDN и хостинг-провайдеров
+и складывает их по папкам (например, `aws/`, `hetzner/`).
 Внутри каждой папки:
 
 - `<провайдер>_plain.txt` — по одной подсети на строку (IPv4+IPv6).
@@ -17,8 +16,34 @@
 - `<провайдер>_singbox.srs` — бинарный формат [sing-box ruleset](https://sing-box.sagernet.org/configuration/rule-set) (IPv4+IPv6).
 - `<провайдер>_singbox_ipv4.dat` — то же самое, но только IPv4.
 
-Нужен единый набор правил сразу для всех CDN?
+Нужен единый набор правил сразу для всех провайдеров?
 Берите файлы из папки `all/` — туда попадают все подсети перед генерацией тех же файлов.
+
+### Провайдеры
+
+| Провайдер | AS | В `all` |
+|---|---|:---:|
+| Akamai | AS20940, AS63949 | ✅ |
+| AWS | — | ✅ |
+| CDN77 | AS60068 | ✅ |
+| Cloudflare | AS13335 | ✅ |
+| Cogent | AS174 | ✅ |
+| Constant | AS20473 | ✅ |
+| Contabo | AS51167 | ✅ |
+| DataCamp | AS212238 | ✅ |
+| DigitalOcean | AS14061 | ✅ |
+| Fastly | AS54113 | ✅ |
+| GCore | AS199524 | ✅ |
+| GleSYS | AS42708 | ✅ |
+| Hetzner | AS24940, AS213230, AS212317 | ✅ |
+| MelBiCom | AS8849, AS56630 | ✅ |
+| Meta | AS32934 | ❌ |
+| Oracle | AS31898 | ✅ |
+| OVH | AS16276 | ✅ |
+| Roblox | AS22697 | ❌ |
+| Scaleway | AS12876 | ✅ |
+| Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ❌ |
+| Vercel | — | ✅ |
 
 Также доступен сервис [cheburcheck.ru](https://github.com/LowderPlay/cheburcheck) — он позволяет проверить домен или IP-адрес на наличие в любых списках проекта, а также в списках РКН.
 
