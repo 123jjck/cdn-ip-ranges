@@ -396,6 +396,7 @@ def main() -> int:
         ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), include_in_all=False),
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), include_in_all=False),
         ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
+        ProviderSpec("scalaxy", lambda: fetch_ripe_prefixes("58061")),
         ProviderSpec(
             "telegram",
             lambda: (

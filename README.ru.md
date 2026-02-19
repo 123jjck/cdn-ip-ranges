@@ -42,6 +42,7 @@
 | OVH | AS16276 | ✅ |
 | Roblox | AS22697 | ❌ |
 | Scaleway | AS12876 | ✅ |
+| Scalaxy | AS58061 | ✅ |
 | Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ❌ |
 | Vercel | — | ✅ |
 
@@ -63,7 +64,7 @@ python3 scripts/update_cdn_lists.py
 
 ### Источники информации
 
-Скрипт использует официальные публичные точки доступа провайдеров (RIPE Stat для Akamai/CDN77/Cloudflare/Cogent/Constant/Contabo/DataCamp/Fastly/Hetzner/OVH/Roblox/Scaleway, JSON‑фид AWS, JSON Oracle с публичными IP, DigitalOcean geo CSV feed, Vercel API), поэтому данные всегда поступают напрямую от владельцев сетей.
+Скрипт использует официальные публичные точки доступа провайдеров (RIPE Stat, JSON‑фид AWS, JSON Oracle с публичными IP, DigitalOcean geo CSV feed, Vercel API), поэтому данные всегда поступают напрямую от владельцев сетей.
 
 ### Автоматизация
 
