@@ -39,6 +39,7 @@ Need every provider in a single rule set? Use the `all/` directory, which aggreg
 | OVH | AS16276 | ✅ |
 | Roblox | AS22697 | ❌ |
 | Scaleway | AS12876 | ✅ |
+| Scalaxy | AS58061 | ✅ |
 | Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ❌ |
 | Vercel | — | ✅ |
 
@@ -52,7 +53,7 @@ Run `python3 scripts/update_cdn_lists.py` locally to pull the latest ranges and 
 
 ### Where the data comes from
 
-The script reads official public endpoints provided by the vendors (RIPE Stat for Akamai/CDN77/Cloudflare/Cogent/Constant/Contabo/DataCamp/Fastly/Hetzner/OVH/Roblox/Scaleway, AWS JSON feed, Oracle public IP range JSON, DigitalOcean geo CSV feed, Vercel API) so you always get upstream information without manual copy/paste.
+The script reads official public endpoints provided by the vendors (RIPE Stat, AWS JSON feed, Oracle public IP range JSON, DigitalOcean geo CSV feed, Vercel API) so you always get upstream information without manual copy/paste.
 
 ### Automation
 
