@@ -393,6 +393,7 @@ def main() -> int:
         ProviderSpec("ovh", lambda: fetch_ripe_prefixes("16276")),
         ProviderSpec("gcore", lambda: fetch_ripe_prefixes("199524")),
         ProviderSpec("glesys", lambda: fetch_ripe_prefixes("42708")),
+        ProviderSpec("gthost", lambda: fetch_ripe_prefixes("63023")),
         ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), include_in_all=False),
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), include_in_all=False),
         ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
