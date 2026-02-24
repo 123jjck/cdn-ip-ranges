@@ -35,6 +35,7 @@
 | Fastly | AS54113 | ✅ |
 | GCore | AS199524 | ✅ |
 | GleSYS | AS42708 | ✅ |
+| GTHost | AS63023 | ✅ |
 | Hetzner | AS24940, AS213230, AS212317 | ✅ |
 | MelBiCom | AS8849, AS56630 | ✅ |
 | Meta | AS32934 | ❌ |
