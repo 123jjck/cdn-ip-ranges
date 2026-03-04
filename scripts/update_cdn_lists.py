@@ -379,6 +379,7 @@ def main() -> int:
     providers: Sequence[ProviderSpec] = (
         ProviderSpec("akamai", lambda: list(fetch_ripe_prefixes("20940")) + list(fetch_ripe_prefixes("63949"))),
         ProviderSpec("aws", fetch_aws_ranges),
+        ProviderSpec("buyvm", lambda: fetch_ripe_prefixes("53667")),
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
         ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
         ProviderSpec("cogent", lambda: fetch_ripe_prefixes("174")),
@@ -396,7 +397,7 @@ def main() -> int:
         ProviderSpec("gthost", lambda: fetch_ripe_prefixes("63023")),
         ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), include_in_all=False),
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), include_in_all=False),
-        ProviderSpec("scaleway", lambda: fetch_ripe_prefixes("12876")),
+        ProviderSpec("scaleway", lambda: list(fetch_ripe_prefixes("12876")) + list(fetch_ripe_prefixes("29447"))),
         ProviderSpec("scalaxy", lambda: fetch_ripe_prefixes("58061")),
         ProviderSpec(
             "telegram",

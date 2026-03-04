@@ -25,6 +25,7 @@
 |---|---|:---:|
 | Akamai | AS20940, AS63949 | ✅ |
 | AWS | — | ✅ |
+| BuyVM | AS53667 | ✅ |
 | CDN77 | AS60068 | ✅ |
 | Cloudflare | AS13335 | ✅ |
 | Cogent | AS174 | ✅ |
@@ -42,7 +43,7 @@
 | Oracle | AS31898 | ✅ |
 | OVH | AS16276 | ✅ |
 | Roblox | AS22697 | ❌ |
-| Scaleway | AS12876 | ✅ |
+| Scaleway | AS12876, AS29447 | ✅ |
 | Scalaxy | AS58061 | ✅ |
 | Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ❌ |
 | Vercel | — | ✅ |
