@@ -25,7 +25,11 @@ except ModuleNotFoundError:  # pragma: no cover - runtime dependency check
     dns_exception = None  # type: ignore[assignment]
     dns_resolver = None  # type: ignore[assignment]
 
-GOOGLE_DNS_UDP_NAMESERVERS: tuple[str, str] = ("8.8.8.8", "8.8.4.4")
+UDP_NAMESERVERS: tuple[str, ...] = (
+    "8.8.8.8", "8.8.4.4",          # Google
+    "1.1.1.1", "1.0.0.1",          # Cloudflare
+    "9.9.9.9", "149.112.112.112",  # Quad9
+)
 CRTSH_SQL_QUERY = """
 SELECT name_value
 FROM certificate_and_identities
@@ -86,9 +90,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--resolver",
-        choices=("google-udp", "doh", "system"),
-        default="google-udp",
-        help="Resolver backend (default: google-udp = Google DNS over UDP; doh kept as alias).",
+        choices=("udp", "system"),
+        default="udp",
+        help="Resolver backend (default: udp = public DNS over UDP).",
     )
     parser.add_argument(
         "--workers",
@@ -255,22 +259,27 @@ def resolve_domain_system(host: str) -> list[str]:
     return sorted(ips, key=lambda ip: (ipaddress.ip_address(ip).version, ipaddress.ip_address(ip)))
 
 
-def _new_google_udp_resolver(timeout: float):
-    if dns_resolver is None:
-        raise RuntimeError("Python module 'dnspython' is required. Install with: pip install dnspython")
-
-    resolver = dns_resolver.Resolver(configure=False)
-    resolver.nameservers = list(GOOGLE_DNS_UDP_NAMESERVERS)
-    resolver.timeout = timeout
-    resolver.lifetime = timeout
-    return resolver
+_udp_resolver = None
 
 
-def _resolve_google_udp_type(host: str, qtype: str, timeout: float, retries: int) -> list[str]:
+def _get_udp_resolver(timeout: float):
+    global _udp_resolver
+    if _udp_resolver is None:
+        if dns_resolver is None:
+            raise RuntimeError("Python module 'dnspython' is required. Install with: pip install dnspython")
+        _udp_resolver = dns_resolver.Resolver(configure=False)
+        _udp_resolver.nameservers = list(UDP_NAMESERVERS)
+        _udp_resolver.rotate = True
+        _udp_resolver.timeout = timeout
+        _udp_resolver.lifetime = timeout
+    return _udp_resolver
+
+
+def _resolve_udp_type(host: str, qtype: str, timeout: float, retries: int) -> list[str]:
     last_error: Exception | None = None
     for attempt in range(1, retries + 1):
         try:
-            resolver = _new_google_udp_resolver(timeout)
+            resolver = _get_udp_resolver(timeout)
             answers = resolver.resolve(
                 host,
                 rdtype=qtype,
@@ -298,12 +307,12 @@ def _resolve_google_udp_type(host: str, qtype: str, timeout: float, retries: int
                 break
             time.sleep(min(2 ** (attempt - 1), 8))
 
-    raise RuntimeError(f"Google UDP DNS query failed for {host}: {last_error}") from last_error
+    raise RuntimeError(f"UDP DNS query failed for {host}: {last_error}") from last_error
 
 
-def resolve_domain_google_udp(host: str, timeout: float, retries: int) -> list[str]:
-    ips = set(_resolve_google_udp_type(host, "A", timeout=timeout, retries=retries))
-    ips.update(_resolve_google_udp_type(host, "AAAA", timeout=timeout, retries=retries))
+def resolve_domain_udp(host: str, timeout: float, retries: int) -> list[str]:
+    ips = set(_resolve_udp_type(host, "A", timeout=timeout, retries=retries))
+    ips.update(_resolve_udp_type(host, "AAAA", timeout=timeout, retries=retries))
     ips = {ip for ip in ips if ipaddress.ip_address(ip).is_global}
     return sorted(ips, key=lambda ip: (ipaddress.ip_address(ip).version, ipaddress.ip_address(ip)))
 
@@ -322,7 +331,7 @@ def resolve_all_domains(
     def _resolve_one(host: str) -> list[str]:
         if resolver == "system":
             return resolve_domain_system(host)
-        return resolve_domain_google_udp(host, timeout=timeout, retries=retries)
+        return resolve_domain_udp(host, timeout=timeout, retries=retries)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(workers, 1)) as executor:
         futures = {executor.submit(_resolve_one, host): host for host in domains}
