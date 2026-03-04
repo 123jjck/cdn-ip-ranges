@@ -36,6 +36,8 @@ class ProviderSpec:
     name: str
     fetcher: Callable[[], Sequence[PrefixEntry]]
     include_in_all: bool = True
+    include_in_csv: bool | None = None
+    allow_empty: bool = False
 
 
 def _urlopen_with_retries(
@@ -199,6 +201,77 @@ def fetch_ripe_prefixes(asn: str) -> Sequence[PrefixEntry]:
     return prefixes
 
 
+def fetch_discord_voice_ranges() -> Sequence[PrefixEntry]:
+    from collect_discord_voice_ips import DEFAULT_REGION_SLUGS, collect_voice_domain_ips
+
+    regions = list(DEFAULT_REGION_SLUGS)
+    all_domains, _, resolved_by_domain, _ = collect_voice_domain_ips(
+        regions=regions,
+        db_host="crt.sh",
+        db_port=5432,
+        db_name="certwatch",
+        db_user="guest",
+        db_connect_timeout=20,
+        resolver="system",
+        workers=24,
+        timeout=2.0,
+        retries=3,
+        max_domains=0,
+        progress_every=500,
+    )
+
+    if not resolved_by_domain:
+        print(
+            "discord-voice: system resolver returned 0 resolved domains, retrying with udp",
+            file=sys.stderr,
+        )
+        all_domains, _, resolved_by_domain, _ = collect_voice_domain_ips(
+            regions=regions,
+            db_host="crt.sh",
+            db_port=5432,
+            db_name="certwatch",
+            db_user="guest",
+            db_connect_timeout=20,
+            resolver="udp",
+            workers=24,
+            timeout=2.0,
+            retries=3,
+            max_domains=0,
+            progress_every=500,
+        )
+
+    prefixes: List[PrefixEntry] = []
+    seen: set[tuple[str, str]] = set()
+    resolved_domains = sorted(resolved_by_domain)
+
+    for domain in resolved_domains:
+        host_label = domain[: -len(".discord.gg")] if domain.endswith(".discord.gg") else domain
+        for ip in resolved_by_domain[domain]:
+            try:
+                ip_obj = ipaddress.ip_address(ip)
+            except ValueError:
+                continue
+            if not ip_obj.is_global:
+                continue
+            cidr = f"{ip_obj}/32" if ip_obj.version == 4 else f"{ip_obj}/128"
+            key = (cidr, host_label)
+            if key in seen:
+                continue
+            seen.add(key)
+            prefixes.append(PrefixEntry(cidr=cidr, region=host_label))
+
+    matched_domains = len(all_domains)
+    print(
+        (
+            f"discord-voice: matched {matched_domains} domains, "
+            f"resolved {len(resolved_domains)} domains, "
+            f"global IPs {len(prefixes)}"
+        ),
+        file=sys.stderr,
+    )
+    return prefixes
+
+
 def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[PrefixEntry]:
     pref_list = list(prefixes)
     if not pref_list:
@@ -313,6 +386,24 @@ def aggregate_csv_entries(
 
     for provider in sorted(provider_entries):
         pref_list = provider_entries[provider]
+
+        if provider == "discord-voice":
+            unique: dict[tuple[str, str], PrefixEntry] = {}
+            for entry in pref_list:
+                unique[(entry.cidr, entry.region)] = entry
+            ordered = sorted(
+                unique.values(),
+                key=lambda e: (
+                    e.region,
+                    ipaddress.ip_network(e.cidr, strict=False).version,
+                    int(ipaddress.ip_network(e.cidr, strict=False).network_address),
+                    ipaddress.ip_network(e.cidr, strict=False).prefixlen,
+                ),
+            )
+            for entry in ordered:
+                result.append((provider, entry))
+            continue
+
         has_regions = any(entry.region for entry in pref_list)
 
         if not has_regions:
@@ -431,6 +522,13 @@ def main() -> int:
             ),
             include_in_all=False,
         ),
+        ProviderSpec(
+            "discord-voice",
+            fetch_discord_voice_ranges,
+            include_in_all=False,
+            include_in_csv=False,
+            allow_empty=True,
+        ),
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
@@ -441,12 +539,19 @@ def main() -> int:
     for spec in providers:
         try:
             raw_prefixes = list(spec.fetcher())
+            if not raw_prefixes and spec.allow_empty:
+                write_provider_outputs(spec.name, [])
+                print(f"Generated {0:>5} aggregated prefixes for {spec.name}")
+                continue
+
             prefixes = normalize_prefixes(spec.name, raw_prefixes)
             aggregated = aggregate_prefixes(spec.name, prefixes)
             write_provider_outputs(spec.name, aggregated)
             print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
             if spec.include_in_all:
                 all_prefixes.extend(aggregated)
+            include_in_csv = spec.include_in_all if spec.include_in_csv is None else spec.include_in_csv
+            if include_in_csv:
                 all_csv_entries.extend((spec.name, entry) for entry in prefixes)
         except Exception as exc:
             print(f"FAILED  {spec.name}: {exc}", file=sys.stderr)

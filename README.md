@@ -30,6 +30,7 @@ Need every provider in a single rule set? Use the `all/` directory, which aggreg
 | Contabo | AS51167 | ✅ |
 | DataCamp | AS212238 | ✅ |
 | DigitalOcean | AS14061 | ✅ |
+| Discord Voice | — | ❌ |
 | Fastly | AS54113 | ✅ |
 | GCore | AS199524 | ✅ |
 | GleSYS | AS42708 | ✅ |
