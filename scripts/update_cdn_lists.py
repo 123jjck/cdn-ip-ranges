@@ -526,7 +526,7 @@ def main() -> int:
             "discord-voice",
             fetch_discord_voice_ranges,
             include_in_all=False,
-            include_in_csv=True,
+            include_in_csv=False,
             allow_empty=True,
         ),
         ProviderSpec("vercel", fetch_vercel_ranges),
