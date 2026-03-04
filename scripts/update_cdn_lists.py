@@ -6,6 +6,7 @@ import csv
 import ipaddress
 import json
 import os
+import socket
 import sys
 import time
 from dataclasses import dataclass
@@ -38,17 +39,30 @@ class ProviderSpec:
 
 
 def _urlopen_with_retries(
-    request: Request, timeout: int = 60, attempts: int = 3, delay: float = 1.0
+    request: Request, timeout: int = 60, attempts: int = 4, delay: float = 2.0, max_delay: float = 20.0
 ):
     last_exc: Exception | None = None
     for attempt in range(1, attempts + 1):
         try:
             return urlopen(request, timeout=timeout)  # nosec: B310 - trusted endpoints
-        except (HTTPError, URLError) as exc:
+        except HTTPError as exc:
+            last_exc = exc
+            # Retry only for throttling and transient upstream failures.
+            if exc.code not in {408, 425, 429} and not (500 <= exc.code <= 599):
+                raise
+            if attempt == attempts:
+                raise
+        except (URLError, TimeoutError, socket.timeout, ConnectionError) as exc:
             last_exc = exc
             if attempt == attempts:
                 raise
-            time.sleep(delay * attempt)
+
+        sleep_seconds = min(delay * (2 ** (attempt - 1)), max_delay)
+        print(
+            f"request retry {attempt}/{attempts - 1} after error: {last_exc}; waiting {sleep_seconds:.1f}s",
+            file=sys.stderr,
+        )
+        time.sleep(sleep_seconds)
 
     raise RuntimeError("Unreachable: retries exhausted without exception") from last_exc
 
@@ -63,6 +77,8 @@ def fetch_text(url: str) -> str:
         raise RuntimeError(f"HTTP error {exc.code} while fetching {url}") from exc
     except URLError as exc:  # pragma: no cover - defensive
         raise RuntimeError(f"Network error while fetching {url}: {exc.reason}") from exc
+    except (TimeoutError, socket.timeout) as exc:  # pragma: no cover - defensive
+        raise RuntimeError(f"Network timeout while fetching {url}: {exc}") from exc
 
 
 def fetch_json(url: str) -> dict:
@@ -146,6 +162,10 @@ def fetch_vercel_ranges() -> Sequence[PrefixEntry]:
     except URLError as exc:  # pragma: no cover - defensive
         raise RuntimeError(
             f"vercel: network error while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc.reason}"
+        ) from exc
+    except (TimeoutError, socket.timeout) as exc:  # pragma: no cover - defensive
+        raise RuntimeError(
+            f"vercel: network timeout while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc}"
         ) from exc
 
     try:
