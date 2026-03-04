@@ -212,17 +212,17 @@ def fetch_discord_voice_ranges() -> Sequence[PrefixEntry]:
         db_name="certwatch",
         db_user="guest",
         db_connect_timeout=20,
-        resolver="doh",
+        resolver="system",
         workers=24,
-        timeout=25.0,
-        retries=5,
+        timeout=2.0,
+        retries=3,
         max_domains=0,
         progress_every=500,
     )
 
     if not resolved_by_domain:
         print(
-            "discord-voice: DoH returned 0 resolved domains, retrying with system resolver",
+            "discord-voice: system resolver returned 0 resolved domains, retrying with udp",
             file=sys.stderr,
         )
         all_domains, _, resolved_by_domain, _ = collect_voice_domain_ips(
@@ -232,9 +232,9 @@ def fetch_discord_voice_ranges() -> Sequence[PrefixEntry]:
             db_name="certwatch",
             db_user="guest",
             db_connect_timeout=20,
-            resolver="system",
+            resolver="udp",
             workers=24,
-            timeout=25.0,
+            timeout=2.0,
             retries=3,
             max_domains=0,
             progress_every=500,
