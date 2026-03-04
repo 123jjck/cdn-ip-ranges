@@ -6,23 +6,21 @@ import argparse
 import concurrent.futures
 import ipaddress
 import json
+import random
 import socket
+import struct
 import sys
 import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Iterable, Sequence
-from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
 try:
     import psycopg
 except ModuleNotFoundError:  # pragma: no cover - runtime dependency check
     psycopg = None  # type: ignore[assignment]
 
-GOOGLE_DOH_URL = "https://dns.google/resolve"
-USER_AGENT = "discord-voice-ip-collector/1.0 (+https://github.com/123jjck/cdn-ip-ranges)"
+GOOGLE_DNS_UDP_SERVER = ("8.8.8.8", 53)
 CRTSH_SQL_QUERY = """
 SELECT name_value
 FROM certificate_and_identities
@@ -83,15 +81,15 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--resolver",
-        choices=("doh", "system"),
-        default="doh",
-        help="Resolver backend (default: doh = Google DNS-over-HTTPS).",
+        choices=("google-udp", "doh", "system"),
+        default="google-udp",
+        help="Resolver backend (default: google-udp = Google DNS over UDP; doh kept as alias).",
     )
     parser.add_argument(
         "--workers",
         type=int,
-        default=24,
-        help="Number of concurrent resolver workers (default: 24).",
+        default=256,
+        help="Number of concurrent resolver workers (default: 256).",
     )
     parser.add_argument(
         "--timeout",
@@ -150,34 +148,6 @@ def normalize_regions(raw: str) -> list[str]:
         seen.add(slug)
         result.append(slug)
     return result
-
-
-def _request_text(url: str, timeout: float, retries: int, headers: dict[str, str] | None = None) -> str:
-    last_error: Exception | None = None
-    request_headers = {"User-Agent": USER_AGENT}
-    if headers:
-        request_headers.update(headers)
-
-    for attempt in range(1, retries + 1):
-        request = Request(url, headers=request_headers)
-        try:
-            with urlopen(request, timeout=timeout) as response:  # nosec: B310
-                charset = response.headers.get_content_charset() or "utf-8"
-                return response.read().decode(charset, errors="replace")
-        except HTTPError as exc:
-            last_error = exc
-            if exc.code not in {408, 425, 429} and not (500 <= exc.code <= 599):
-                break
-            if attempt == retries:
-                break
-            time.sleep(min(2 ** (attempt - 1), 8))
-        except (URLError, TimeoutError, socket.timeout, ConnectionError) as exc:
-            last_error = exc
-            if attempt == retries:
-                break
-            time.sleep(min(2 ** (attempt - 1), 8))
-
-    raise RuntimeError(f"Request failed for {url}: {last_error}") from last_error
 
 
 def fetch_ct_domains_from_postgres(
@@ -280,33 +250,104 @@ def resolve_domain_system(host: str) -> list[str]:
     return sorted(ips, key=lambda ip: (ipaddress.ip_address(ip).version, ipaddress.ip_address(ip)))
 
 
-def _resolve_doh_type(host: str, qtype: str, timeout: float, retries: int) -> list[str]:
-    query = urlencode({"name": host, "type": qtype})
-    url = f"{GOOGLE_DOH_URL}?{query}"
-    raw = _request_text(
-        url,
-        timeout=timeout,
-        retries=retries,
-        headers={"accept": "application/dns-json"},
-    )
-    payload = json.loads(raw)
+def _encode_dns_name(name: str) -> bytes:
+    chunks: list[bytes] = []
+    for label in name.rstrip(".").split("."):
+        label_bytes = label.encode("idna")
+        if len(label_bytes) > 63:
+            raise ValueError(f"Invalid DNS label length for {name}")
+        chunks.append(bytes((len(label_bytes),)) + label_bytes)
+    return b"".join(chunks) + b"\x00"
 
-    if payload.get("Status") != 0:
+
+def _build_dns_query(name: str, qtype: int, txid: int) -> bytes:
+    header = struct.pack("!HHHHHH", txid, 0x0100, 1, 0, 0, 0)
+    question = _encode_dns_name(name) + struct.pack("!HH", qtype, 1)
+    return header + question
+
+
+def _skip_dns_name(packet: bytes, offset: int) -> int:
+    while True:
+        if offset >= len(packet):
+            raise ValueError("Malformed DNS packet: name out of bounds")
+        length = packet[offset]
+        if length == 0:
+            return offset + 1
+        if (length & 0xC0) == 0xC0:
+            if offset + 1 >= len(packet):
+                raise ValueError("Malformed DNS packet: pointer out of bounds")
+            return offset + 2
+        offset += 1 + length
+
+
+def _parse_dns_answers(packet: bytes, txid: int, qtype: int) -> list[str]:
+    if len(packet) < 12:
+        raise ValueError("Malformed DNS packet: header is too short")
+
+    response_id, flags, qdcount, ancount, _, _ = struct.unpack("!HHHHHH", packet[:12])
+    if response_id != txid:
+        raise ValueError("DNS transaction id mismatch")
+    if (flags & 0x8000) == 0:
+        raise ValueError("Not a DNS response packet")
+
+    rcode = flags & 0x000F
+    if rcode in {2, 3}:  # SERVFAIL, NXDOMAIN
         return []
+    if rcode != 0:
+        raise ValueError(f"DNS response error code: {rcode}")
 
-    expected_type = 1 if qtype == "A" else 28
+    offset = 12
+    for _ in range(qdcount):
+        offset = _skip_dns_name(packet, offset)
+        if offset + 4 > len(packet):
+            raise ValueError("Malformed DNS packet: question out of bounds")
+        offset += 4
+
     values: list[str] = []
-    for answer in payload.get("Answer", []) or []:
-        if answer.get("type") == expected_type:
-            data = str(answer.get("data", "")).strip()
-            if data:
-                values.append(data)
+    for _ in range(ancount):
+        offset = _skip_dns_name(packet, offset)
+        if offset + 10 > len(packet):
+            raise ValueError("Malformed DNS packet: answer header out of bounds")
+        rr_type, rr_class, _, rdlength = struct.unpack("!HHIH", packet[offset : offset + 10])
+        offset += 10
+        if offset + rdlength > len(packet):
+            raise ValueError("Malformed DNS packet: rdata out of bounds")
+        rdata = packet[offset : offset + rdlength]
+        offset += rdlength
+
+        if rr_class != 1 or rr_type != qtype:
+            continue
+        if rr_type == 1 and rdlength == 4:
+            values.append(str(ipaddress.IPv4Address(rdata)))
+        elif rr_type == 28 and rdlength == 16:
+            values.append(str(ipaddress.IPv6Address(rdata)))
+
     return values
 
 
-def resolve_domain_doh(host: str, timeout: float, retries: int) -> list[str]:
-    ips = set(_resolve_doh_type(host, "A", timeout=timeout, retries=retries))
-    ips.update(_resolve_doh_type(host, "AAAA", timeout=timeout, retries=retries))
+def _resolve_google_udp_type(host: str, qtype: int, timeout: float, retries: int) -> list[str]:
+    last_error: Exception | None = None
+    for attempt in range(1, retries + 1):
+        txid = random.randint(0, 0xFFFF)
+        query = _build_dns_query(host, qtype, txid)
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+                sock.settimeout(timeout)
+                sock.sendto(query, GOOGLE_DNS_UDP_SERVER)
+                response, _ = sock.recvfrom(4096)
+            return _parse_dns_answers(response, txid, qtype)
+        except (socket.timeout, TimeoutError, OSError, ValueError) as exc:
+            last_error = exc
+            if attempt == retries:
+                break
+            time.sleep(min(2 ** (attempt - 1), 8))
+
+    raise RuntimeError(f"Google UDP DNS query failed for {host}: {last_error}") from last_error
+
+
+def resolve_domain_google_udp(host: str, timeout: float, retries: int) -> list[str]:
+    ips = set(_resolve_google_udp_type(host, 1, timeout=timeout, retries=retries))
+    ips.update(_resolve_google_udp_type(host, 28, timeout=timeout, retries=retries))
     ips = {ip for ip in ips if ipaddress.ip_address(ip).is_global}
     return sorted(ips, key=lambda ip: (ipaddress.ip_address(ip).version, ipaddress.ip_address(ip)))
 
@@ -325,7 +366,7 @@ def resolve_all_domains(
     def _resolve_one(host: str) -> list[str]:
         if resolver == "system":
             return resolve_domain_system(host)
-        return resolve_domain_doh(host, timeout=timeout, retries=retries)
+        return resolve_domain_google_udp(host, timeout=timeout, retries=retries)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(workers, 1)) as executor:
         futures = {executor.submit(_resolve_one, host): host for host in domains}
