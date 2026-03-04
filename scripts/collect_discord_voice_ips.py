@@ -6,9 +6,7 @@ import argparse
 import concurrent.futures
 import ipaddress
 import json
-import random
 import socket
-import struct
 import sys
 import time
 from collections import defaultdict
@@ -20,7 +18,14 @@ try:
 except ModuleNotFoundError:  # pragma: no cover - runtime dependency check
     psycopg = None  # type: ignore[assignment]
 
-GOOGLE_DNS_UDP_SERVER = ("8.8.8.8", 53)
+try:
+    import dns.exception as dns_exception
+    import dns.resolver as dns_resolver
+except ModuleNotFoundError:  # pragma: no cover - runtime dependency check
+    dns_exception = None  # type: ignore[assignment]
+    dns_resolver = None  # type: ignore[assignment]
+
+GOOGLE_DNS_UDP_NAMESERVERS: tuple[str, str] = ("8.8.8.8", "8.8.4.4")
 CRTSH_SQL_QUERY = """
 SELECT name_value
 FROM certificate_and_identities
@@ -88,8 +93,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--workers",
         type=int,
-        default=256,
-        help="Number of concurrent resolver workers (default: 256).",
+        default=24,
+        help="Number of concurrent resolver workers (default: 24).",
     )
     parser.add_argument(
         "--timeout",
@@ -250,93 +255,44 @@ def resolve_domain_system(host: str) -> list[str]:
     return sorted(ips, key=lambda ip: (ipaddress.ip_address(ip).version, ipaddress.ip_address(ip)))
 
 
-def _encode_dns_name(name: str) -> bytes:
-    chunks: list[bytes] = []
-    for label in name.rstrip(".").split("."):
-        label_bytes = label.encode("idna")
-        if len(label_bytes) > 63:
-            raise ValueError(f"Invalid DNS label length for {name}")
-        chunks.append(bytes((len(label_bytes),)) + label_bytes)
-    return b"".join(chunks) + b"\x00"
+def _new_google_udp_resolver(timeout: float):
+    if dns_resolver is None:
+        raise RuntimeError("Python module 'dnspython' is required. Install with: pip install dnspython")
+
+    resolver = dns_resolver.Resolver(configure=False)
+    resolver.nameservers = list(GOOGLE_DNS_UDP_NAMESERVERS)
+    resolver.timeout = timeout
+    resolver.lifetime = timeout
+    return resolver
 
 
-def _build_dns_query(name: str, qtype: int, txid: int) -> bytes:
-    header = struct.pack("!HHHHHH", txid, 0x0100, 1, 0, 0, 0)
-    question = _encode_dns_name(name) + struct.pack("!HH", qtype, 1)
-    return header + question
-
-
-def _skip_dns_name(packet: bytes, offset: int) -> int:
-    while True:
-        if offset >= len(packet):
-            raise ValueError("Malformed DNS packet: name out of bounds")
-        length = packet[offset]
-        if length == 0:
-            return offset + 1
-        if (length & 0xC0) == 0xC0:
-            if offset + 1 >= len(packet):
-                raise ValueError("Malformed DNS packet: pointer out of bounds")
-            return offset + 2
-        offset += 1 + length
-
-
-def _parse_dns_answers(packet: bytes, txid: int, qtype: int) -> list[str]:
-    if len(packet) < 12:
-        raise ValueError("Malformed DNS packet: header is too short")
-
-    response_id, flags, qdcount, ancount, _, _ = struct.unpack("!HHHHHH", packet[:12])
-    if response_id != txid:
-        raise ValueError("DNS transaction id mismatch")
-    if (flags & 0x8000) == 0:
-        raise ValueError("Not a DNS response packet")
-
-    rcode = flags & 0x000F
-    if rcode in {2, 3}:  # SERVFAIL, NXDOMAIN
-        return []
-    if rcode != 0:
-        raise ValueError(f"DNS response error code: {rcode}")
-
-    offset = 12
-    for _ in range(qdcount):
-        offset = _skip_dns_name(packet, offset)
-        if offset + 4 > len(packet):
-            raise ValueError("Malformed DNS packet: question out of bounds")
-        offset += 4
-
-    values: list[str] = []
-    for _ in range(ancount):
-        offset = _skip_dns_name(packet, offset)
-        if offset + 10 > len(packet):
-            raise ValueError("Malformed DNS packet: answer header out of bounds")
-        rr_type, rr_class, _, rdlength = struct.unpack("!HHIH", packet[offset : offset + 10])
-        offset += 10
-        if offset + rdlength > len(packet):
-            raise ValueError("Malformed DNS packet: rdata out of bounds")
-        rdata = packet[offset : offset + rdlength]
-        offset += rdlength
-
-        if rr_class != 1 or rr_type != qtype:
-            continue
-        if rr_type == 1 and rdlength == 4:
-            values.append(str(ipaddress.IPv4Address(rdata)))
-        elif rr_type == 28 and rdlength == 16:
-            values.append(str(ipaddress.IPv6Address(rdata)))
-
-    return values
-
-
-def _resolve_google_udp_type(host: str, qtype: int, timeout: float, retries: int) -> list[str]:
+def _resolve_google_udp_type(host: str, qtype: str, timeout: float, retries: int) -> list[str]:
     last_error: Exception | None = None
     for attempt in range(1, retries + 1):
-        txid = random.randint(0, 0xFFFF)
-        query = _build_dns_query(host, qtype, txid)
         try:
-            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
-                sock.settimeout(timeout)
-                sock.sendto(query, GOOGLE_DNS_UDP_SERVER)
-                response, _ = sock.recvfrom(4096)
-            return _parse_dns_answers(response, txid, qtype)
-        except (socket.timeout, TimeoutError, OSError, ValueError) as exc:
+            resolver = _new_google_udp_resolver(timeout)
+            answers = resolver.resolve(
+                host,
+                rdtype=qtype,
+                tcp=False,
+                search=False,
+                raise_on_no_answer=False,
+            )
+            if answers is None:
+                return []
+            values: list[str] = []
+            for rdata in answers:
+                address = getattr(rdata, "address", None)
+                if isinstance(address, str) and address:
+                    values.append(address)
+            return values
+        except Exception as exc:
+            # Empty DNS answer should not be considered a hard resolver error.
+            if dns_resolver is not None and dns_exception is not None and isinstance(
+                exc,
+                (dns_resolver.NoAnswer, dns_resolver.NXDOMAIN, dns_resolver.NoNameservers, dns_exception.Timeout),
+            ):
+                return []
             last_error = exc
             if attempt == retries:
                 break
@@ -346,8 +302,8 @@ def _resolve_google_udp_type(host: str, qtype: int, timeout: float, retries: int
 
 
 def resolve_domain_google_udp(host: str, timeout: float, retries: int) -> list[str]:
-    ips = set(_resolve_google_udp_type(host, 1, timeout=timeout, retries=retries))
-    ips.update(_resolve_google_udp_type(host, 28, timeout=timeout, retries=retries))
+    ips = set(_resolve_google_udp_type(host, "A", timeout=timeout, retries=retries))
+    ips.update(_resolve_google_udp_type(host, "AAAA", timeout=timeout, retries=retries))
     ips = {ip for ip in ips if ipaddress.ip_address(ip).is_global}
     return sorted(ips, key=lambda ip: (ipaddress.ip_address(ip).version, ipaddress.ip_address(ip)))
 

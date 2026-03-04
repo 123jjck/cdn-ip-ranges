@@ -22,8 +22,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Python dependencies
-        run: python3 -m pip install "psycopg[binary]"
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install "psycopg[binary]" dnspython
 
       - name: Generate CDN lists
         run: python3 scripts/update_cdn_lists.py
