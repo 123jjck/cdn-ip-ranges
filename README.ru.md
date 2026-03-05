@@ -30,18 +30,18 @@
 | Cloudflare | AS13335 | ✅ |
 | Cogent | AS174 | ✅ |
 | Constant | AS20473 | ✅ |
-| Contabo | AS51167 | ✅ |
+| Contabo | AS51167, AS141995 | ✅ |
 | DataCamp | AS212238 | ✅ |
 | DigitalOcean | AS14061 | ✅ |
 | Discord Voice | — | ❌ |
 | Fastly | AS54113 | ✅ |
-| GCore | AS199524 | ✅ |
+| GCore | AS199524, AS202422 | ✅ |
 | GleSYS | AS42708 | ✅ |
 | GTHost | AS63023 | ✅ |
 | Hetzner | AS24940, AS213230, AS212317 | ✅ |
 | MelBiCom | AS8849, AS56630 | ✅ |
 | Meta | AS32934 | ❌ |
-| Oracle | AS31898 | ✅ |
+| Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ |
 | OVH | AS16276 | ✅ |
 | Roblox | AS22697 | ❌ |
 | Scaleway | AS12876, AS29447 | ✅ |
