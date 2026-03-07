@@ -14,37 +14,46 @@
 - `<provider>_singbox.srs` – binary [sing-box ruleset](https://sing-box.sagernet.org/configuration/rule-set) format (IPv4 + IPv6).
 - `<provider>_singbox_ipv4.srs` – the same, but IPv4-only.
 
-Need every provider in a single rule set? Use the `all/` directory, which aggregates every prefix before generating the same files.
+### Quick start
+
+| List | Folder | Contents |
+|---|---|---|
+| **`all`** | [`all/`](https://github.com/123jjck/cdn-ip-ranges/tree/main/all) | Every provider in this repo — CDN, hosting, Discord Voice, Telegram, Meta, Roblox, and others. Use this if you want the widest possible coverage. |
+| **`cdn-only`** | [`cdn-only/`](https://github.com/123jjck/cdn-ip-ranges/tree/main/cdn-only) | CDN and hosting providers only (excludes Discord Voice, Telegram, Meta, Roblox). Use this if you only need traffic routing for CDN infrastructure. |
+
+Most common files (IPv4 plain text):
+- `all/all_plain_ipv4.txt`
+- `cdn-only/cdn-only_plain_ipv4.txt`
 
 ### Providers
 
-| Provider | AS | In `all` |
-|---|---|:---:|
-| Akamai | AS20940, AS63949 | ✅ |
-| AWS | — | ✅ |
-| BuyVM | AS53667 | ✅ |
-| CDN77 | AS60068 | ✅ |
-| Cloudflare | AS13335 | ✅ |
-| Cogent | AS174 | ✅ |
-| Constant | AS20473 | ✅ |
-| Contabo | AS51167, AS141995 | ✅ |
-| DataCamp | AS212238 | ✅ |
-| DigitalOcean | AS14061 | ✅ |
-| Discord Voice | — | ❌ |
-| Fastly | AS54113 | ✅ |
-| GCore | AS199524, AS202422 | ✅ |
-| GleSYS | AS42708 | ✅ |
-| GTHost | AS63023 | ✅ |
-| Hetzner | AS24940, AS213230, AS212317 | ✅ |
-| MelBiCom | AS8849, AS56630 | ✅ |
-| Meta | AS32934 | ❌ |
-| Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ |
-| OVH | AS16276 | ✅ |
-| Roblox | AS22697 | ❌ |
-| Scaleway | AS12876, AS29447 | ✅ |
-| Scalaxy | AS58061 | ✅ |
-| Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ❌ |
-| Vercel | — | ✅ |
+| Provider | AS | In `all` | In `cdn-only` |
+|---|---|:---:|:---:|
+| Akamai | AS20940, AS63949 | ✅ | ✅ |
+| AWS | [ip-ranges.json](scripts/update_cdn_lists.py#L94-L108) | ✅ | ✅ |
+| BuyVM | AS53667 | ✅ | ✅ |
+| CDN77 | AS60068 | ✅ | ✅ |
+| Cloudflare | AS13335 | ✅ | ✅ |
+| Cogent | AS174 | ✅ | ✅ |
+| Constant | AS20473 | ✅ | ✅ |
+| Contabo | AS51167, AS141995 | ✅ | ✅ |
+| DataCamp | AS212238 | ✅ | ✅ |
+| DigitalOcean | AS14061 | ✅ | ✅ |
+| Discord Voice | [crt.sh + DNS resolve](scripts/update_cdn_lists.py#L204-L272) | ✅ | ❌ |
+| Fastly | AS54113 | ✅ | ✅ |
+| GCore | AS199524, AS202422 | ✅ | ✅ |
+| GleSYS | AS42708 | ✅ | ✅ |
+| GTHost | AS63023 | ✅ | ✅ |
+| Hetzner | AS24940, AS213230, AS212317 | ✅ | ✅ |
+| MelBiCom | AS8849, AS56630 | ✅ | ✅ |
+| Meta | AS32934 | ✅ | ❌ |
+| Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ | ✅ |
+| OVH | AS16276 | ✅ | ✅ |
+| Roblox | AS22697 | ✅ | ❌ |
+| Scaleway | AS12876, AS29447 | ✅ | ✅ |
+| Scalaxy | AS58061 | ✅ | ✅ |
+| Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ✅ | ❌ |
+| Vercel | [NetworksDB API](scripts/update_cdn_lists.py#L140-L184) | ✅ | ✅ |
 
 ### Usage
 
@@ -53,10 +62,6 @@ Guides for different apps are available in the wiki: https://github.com/123jjck/
 ### Refreshing the data
 
 Run `python3 scripts/update_cdn_lists.py` locally to pull the latest ranges and rewrite the text files.
-
-### Where the data comes from
-
-The script reads official public endpoints provided by the vendors (RIPE Stat, AWS JSON feed, Oracle public IP range JSON, DigitalOcean geo CSV feed, Vercel API) so you always get upstream information without manual copy/paste.
 
 ### Automation
 
