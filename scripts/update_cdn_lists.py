@@ -9,6 +9,7 @@ import os
 import socket
 import sys
 import time
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, List, Sequence, Tuple, Union
@@ -35,8 +36,7 @@ class PrefixEntry:
 class ProviderSpec:
     name: str
     fetcher: Callable[[], Sequence[PrefixEntry]]
-    include_in_all: bool = True
-    include_in_csv: bool | None = None
+    is_cdn: bool = True
     allow_empty: bool = False
 
 
@@ -69,8 +69,13 @@ def _urlopen_with_retries(
     raise RuntimeError("Unreachable: retries exhausted without exception") from last_exc
 
 
-def fetch_text(url: str) -> str:
-    request = Request(url, headers={"User-Agent": USER_AGENT})
+def fetch_text(url_or_request: str | Request) -> str:
+    if isinstance(url_or_request, str):
+        request = Request(url_or_request, headers={"User-Agent": USER_AGENT})
+        url = url_or_request
+    else:
+        request = url_or_request
+        url = url_or_request.full_url
     try:
         with _urlopen_with_retries(request) as response:
             charset = response.headers.get_content_charset() or "utf-8"
@@ -83,8 +88,9 @@ def fetch_text(url: str) -> str:
         raise RuntimeError(f"Network timeout while fetching {url}: {exc}") from exc
 
 
-def fetch_json(url: str) -> dict:
-    body = fetch_text(url)
+def fetch_json(url_or_request: str | Request) -> dict:
+    url = url_or_request if isinstance(url_or_request, str) else url_or_request.full_url
+    body = fetch_text(url_or_request)
     try:
         return json.loads(body)
     except json.JSONDecodeError as exc:  # pragma: no cover - defensive
@@ -142,38 +148,16 @@ def fetch_vercel_ranges() -> Sequence[PrefixEntry]:
     if not api_key:
         raise RuntimeError("vercel: NETWORKSDB_API_KEY environment variable is not set")
 
-    payload = urlencode({"id": "vercel-inc"}).encode("utf-8")
     request = Request(
         NETWORKSDB_ORG_NETWORKS_URL,
-        data=payload,
+        data=urlencode({"id": "vercel-inc"}).encode("utf-8"),
         headers={
             "User-Agent": USER_AGENT,
             "X-Api-Key": api_key,
             "Content-Type": "application/x-www-form-urlencoded",
         },
     )
-
-    try:
-        with _urlopen_with_retries(request) as response:
-            charset = response.headers.get_content_charset() or "utf-8"
-            body = response.read().decode(charset)
-    except HTTPError as exc:  # pragma: no cover - defensive
-        raise RuntimeError(
-            f"vercel: HTTP error {exc.code} while fetching {NETWORKSDB_ORG_NETWORKS_URL}"
-        ) from exc
-    except URLError as exc:  # pragma: no cover - defensive
-        raise RuntimeError(
-            f"vercel: network error while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc.reason}"
-        ) from exc
-    except (TimeoutError, socket.timeout) as exc:  # pragma: no cover - defensive
-        raise RuntimeError(
-            f"vercel: network timeout while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc}"
-        ) from exc
-
-    try:
-        payload_json = json.loads(body)
-    except json.JSONDecodeError as exc:  # pragma: no cover - defensive
-        raise RuntimeError("vercel: invalid JSON payload from networksdb API") from exc
+    payload_json = fetch_json(request)
 
     prefixes: List[PrefixEntry] = []
     for entry in payload_json.get("results", []):
@@ -277,7 +261,7 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
     if not pref_list:
         raise RuntimeError(f"{provider}: empty prefix list fetched")
 
-    normalized: List[Tuple[int, int, int, str, str]] = []
+    result: List[Tuple[PrefixEntry, ipaddress.IPv4Network | ipaddress.IPv6Network]] = []
     seen: set[str] = set()
     duplicates: set[str] = set()
 
@@ -294,9 +278,7 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
             duplicates.add(canonical)
             continue
         seen.add(canonical)
-        normalized.append(
-            (network.version, int(network.network_address), network.prefixlen, canonical, entry.region)
-        )
+        result.append((PrefixEntry(canonical, entry.region), network))
 
     if duplicates:
         sample = ", ".join(sorted(duplicates)[:10])
@@ -305,11 +287,11 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
             file=sys.stderr,
         )
 
-    if not normalized:
+    if not result:
         raise RuntimeError(f"{provider}: no valid prefixes after validation")
 
-    normalized.sort()
-    return [PrefixEntry(entry[3], entry[4]) for entry in normalized]
+    result.sort(key=lambda x: (x[1].version, int(x[1].network_address), x[1].prefixlen))
+    return [e for e, _ in result]
 
 
 def aggregate_prefixes(provider: str, prefixes: Sequence[PrefixEntry]) -> List[PrefixEntry]:
@@ -317,15 +299,7 @@ def aggregate_prefixes(provider: str, prefixes: Sequence[PrefixEntry]) -> List[P
         raise RuntimeError(f"{provider}: empty prefix list before aggregation")
 
     networks = [ipaddress.ip_network(entry.cidr, strict=False) for entry in prefixes]
-    collapsed: List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]] = []
-
-    for version in (4, 6):
-        version_networks = [net for net in networks if net.version == version]
-        if not version_networks:
-            continue
-        collapsed.extend(ipaddress.collapse_addresses(version_networks))
-
-    collapsed.sort(key=lambda net: (net.version, int(net.network_address), net.prefixlen))
+    collapsed = _collapse_networks(networks)
     aggregated = [PrefixEntry(str(network)) for network in collapsed]
 
     if len(aggregated) != len(prefixes):
@@ -375,8 +349,6 @@ def aggregate_csv_entries(
     together.  For providers with regions, prefixes are collapsed within each
     region separately.
     """
-    from collections import defaultdict
-
     # Group entries by provider
     provider_entries: dict[str, List[PrefixEntry]] = defaultdict(list)
     for provider, entry in entries:
@@ -391,15 +363,13 @@ def aggregate_csv_entries(
             unique: dict[tuple[str, str], PrefixEntry] = {}
             for entry in pref_list:
                 unique[(entry.cidr, entry.region)] = entry
-            ordered = sorted(
-                unique.values(),
-                key=lambda e: (
-                    e.region,
-                    ipaddress.ip_network(e.cidr, strict=False).version,
-                    int(ipaddress.ip_network(e.cidr, strict=False).network_address),
-                    ipaddress.ip_network(e.cidr, strict=False).prefixlen,
-                ),
-            )
+            parsed = [(e, ipaddress.ip_network(e.cidr, strict=False)) for e in unique.values()]
+            ordered = [
+                e for e, _ in sorted(
+                    parsed,
+                    key=lambda x: (x[0].region, x[1].version, int(x[1].network_address), x[1].prefixlen),
+                )
+            ]
             for entry in ordered:
                 result.append((provider, entry))
             continue
@@ -457,10 +427,10 @@ def _collapse_networks(
     return collapsed
 
 
-def write_all_csv(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
-    all_dir = REPO_ROOT / "all"
-    all_dir.mkdir(parents=True, exist_ok=True)
-    csv_path = all_dir / "all.csv"
+def write_combined_csv(name: str, entries: Sequence[tuple[str, PrefixEntry]]) -> None:
+    out_dir = REPO_ROOT / name
+    out_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = out_dir / f"{name}.csv"
 
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
@@ -468,22 +438,6 @@ def write_all_csv(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
         for provider, entry in entries:
             writer.writerow([provider, entry.cidr, entry.region])
 
-
-def write_all_no_akamai_plain_ipv4(entries: Sequence[tuple[str, PrefixEntry]]) -> None:
-    all_dir = REPO_ROOT / "all"
-    all_dir.mkdir(parents=True, exist_ok=True)
-    output_path = all_dir / "all_no_akamai_plain_ipv4.txt"
-
-    non_akamai_entries = [entry for provider, entry in entries if provider != "akamai"]
-    ipv4_entries = [
-        entry
-        for entry in non_akamai_entries
-        if ipaddress.ip_network(entry.cidr, strict=False).version == 4
-    ]
-
-    normalized = normalize_prefixes("all_no_akamai_ipv4", ipv4_entries)
-    aggregated = aggregate_prefixes("all_no_akamai_ipv4", normalized)
-    write_plain(output_path, aggregated)
 
 
 def main() -> int:
@@ -506,8 +460,8 @@ def main() -> int:
         ProviderSpec("gcore", lambda: list(fetch_ripe_prefixes("199524")) + list(fetch_ripe_prefixes("202422"))),
         ProviderSpec("glesys", lambda: fetch_ripe_prefixes("42708")),
         ProviderSpec("gthost", lambda: fetch_ripe_prefixes("63023")),
-        ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), include_in_all=False),
-        ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), include_in_all=False),
+        ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), is_cdn=False),
+        ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), is_cdn=False),
         ProviderSpec("scaleway", lambda: list(fetch_ripe_prefixes("12876")) + list(fetch_ripe_prefixes("29447"))),
         ProviderSpec("scalaxy", lambda: fetch_ripe_prefixes("58061")),
         ProviderSpec(
@@ -520,18 +474,18 @@ def main() -> int:
                 + list(fetch_ripe_prefixes("59930"))
                 + [PrefixEntry(prefix) for prefix in TELEGRAM_STATIC_PREFIXES]
             ),
-            include_in_all=False,
+            is_cdn=False,
         ),
         ProviderSpec(
             "discord-voice",
             fetch_discord_voice_ranges,
-            include_in_all=False,
-            include_in_csv=False,
+            is_cdn=False,
             allow_empty=True,
         ),
         ProviderSpec("vercel", fetch_vercel_ranges),
     )
 
+    cdn_only_prefixes: List[PrefixEntry] = []
     all_prefixes: List[PrefixEntry] = []
     all_csv_entries: List[tuple[str, PrefixEntry]] = []
     failed_providers: List[str] = []
@@ -548,22 +502,30 @@ def main() -> int:
             aggregated = aggregate_prefixes(spec.name, prefixes)
             write_provider_outputs(spec.name, aggregated)
             print(f"Generated {len(aggregated):>5} aggregated prefixes for {spec.name}")
-            if spec.include_in_all:
-                all_prefixes.extend(aggregated)
-            include_in_csv = spec.include_in_all if spec.include_in_csv is None else spec.include_in_csv
-            if include_in_csv:
-                all_csv_entries.extend((spec.name, entry) for entry in prefixes)
+
+            # cdn-only: only providers flagged as CDN
+            if spec.is_cdn:
+                cdn_only_prefixes.extend(aggregated)
+
+            # all and CSV: every provider without exception
+            all_prefixes.extend(aggregated)
+            all_csv_entries.extend((spec.name, entry) for entry in prefixes)
         except Exception as exc:
             print(f"FAILED  {spec.name}: {exc}", file=sys.stderr)
             failed_providers.append(spec.name)
+
+    if cdn_only_prefixes:
+        normalized_cdn_only = normalize_prefixes("cdn-only", cdn_only_prefixes)
+        aggregated_cdn_only = aggregate_prefixes("cdn-only", normalized_cdn_only)
+        write_provider_outputs("cdn-only", aggregated_cdn_only)
+        print(f"Generated {len(aggregated_cdn_only):>5} aggregated prefixes for cdn-only")
 
     if all_prefixes:
         normalized_all = normalize_prefixes("all", all_prefixes)
         aggregated_all = aggregate_prefixes("all", normalized_all)
         write_provider_outputs("all", aggregated_all)
-        aggregated_csv = aggregate_csv_entries(all_csv_entries)
-        write_all_csv(aggregated_csv)
-        write_all_no_akamai_plain_ipv4(aggregated_csv)
+        aggregated_all_csv = aggregate_csv_entries(all_csv_entries)
+        write_combined_csv("all", aggregated_all_csv)
         print(f"Generated {len(aggregated_all):>5} aggregated prefixes for all providers")
 
     if failed_providers:
