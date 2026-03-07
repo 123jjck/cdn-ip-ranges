@@ -9,6 +9,7 @@ import os
 import socket
 import sys
 import time
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, List, Sequence, Tuple, Union
@@ -68,8 +69,13 @@ def _urlopen_with_retries(
     raise RuntimeError("Unreachable: retries exhausted without exception") from last_exc
 
 
-def fetch_text(url: str) -> str:
-    request = Request(url, headers={"User-Agent": USER_AGENT})
+def fetch_text(url_or_request: str | Request) -> str:
+    if isinstance(url_or_request, str):
+        request = Request(url_or_request, headers={"User-Agent": USER_AGENT})
+        url = url_or_request
+    else:
+        request = url_or_request
+        url = url_or_request.full_url
     try:
         with _urlopen_with_retries(request) as response:
             charset = response.headers.get_content_charset() or "utf-8"
@@ -82,8 +88,9 @@ def fetch_text(url: str) -> str:
         raise RuntimeError(f"Network timeout while fetching {url}: {exc}") from exc
 
 
-def fetch_json(url: str) -> dict:
-    body = fetch_text(url)
+def fetch_json(url_or_request: str | Request) -> dict:
+    url = url_or_request if isinstance(url_or_request, str) else url_or_request.full_url
+    body = fetch_text(url_or_request)
     try:
         return json.loads(body)
     except json.JSONDecodeError as exc:  # pragma: no cover - defensive
@@ -141,38 +148,16 @@ def fetch_vercel_ranges() -> Sequence[PrefixEntry]:
     if not api_key:
         raise RuntimeError("vercel: NETWORKSDB_API_KEY environment variable is not set")
 
-    payload = urlencode({"id": "vercel-inc"}).encode("utf-8")
     request = Request(
         NETWORKSDB_ORG_NETWORKS_URL,
-        data=payload,
+        data=urlencode({"id": "vercel-inc"}).encode("utf-8"),
         headers={
             "User-Agent": USER_AGENT,
             "X-Api-Key": api_key,
             "Content-Type": "application/x-www-form-urlencoded",
         },
     )
-
-    try:
-        with _urlopen_with_retries(request) as response:
-            charset = response.headers.get_content_charset() or "utf-8"
-            body = response.read().decode(charset)
-    except HTTPError as exc:  # pragma: no cover - defensive
-        raise RuntimeError(
-            f"vercel: HTTP error {exc.code} while fetching {NETWORKSDB_ORG_NETWORKS_URL}"
-        ) from exc
-    except URLError as exc:  # pragma: no cover - defensive
-        raise RuntimeError(
-            f"vercel: network error while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc.reason}"
-        ) from exc
-    except (TimeoutError, socket.timeout) as exc:  # pragma: no cover - defensive
-        raise RuntimeError(
-            f"vercel: network timeout while fetching {NETWORKSDB_ORG_NETWORKS_URL}: {exc}"
-        ) from exc
-
-    try:
-        payload_json = json.loads(body)
-    except json.JSONDecodeError as exc:  # pragma: no cover - defensive
-        raise RuntimeError("vercel: invalid JSON payload from networksdb API") from exc
+    payload_json = fetch_json(request)
 
     prefixes: List[PrefixEntry] = []
     for entry in payload_json.get("results", []):
@@ -276,7 +261,7 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
     if not pref_list:
         raise RuntimeError(f"{provider}: empty prefix list fetched")
 
-    normalized: List[Tuple[int, int, int, str, str]] = []
+    result: List[Tuple[PrefixEntry, ipaddress.IPv4Network | ipaddress.IPv6Network]] = []
     seen: set[str] = set()
     duplicates: set[str] = set()
 
@@ -293,9 +278,7 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
             duplicates.add(canonical)
             continue
         seen.add(canonical)
-        normalized.append(
-            (network.version, int(network.network_address), network.prefixlen, canonical, entry.region)
-        )
+        result.append((PrefixEntry(canonical, entry.region), network))
 
     if duplicates:
         sample = ", ".join(sorted(duplicates)[:10])
@@ -304,11 +287,11 @@ def normalize_prefixes(provider: str, prefixes: Iterable[PrefixEntry]) -> List[P
             file=sys.stderr,
         )
 
-    if not normalized:
+    if not result:
         raise RuntimeError(f"{provider}: no valid prefixes after validation")
 
-    normalized.sort()
-    return [PrefixEntry(entry[3], entry[4]) for entry in normalized]
+    result.sort(key=lambda x: (x[1].version, int(x[1].network_address), x[1].prefixlen))
+    return [e for e, _ in result]
 
 
 def aggregate_prefixes(provider: str, prefixes: Sequence[PrefixEntry]) -> List[PrefixEntry]:
@@ -366,8 +349,6 @@ def aggregate_csv_entries(
     together.  For providers with regions, prefixes are collapsed within each
     region separately.
     """
-    from collections import defaultdict
-
     # Group entries by provider
     provider_entries: dict[str, List[PrefixEntry]] = defaultdict(list)
     for provider, entry in entries:
