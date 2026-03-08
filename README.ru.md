@@ -63,6 +63,9 @@
 
 Гайды для разных приложений есть в вики: https://github.com/123jjck/cdn-ip-ranges/wiki/Usage-(RU)
 
+> [!NOTE]
+> Также обратите внимание на [mihomo-configurator](https://github.com/123jjck/mihomo-configurator) — удобный браузерный инструмент для лёгкой настройки Mihomo.
+
 ### Как обновить данные
 
 Запустите локально:

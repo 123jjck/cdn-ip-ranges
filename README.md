@@ -59,6 +59,9 @@ Most common files (IPv4 plain text):
 
 Guides for different apps are available in the wiki: https://github.com/123jjck/cdn-ip-ranges/wiki/Usage-(EN)
 
+> [!NOTE]
+> Also check out [mihomo-configurator](https://github.com/123jjck/mihomo-configurator) — a convenient browser tool for easy Mihomo configuration.
+
 ### Refreshing the data
 
 Run `python3 scripts/update_cdn_lists.py` locally to pull the latest ranges and rewrite the text files.
