@@ -5000,6 +5000,7 @@ aws,2600:f0f1:8b00::/48,us-east-1
 aws,2600:f0f2:7010::/47,us-east-1
 aws,2600:f0f2:7012::/48,us-east-1
 aws,2600:f0f2:7101::/48,us-east-1
+aws,2600:f0f3:f010::/56,us-east-1
 aws,2600:f0fb:e000::/39,us-east-1
 aws,2600:f0fb:e300::/40,us-east-1
 aws,2600:f0fb:e500::/40,us-east-1
@@ -5054,6 +5055,8 @@ aws,3.2.67.0/24,us-east-2
 aws,3.3.28.0/22,us-east-2
 aws,3.5.88.0/22,us-east-2
 aws,3.5.92.0/23,us-east-2
+aws,3.5.100.0/22,us-east-2
+aws,3.5.104.0/21,us-east-2
 aws,3.5.128.0/22,us-east-2
 aws,3.5.132.0/23,us-east-2
 aws,3.12.0.0/14,us-east-2
@@ -5611,6 +5614,7 @@ aws,2600:f0f0:6115::/48,us-west-1
 aws,2600:f0f0:810b::/48,us-west-1
 aws,2600:f0f1:82::/48,us-west-1
 aws,2600:f0f1:44c0::/42,us-west-1
+aws,2605:b140:9800::/48,us-west-1
 aws,2606:f40:a00::/40,us-west-1
 aws,2606:f40:8a00::/40,us-west-1
 aws,2606:f40:ffeb::/48,us-west-1
@@ -9210,7 +9214,6 @@ cogent,108.171.40.0/24,
 cogent,108.175.96.0/22,
 cogent,108.175.102.0/23,
 cogent,108.175.110.0/23,
-cogent,109.122.31.0/24,
 cogent,109.175.242.0/24,
 cogent,109.176.20.0/24,
 cogent,110.172.149.0/24,
@@ -11210,10 +11213,8 @@ constant,2a0e:7d45:77f4::/48,
 constant,2a0e:7d45:77f6::/47,
 constant,2a0e:7d45:77f8::/48,
 constant,2a0e:7d45:77fa::/47,
-constant,2a0e:7d45:77ff::/48,
 constant,2a0e:7d45:7800::/45,
-constant,2a0e:7d45:7808::/47,
-constant,2a0e:7d45:780a::/48,
+constant,2a0e:7d45:7808::/46,
 constant,2a0e:9d40::/32,
 constant,2a0e:b107:df2::/48,
 constant,2a0e:b800:aaaa::/48,
@@ -11238,7 +11239,7 @@ constant,2a10:ccc1:44f::/48,
 constant,2a10:ccc1:450::/47,
 constant,2a10:ccc1:452::/48,
 constant,2a10:ccc1:455::/48,
-constant,2a10:ccc1:456::/47,
+constant,2a10:ccc1:457::/48,
 constant,2a10:ccc1:458::/46,
 constant,2a10:ccc1:45d::/48,
 constant,2a10:ccc1:45e::/48,
@@ -11248,7 +11249,7 @@ constant,2a10:ccc1:464::/48,
 constant,2a10:ccc1:466::/48,
 constant,2a10:ccc1:469::/48,
 constant,2a10:ccc1:46a::/47,
-constant,2a10:ccc1:46c::/48,
+constant,2a10:ccc1:46c::/47,
 constant,2a10:ccc1:46e::/48,
 constant,2a10:ccc1:470::/46,
 constant,2a10:ccc1:475::/48,
@@ -11279,6 +11280,7 @@ constant,2a14:7583:f0b0::/45,
 constant,2a14:7583:f0b8::/46,
 constant,2a14:7583:f0c0::/45,
 constant,2a14:7583:f0e4::/46,
+constant,2a14:7583:f0f0::/46,
 constant,2a14:7583:f114::/46,
 constant,2a14:7584:8000::/35,
 constant,2a14:7584:e370::/44,
@@ -12404,6 +12406,7 @@ datacamp,104.165.13.0/24,
 datacamp,104.165.20.0/24,
 datacamp,104.219.170.0/23,
 datacamp,104.222.190.0/24,
+datacamp,104.224.87.0/24,
 datacamp,104.233.0.0/21,
 datacamp,104.233.31.0/24,
 datacamp,104.233.32.0/20,
@@ -13285,6 +13288,7 @@ datacamp,193.7.201.0/24,
 datacamp,193.9.32.0/21,
 datacamp,193.29.251.0/24,
 datacamp,193.37.56.0/22,
+datacamp,193.37.199.0/24,
 datacamp,193.38.136.0/22,
 datacamp,193.42.98.0/23,
 datacamp,193.57.166.0/24,
@@ -13539,6 +13543,7 @@ datacamp,213.139.73.0/24,
 datacamp,213.169.206.0/23,
 datacamp,213.177.229.0/24,
 datacamp,213.177.237.0/24,
+datacamp,213.177.240.0/24,
 datacamp,213.178.142.0/24,
 datacamp,213.182.196.0/23,
 datacamp,213.182.218.0/24,
@@ -13816,6 +13821,7 @@ digitalocean,2400:6180:100::/40,
 digitalocean,2604:a880::/47,
 digitalocean,2604:a880:2::/48,
 digitalocean,2604:a880:4::/46,
+digitalocean,2604:a880:8:7::/64,
 digitalocean,2604:a880:400::/48,
 digitalocean,2604:a880:800::/48,
 digitalocean,2604:a880:cad::/48,
@@ -14186,6 +14192,7 @@ digitalocean,167.172.4.0/22,SG-05
 digitalocean,167.172.64.0/19,SG-05
 digitalocean,168.144.32.0/20,SG-05
 digitalocean,168.144.48.0/22,SG-05
+digitalocean,168.144.96.0/20,SG-05
 digitalocean,174.138.16.0/20,SG-05
 digitalocean,178.128.16.0/20,SG-05
 digitalocean,178.128.48.0/20,SG-05
@@ -16382,7 +16389,6 @@ gcore,82.158.116.0/22,
 gcore,82.158.120.0/24,
 gcore,82.158.123.0/24,
 gcore,82.158.124.0/23,
-gcore,82.158.127.0/24,
 gcore,83.229.4.0/24,
 gcore,83.229.6.0/24,
 gcore,83.229.15.0/24,
@@ -17383,6 +17389,7 @@ oracle,50.116.64.0/21,
 oracle,50.116.80.0/20,
 oracle,50.116.124.0/22,
 oracle,51.170.4.0/22,
+oracle,51.170.80.0/20,
 oracle,64.39.97.0/24,
 oracle,64.39.98.0/23,
 oracle,64.39.100.0/24,
@@ -17945,7 +17952,7 @@ oracle,152.67.112.0/21,
 oracle,153.72.96.0/20,
 oracle,153.72.112.0/21,
 oracle,153.72.208.0/22,
-oracle,153.72.213.0/24,
+oracle,153.72.212.0/23,
 oracle,153.84.64.0/24,
 oracle,153.84.80.0/24,
 oracle,153.84.96.0/24,
