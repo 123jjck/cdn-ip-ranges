@@ -533,6 +533,10 @@ def main() -> int:
             f"\nFailed providers ({len(failed_providers)}): {', '.join(failed_providers)}",
             file=sys.stderr,
         )
+
+    succeeded = len(providers) - len(failed_providers)
+    if succeeded == 0:
+        print("\nAll providers failed — aborting.", file=sys.stderr)
         return 1
 
     return 0
