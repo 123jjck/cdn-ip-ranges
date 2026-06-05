@@ -463,6 +463,7 @@ aws,2600:9000:1000::/36,GLOBAL
 aws,2600:9000:2000::/35,GLOBAL
 aws,2600:9000:4000::/36,GLOBAL
 aws,2600:9000:5200::/39,GLOBAL
+aws,2600:9000:6000::/36,GLOBAL
 aws,2600:9000:a100::/40,GLOBAL
 aws,2600:9000:a200::/39,GLOBAL
 aws,2600:9000:a400::/38,GLOBAL
@@ -572,6 +573,10 @@ aws,2606:7b40:10ff:60::/59,af-south-1
 aws,2606:7b40:1b08::/55,af-south-1
 aws,1.178.103.0/24,ap-east-1
 aws,3.2.81.0/24,ap-east-1
+aws,3.4.12.67/32,ap-east-1
+aws,3.4.12.68/31,ap-east-1
+aws,3.4.12.70/32,ap-east-1
+aws,3.4.15.224/28,ap-east-1
 aws,3.5.214.0/23,ap-east-1
 aws,3.5.236.0/22,ap-east-1
 aws,3.45.0.0/18,ap-east-1
@@ -963,7 +968,11 @@ aws,1.178.91.0/24,ap-northeast-2
 aws,3.2.75.0/24,ap-northeast-2
 aws,3.4.12.11/32,ap-northeast-2
 aws,3.4.12.12/32,ap-northeast-2
+aws,3.4.12.71/32,ap-northeast-2
+aws,3.4.12.72/31,ap-northeast-2
+aws,3.4.12.74/32,ap-northeast-2
 aws,3.4.15.0/29,ap-northeast-2
+aws,3.4.15.240/28,ap-northeast-2
 aws,3.5.140.0/22,ap-northeast-2
 aws,3.5.144.0/23,ap-northeast-2
 aws,3.5.184.0/21,ap-northeast-2
@@ -2913,6 +2922,9 @@ aws,2a05:d07f:9000::/40,eu-central-2
 aws,1.178.93.0/24,eu-north-1
 aws,1.178.174.0/24,eu-north-1
 aws,3.2.71.0/24,eu-north-1
+aws,3.4.12.61/32,eu-north-1
+aws,3.4.12.62/32,eu-north-1
+aws,3.4.15.200/29,eu-north-1
 aws,3.5.216.0/22,eu-north-1
 aws,13.48.0.0/14,eu-north-1
 aws,13.53.0.0/16,eu-north-1
@@ -3026,6 +3038,10 @@ aws,2a05:d07e:6000::/40,eu-north-1
 aws,2a05:d07f:6000::/40,eu-north-1
 aws,1.178.17.0/24,eu-south-1
 aws,3.2.93.0/24,eu-south-1
+aws,3.4.12.63/32,eu-south-1
+aws,3.4.12.64/31,eu-south-1
+aws,3.4.12.66/32,eu-south-1
+aws,3.4.15.208/28,eu-south-1
 aws,3.5.248.0/22,eu-south-1
 aws,15.129.29.0/24,eu-south-1
 aws,15.129.36.0/23,eu-south-1
@@ -10546,6 +10562,7 @@ constant,167.160.172.0/24,
 constant,167.160.174.0/23,
 constant,167.179.64.0/18,
 constant,168.151.29.0/24,
+constant,168.222.89.0/24,
 constant,170.130.20.0/24,
 constant,170.130.83.0/24,
 constant,173.44.37.0/24,
@@ -10835,8 +10852,6 @@ constant,2602:fed2:731c::/48,
 constant,2602:ff03::/47,
 constant,2602:ff03:2::/48,
 constant,2602:ff03:7::/48,
-constant,2602:ff03:c::/48,
-constant,2602:ff03:13::/48,
 constant,2602:ff03:15::/48,
 constant,2602:ff03:16::/48,
 constant,2602:ff03:19::/48,
@@ -10857,7 +10872,6 @@ constant,2602:ff03:75::/48,
 constant,2602:ff03:76::/48,
 constant,2602:ff03:78::/48,
 constant,2602:ff03:86::/48,
-constant,2602:ff03:8f::/48,
 constant,2602:ff03:92::/48,
 constant,2602:ff03:98::/48,
 constant,2602:ff03:9c::/48,
@@ -10866,8 +10880,7 @@ constant,2602:ff03:a3::/48,
 constant,2602:ff03:a7::/48,
 constant,2602:ff03:a9::/48,
 constant,2602:ff03:ac::/48,
-constant,2602:ff03:ae::/47,
-constant,2602:ff03:b3::/48,
+constant,2602:ff03:ae::/48,
 constant,2602:ff03:b9::/48,
 constant,2602:ff03:c0::/48,
 constant,2602:ff03:cb::/48,
@@ -10877,14 +10890,12 @@ constant,2602:ff03:d5::/48,
 constant,2602:ff03:d9::/48,
 constant,2602:ff03:dc::/48,
 constant,2602:ff03:df::/48,
-constant,2602:ff03:e0::/48,
 constant,2602:ff03:e9::/48,
 constant,2602:ff03:f0::/48,
 constant,2602:ff03:f2::/48,
 constant,2602:ff03:f6::/47,
 constant,2602:ff03:100::/48,
 constant,2602:ff03:102::/48,
-constant,2602:ff03:104::/48,
 constant,2602:ff03:106::/48,
 constant,2602:ff03:109::/48,
 constant,2602:ff03:110::/48,
@@ -10900,7 +10911,6 @@ constant,2602:ff03:149::/48,
 constant,2602:ff03:14f::/48,
 constant,2602:ff03:155::/48,
 constant,2602:ff03:160::/48,
-constant,2602:ff03:167::/48,
 constant,2602:ff03:176::/48,
 constant,2602:ff03:17b::/48,
 constant,2602:ff03:17c::/48,
@@ -10948,6 +10958,7 @@ constant,2602:ff03:29b::/48,
 constant,2602:ff03:2a0::/48,
 constant,2602:ff03:2a7::/48,
 constant,2602:ff03:2ab::/48,
+constant,2602:ff03:2af::/48,
 constant,2602:ff03:2b4::/48,
 constant,2602:ff03:2ba::/47,
 constant,2602:ff03:2bd::/48,
@@ -10999,7 +11010,8 @@ constant,2602:ff03:3a4::/48,
 constant,2602:ff03:3b2::/48,
 constant,2602:ff03:3b6::/48,
 constant,2602:ff03:3b9::/48,
-constant,2602:ff03:3bc::/46,
+constant,2602:ff03:3bc::/47,
+constant,2602:ff03:3be::/48,
 constant,2602:ff03:3c4::/47,
 constant,2602:ff03:3cf::/48,
 constant,2602:ff03:3d0::/48,
@@ -11008,19 +11020,17 @@ constant,2602:ff03:3d7::/48,
 constant,2602:ff03:3d8::/48,
 constant,2602:ff03:3da::/48,
 constant,2602:ff03:3dd::/48,
-constant,2602:ff03:3df::/48,
 constant,2602:ff03:3f0::/48,
 constant,2602:ff03:3f4::/47,
 constant,2602:ff03:3f8::/48,
 constant,2602:ff03:3fa::/47,
-constant,2602:ff03:3fd::/48,
 constant,2602:ff03:400::/48,
 constant,2602:ff03:407::/48,
 constant,2602:ff03:40b::/48,
 constant,2602:ff03:40f::/48,
+constant,2602:ff03:410::/48,
 constant,2602:ff03:416::/48,
 constant,2602:ff03:41a::/48,
-constant,2602:ff03:41c::/48,
 constant,2602:ff03:423::/48,
 constant,2602:ff03:426::/48,
 constant,2602:ff03:42d::/48,
@@ -11033,6 +11043,7 @@ constant,2602:ff03:455::/48,
 constant,2602:ff03:459::/48,
 constant,2602:ff03:45a::/48,
 constant,2602:ff03:466::/48,
+constant,2602:ff03:469::/48,
 constant,2602:ff03:46c::/47,
 constant,2602:ff03:470::/48,
 constant,2602:ff03:475::/48,
@@ -11049,7 +11060,6 @@ constant,2602:ff03:4c4::/48,
 constant,2602:ff03:4c9::/48,
 constant,2602:ff03:4cd::/48,
 constant,2602:ff03:4d0::/47,
-constant,2602:ff03:4d2::/48,
 constant,2602:ff03:4db::/48,
 constant,2602:ff03:4e0::/48,
 constant,2602:ff03:4e8::/48,
@@ -11081,7 +11091,7 @@ constant,2602:ff03:56a::/48,
 constant,2602:ff03:572::/48,
 constant,2602:ff03:574::/48,
 constant,2602:ff03:576::/48,
-constant,2602:ff03:57a::/47,
+constant,2602:ff03:57a::/48,
 constant,2602:ff03:580::/48,
 constant,2602:ff03:582::/48,
 constant,2602:ff03:58d::/48,
@@ -11093,7 +11103,6 @@ constant,2602:ff03:597::/48,
 constant,2602:ff03:59d::/48,
 constant,2602:ff03:5a4::/48,
 constant,2602:ff03:5a8::/48,
-constant,2602:ff03:5b8::/48,
 constant,2602:ff03:5bc::/48,
 constant,2602:ff03:5c8::/47,
 constant,2602:ff03:5d4::/48,
@@ -11113,7 +11122,6 @@ constant,2602:ff03:610::/48,
 constant,2602:ff03:617::/48,
 constant,2602:ff03:618::/48,
 constant,2602:ff03:625::/48,
-constant,2602:ff03:638::/48,
 constant,2602:ff03:63f::/48,
 constant,2602:ff03:643::/48,
 constant,2602:ff03:644::/48,
@@ -11145,7 +11153,6 @@ constant,2602:ff03:6cd::/48,
 constant,2602:ff03:6ce::/48,
 constant,2602:ff03:6d2::/48,
 constant,2602:ff03:6d9::/48,
-constant,2602:ff03:6db::/48,
 constant,2602:ff03:6dd::/48,
 constant,2602:ff03:6e6::/48,
 constant,2602:ff03:6e8::/48,
@@ -11157,7 +11164,6 @@ constant,2602:ff03:708::/48,
 constant,2602:ff03:70f::/48,
 constant,2602:ff03:711::/48,
 constant,2602:ff03:714::/48,
-constant,2602:ff03:718::/48,
 constant,2602:ff03:71a::/48,
 constant,2602:ff03:736::/48,
 constant,2602:ff03:73b::/48,
@@ -11168,11 +11174,9 @@ constant,2602:ff03:74f::/48,
 constant,2602:ff03:750::/48,
 constant,2602:ff03:755::/48,
 constant,2602:ff03:759::/48,
-constant,2602:ff03:762::/48,
 constant,2602:ff03:766::/48,
 constant,2602:ff03:778::/48,
 constant,2602:ff03:77a::/48,
-constant,2602:ff03:77d::/48,
 constant,2602:ff03:77f::/48,
 constant,2602:ff03:780::/47,
 constant,2602:ff03:783::/48,
@@ -11221,7 +11225,7 @@ constant,2602:ff03:889::/48,
 constant,2602:ff03:88b::/48,
 constant,2602:ff03:88e::/48,
 constant,2602:ff03:890::/48,
-constant,2602:ff03:89a::/47,
+constant,2602:ff03:89a::/48,
 constant,2602:ff03:89c::/47,
 constant,2602:ff03:8a0::/48,
 constant,2602:ff03:8a2::/48,
@@ -11248,7 +11252,6 @@ constant,2602:ff03:90e::/48,
 constant,2602:ff03:912::/48,
 constant,2602:ff03:91c::/48,
 constant,2602:ff03:91f::/48,
-constant,2602:ff03:922::/48,
 constant,2602:ff03:924::/47,
 constant,2602:ff03:927::/48,
 constant,2602:ff03:928::/47,
@@ -11268,33 +11271,28 @@ constant,2602:ff03:97d::/48,
 constant,2602:ff03:97f::/48,
 constant,2602:ff03:981::/48,
 constant,2602:ff03:98e::/48,
-constant,2602:ff03:993::/48,
 constant,2602:ff03:994::/48,
 constant,2602:ff03:99d::/48,
 constant,2602:ff03:9ac::/47,
 constant,2602:ff03:9bf::/48,
-constant,2602:ff03:9c0::/48,
 constant,2602:ff03:9ca::/48,
 constant,2602:ff03:9cc::/48,
 constant,2602:ff03:9d0::/48,
 constant,2602:ff03:9d2::/48,
-constant,2602:ff03:9d6::/48,
 constant,2602:ff03:9db::/48,
 constant,2602:ff03:9e3::/48,
 constant,2602:ff03:9e4::/48,
 constant,2602:ff03:9e9::/48,
 constant,2602:ff03:9ef::/48,
 constant,2602:ff03:9f6::/48,
-constant,2602:ff03:9f9::/48,
 constant,2602:ff03:9fa::/48,
 constant,2602:ff03:9fe::/48,
 constant,2602:ff03:a09::/48,
 constant,2602:ff03:a0a::/47,
 constant,2602:ff03:a10::/48,
 constant,2602:ff03:a16::/48,
-constant,2602:ff03:a2c::/47,
+constant,2602:ff03:a2d::/48,
 constant,2602:ff03:a2f::/48,
-constant,2602:ff03:a36::/48,
 constant,2602:ff03:a3c::/47,
 constant,2602:ff03:a41::/48,
 constant,2602:ff03:a45::/48,
@@ -11308,7 +11306,6 @@ constant,2602:ff03:a58::/48,
 constant,2602:ff03:a5a::/48,
 constant,2602:ff03:a5c::/48,
 constant,2602:ff03:a5f::/48,
-constant,2602:ff03:a63::/48,
 constant,2602:ff03:a68::/48,
 constant,2602:ff03:a70::/48,
 constant,2602:ff03:a75::/48,
@@ -11318,7 +11315,6 @@ constant,2602:ff03:a87::/48,
 constant,2602:ff03:a88::/48,
 constant,2602:ff03:a8b::/48,
 constant,2602:ff03:a93::/48,
-constant,2602:ff03:a95::/48,
 constant,2602:ff03:a98::/47,
 constant,2602:ff03:a9e::/47,
 constant,2602:ff03:aaf::/48,
@@ -11328,7 +11324,6 @@ constant,2602:ff03:aba::/48,
 constant,2602:ff03:ac0::/48,
 constant,2602:ff03:ac2::/48,
 constant,2602:ff03:ac4::/48,
-constant,2602:ff03:ac8::/48,
 constant,2602:ff03:acf::/48,
 constant,2602:ff03:ad4::/47,
 constant,2602:ff03:add::/48,
@@ -11347,7 +11342,6 @@ constant,2602:ff03:b2e::/48,
 constant,2602:ff03:b32::/48,
 constant,2602:ff03:b34::/48,
 constant,2602:ff03:b38::/47,
-constant,2602:ff03:b3a::/48,
 constant,2602:ff03:b41::/48,
 constant,2602:ff03:b44::/48,
 constant,2602:ff03:b4a::/48,
@@ -11364,7 +11358,6 @@ constant,2602:ff03:b81::/48,
 constant,2602:ff03:b87::/48,
 constant,2602:ff03:b91::/48,
 constant,2602:ff03:b92::/48,
-constant,2602:ff03:b94::/48,
 constant,2602:ff03:b9b::/48,
 constant,2602:ff03:b9f::/48,
 constant,2602:ff03:ba4::/48,
@@ -11382,10 +11375,7 @@ constant,2602:ff03:c03::/48,
 constant,2602:ff03:c05::/48,
 constant,2602:ff03:c0d::/48,
 constant,2602:ff03:c0f::/48,
-constant,2602:ff03:c10::/48,
-constant,2602:ff03:c14::/48,
 constant,2602:ff03:c22::/48,
-constant,2602:ff03:c25::/48,
 constant,2602:ff03:c26::/48,
 constant,2602:ff03:c28::/48,
 constant,2602:ff03:c2f::/48,
@@ -11433,7 +11423,6 @@ constant,2602:ff03:d2e::/48,
 constant,2602:ff03:d33::/48,
 constant,2602:ff03:d34::/48,
 constant,2602:ff03:d36::/48,
-constant,2602:ff03:d44::/48,
 constant,2602:ff03:d48::/48,
 constant,2602:ff03:d50::/48,
 constant,2602:ff03:d5c::/48,
@@ -11451,10 +11440,8 @@ constant,2602:ff03:da4::/48,
 constant,2602:ff03:dbb::/48,
 constant,2602:ff03:dcc::/48,
 constant,2602:ff03:dcf::/48,
-constant,2602:ff03:dd2::/48,
 constant,2602:ff03:dd6::/48,
 constant,2602:ff03:ddc::/47,
-constant,2602:ff03:de1::/48,
 constant,2602:ff03:de8::/48,
 constant,2602:ff03:dea::/48,
 constant,2602:ff03:ded::/48,
@@ -11462,7 +11449,6 @@ constant,2602:ff03:dfb::/48,
 constant,2602:ff03:dfe::/48,
 constant,2602:ff03:e15::/48,
 constant,2602:ff03:e21::/48,
-constant,2602:ff03:e22::/48,
 constant,2602:ff03:e2c::/48,
 constant,2602:ff03:e35::/48,
 constant,2602:ff03:e3b::/48,
@@ -11470,7 +11456,6 @@ constant,2602:ff03:e3c::/48,
 constant,2602:ff03:e44::/47,
 constant,2602:ff03:e4e::/48,
 constant,2602:ff03:e54::/48,
-constant,2602:ff03:e56::/48,
 constant,2602:ff03:e5e::/48,
 constant,2602:ff03:e69::/48,
 constant,2602:ff03:e76::/47,
@@ -11487,7 +11472,6 @@ constant,2602:ff03:ea6::/48,
 constant,2602:ff03:ea9::/48,
 constant,2602:ff03:eae::/48,
 constant,2602:ff03:eb0::/48,
-constant,2602:ff03:eb7::/48,
 constant,2602:ff03:eb9::/48,
 constant,2602:ff03:eba::/48,
 constant,2602:ff03:ec5::/48,
@@ -11496,9 +11480,7 @@ constant,2602:ff03:ece::/47,
 constant,2602:ff03:ed1::/48,
 constant,2602:ff03:ed5::/48,
 constant,2602:ff03:ed7::/48,
-constant,2602:ff03:ed8::/48,
 constant,2602:ff03:ee6::/48,
-constant,2602:ff03:ee8::/48,
 constant,2602:ff03:eea::/48,
 constant,2602:ff03:ef9::/48,
 constant,2602:ff03:efd::/48,
@@ -11513,7 +11495,6 @@ constant,2602:ff03:f34::/48,
 constant,2602:ff03:f3e::/48,
 constant,2602:ff03:f44::/48,
 constant,2602:ff03:f47::/48,
-constant,2602:ff03:f49::/48,
 constant,2602:ff03:f54::/48,
 constant,2602:ff03:f63::/48,
 constant,2602:ff03:f6a::/48,
@@ -11524,8 +11505,6 @@ constant,2602:ff03:f7f::/48,
 constant,2602:ff03:f84::/48,
 constant,2602:ff03:f8a::/48,
 constant,2602:ff03:f8f::/48,
-constant,2602:ff03:fa1::/48,
-constant,2602:ff03:fa4::/48,
 constant,2602:ff03:fa9::/48,
 constant,2602:ff03:fac::/48,
 constant,2602:ff03:fb5::/48,
@@ -11662,7 +11641,7 @@ constant,2a10:ccc1:436::/48,
 constant,2a10:ccc1:439::/48,
 constant,2a10:ccc1:43b::/48,
 constant,2a10:ccc1:43c::/47,
-constant,2a10:ccc1:441::/48,
+constant,2a10:ccc1:440::/47,
 constant,2a10:ccc1:442::/48,
 constant,2a10:ccc1:447::/48,
 constant,2a10:ccc1:448::/46,
@@ -11676,7 +11655,6 @@ constant,2a10:ccc1:45a::/48,
 constant,2a10:ccc1:45d::/48,
 constant,2a10:ccc1:463::/48,
 constant,2a10:ccc1:465::/48,
-constant,2a10:ccc1:467::/48,
 constant,2a10:ccc1:469::/48,
 constant,2a10:ccc1:46b::/48,
 constant,2a10:ccc1:46c::/47,
@@ -12283,6 +12261,7 @@ datacamp,45.198.87.0/24,
 datacamp,45.198.88.0/24,
 datacamp,45.198.91.0/24,
 datacamp,45.198.105.0/24,
+datacamp,46.34.22.0/24,
 datacamp,46.151.32.0/22,
 datacamp,46.183.25.0/24,
 datacamp,46.183.27.0/24,
@@ -13043,6 +13022,7 @@ datacamp,109.204.68.0/24,
 datacamp,109.204.70.0/24,
 datacamp,109.204.72.0/23,
 datacamp,109.204.74.0/24,
+datacamp,109.204.76.0/24,
 datacamp,109.204.82.0/23,
 datacamp,109.204.92.0/23,
 datacamp,109.204.95.0/24,
@@ -17302,6 +17282,7 @@ gthost,142.248.44.0/24,
 gthost,143.14.67.0/24,
 gthost,143.14.220.0/24,
 gthost,144.56.0.0/24,
+gthost,144.225.85.0/24,
 gthost,146.185.233.0/24,
 gthost,146.185.239.0/24,
 gthost,147.125.205.0/24,
@@ -17818,8 +17799,6 @@ oracle,82.26.110.0/24,
 oracle,82.27.123.0/24,
 oracle,82.29.42.0/24,
 oracle,82.29.69.0/24,
-oracle,82.70.208.0/20,
-oracle,82.70.252.0/22,
 oracle,84.8.0.0/22,
 oracle,84.8.4.0/23,
 oracle,84.8.8.0/21,
@@ -17853,7 +17832,6 @@ oracle,84.235.198.0/23,
 oracle,84.235.200.0/21,
 oracle,85.239.153.0/24,
 oracle,85.239.159.0/24,
-oracle,88.96.0.0/18,
 oracle,92.4.0.0/22,
 oracle,92.4.4.0/23,
 oracle,92.4.8.0/21,
@@ -18061,7 +18039,6 @@ oracle,136.248.224.0/20,
 oracle,136.248.248.0/24,
 oracle,136.248.250.0/23,
 oracle,136.248.253.0/24,
-oracle,137.23.0.0/19,
 oracle,137.131.64.0/22,
 oracle,137.131.68.0/23,
 oracle,137.131.72.0/21,
@@ -18220,9 +18197,7 @@ oracle,146.56.124.0/22,
 oracle,146.181.0.0/20,
 oracle,146.235.248.0/21,
 oracle,147.5.24.0/23,
-oracle,147.5.64.0/19,
 oracle,147.15.174.0/23,
-oracle,147.15.176.0/23,
 oracle,147.154.0.0/18,
 oracle,147.154.64.0/20,
 oracle,147.154.80.0/21,
@@ -18240,7 +18215,6 @@ oracle,148.116.48.0/23,
 oracle,148.116.96.0/21,
 oracle,148.116.116.0/23,
 oracle,148.116.192.0/19,
-oracle,149.118.32.0/19,
 oracle,149.118.88.0/22,
 oracle,149.118.128.0/19,
 oracle,149.118.160.0/21,
@@ -18370,9 +18344,6 @@ oracle,161.115.168.0/23,
 oracle,161.115.176.0/21,
 oracle,161.115.184.0/23,
 oracle,161.115.188.0/23,
-oracle,161.118.8.0/21,
-oracle,161.118.16.0/20,
-oracle,161.118.64.0/18,
 oracle,161.210.108.0/24,
 oracle,161.221.24.0/23,
 oracle,161.221.28.0/24,
@@ -19214,6 +19185,8 @@ oracle,152.69.224.0/20,ap-chuncheon-1
 oracle,158.179.160.0/20,ap-chuncheon-1
 oracle,158.179.192.0/22,ap-chuncheon-1
 oracle,158.180.64.0/19,ap-chuncheon-1
+oracle,161.118.16.0/20,ap-chuncheon-1
+oracle,161.118.64.0/18,ap-chuncheon-1
 oracle,168.107.0.0/18,ap-chuncheon-1
 oracle,168.110.96.0/19,ap-chuncheon-1
 oracle,134.70.230.0/23,ap-delhi-1
@@ -19376,6 +19349,7 @@ oracle,168.138.160.0/19,ap-singapore-1
 oracle,207.127.109.192/26,ap-singapore-1
 oracle,213.35.96.0/19,ap-singapore-1
 oracle,140.245.32.0/19,ap-singapore-2
+oracle,149.118.32.0/19,ap-singapore-2
 oracle,159.13.0.0/22,ap-singapore-2
 oracle,159.13.4.0/25,ap-singapore-2
 oracle,161.33.255.0/24,ap-singapore-2
@@ -19391,6 +19365,7 @@ oracle,129.154.64.0/18,ap-sydney-1
 oracle,129.154.168.0/22,ap-sydney-1
 oracle,134.70.92.0/22,ap-sydney-1
 oracle,134.185.72.0/22,ap-sydney-1
+oracle,137.23.0.0/19,ap-sydney-1
 oracle,140.91.38.0/23,ap-sydney-1
 oracle,140.204.20.128/25,ap-sydney-1
 oracle,140.238.192.0/20,ap-sydney-1
@@ -19446,6 +19421,7 @@ oracle,158.179.176.0/20,ap-tokyo-1
 oracle,161.33.128.0/18,ap-tokyo-1
 oracle,161.33.192.0/19,ap-tokyo-1
 oracle,161.33.252.0/24,ap-tokyo-1
+oracle,161.118.8.0/21,ap-tokyo-1
 oracle,168.110.0.0/18,ap-tokyo-1
 oracle,168.138.192.0/19,ap-tokyo-1
 oracle,192.29.36.0/22,ap-tokyo-1
@@ -19657,6 +19633,7 @@ oracle,158.180.228.0/22,eu-milan-1
 oracle,158.180.232.0/21,eu-milan-1
 oracle,204.216.208.0/20,eu-milan-1
 oracle,79.76.18.0/23,eu-paris-1
+oracle,88.96.32.0/19,eu-paris-1
 oracle,89.168.32.0/19,eu-paris-1
 oracle,134.70.180.0/22,eu-paris-1
 oracle,140.91.80.0/23,eu-paris-1
@@ -19701,6 +19678,8 @@ oracle,192.29.56.0/23,eu-zurich-1
 oracle,192.29.60.0/23,eu-zurich-1
 oracle,192.29.178.0/23,eu-zurich-1
 oracle,192.29.180.0/22,eu-zurich-1
+oracle,82.70.208.0/20,il-jerusalem-1
+oracle,82.70.252.0/22,il-jerusalem-1
 oracle,84.235.192.0/23,il-jerusalem-1
 oracle,92.5.254.0/24,il-jerusalem-1
 oracle,129.149.120.0/22,il-jerusalem-1
@@ -19785,6 +19764,7 @@ oracle,134.70.184.0/22,mx-queretaro-1
 oracle,140.84.160.0/19,mx-queretaro-1
 oracle,140.91.82.0/23,mx-queretaro-1
 oracle,140.204.120.128/25,mx-queretaro-1
+oracle,147.15.176.0/23,mx-queretaro-1
 oracle,155.248.144.0/22,mx-queretaro-1
 oracle,155.248.148.0/25,mx-queretaro-1
 oracle,159.54.128.0/19,mx-queretaro-1
@@ -19908,6 +19888,7 @@ oracle,167.126.0.0/19,sa-vinhedo-1
 oracle,167.126.32.0/20,sa-vinhedo-1
 oracle,193.123.96.0/19,sa-vinhedo-1
 oracle,204.216.128.0/18,sa-vinhedo-1
+oracle,88.96.0.0/19,uk-cardiff-1
 oracle,129.148.200.0/21,uk-cardiff-1
 oracle,129.149.16.0/23,uk-cardiff-1
 oracle,129.149.20.0/23,uk-cardiff-1
@@ -20022,6 +20003,7 @@ oracle,141.148.0.0/18,us-ashburn-1
 oracle,141.148.64.0/19,us-ashburn-1
 oracle,142.0.160.0/21,us-ashburn-1
 oracle,143.47.96.0/19,us-ashburn-1
+oracle,147.5.64.0/19,us-ashburn-1
 oracle,147.5.128.0/17,us-ashburn-1
 oracle,147.15.192.0/18,us-ashburn-1
 oracle,147.154.0.0/19,us-ashburn-1
@@ -20614,7 +20596,6 @@ ovh,151.245.111.0/24,
 ovh,151.245.238.0/24,
 ovh,151.246.177.0/24,
 ovh,151.246.190.0/24,
-ovh,151.247.15.0/24,
 ovh,151.247.37.0/24,
 ovh,151.247.192.0/24,
 ovh,151.247.217.0/24,
