@@ -20,8 +20,8 @@
 
 | Список | Папка | Содержимое |
 |---|---|---|
-| **`all`** | [`all/`](https://github.com/123jjck/cdn-ip-ranges/tree/main/all) | Все провайдеры репозитория — CDN, хостинг, Discord Voice, Telegram, Meta, Roblox и другие. Берите, если нужно максимальное покрытие. |
-| **`cdn-only`** | [`cdn-only/`](https://github.com/123jjck/cdn-ip-ranges/tree/main/cdn-only) | Только CDN и хостинг (без Discord Voice, Telegram, Meta, Roblox). Берите, если нужна маршрутизация только CDN-трафика. |
+| **`all`** | [`all/`](https://github.com/123jjck/cdn-ip-ranges/tree/main/all) | Все активные провайдеры репозитория — CDN, хостинг, Discord Voice, Telegram, Meta и другие. Берите, если нужно максимальное покрытие. |
+| **`cdn-only`** | [`cdn-only/`](https://github.com/123jjck/cdn-ip-ranges/tree/main/cdn-only) | Только CDN и хостинг (без Discord Voice, Telegram, Meta и deprecated-провайдеров). Берите, если нужна маршрутизация только CDN-трафика. |
 
 Самые ходовые файлы (только IPv4, plain text):
 - `all/all_plain_ipv4.txt`
@@ -51,7 +51,7 @@
 | Meta | AS32934 | ✅ | ❌ |
 | Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ | ✅ |
 | OVH | AS16276 | ✅ | ✅ |
-| Roblox | AS22697 | ✅ | ❌ |
+| Roblox | AS22697 (Deprecated) | ❌ | ❌ |
 | Scaleway | AS12876, AS29447 | ✅ | ✅ |
 | Scalaxy | AS58061 | ✅ | ✅ |
 | Telegram | AS62041, AS62014, AS211157, AS44907, AS59930 | ✅ | ❌ |
