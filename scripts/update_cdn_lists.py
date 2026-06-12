@@ -38,6 +38,7 @@ class ProviderSpec:
     fetcher: Callable[[], Sequence[PrefixEntry]]
     is_cdn: bool = True
     allow_empty: bool = False
+    is_deprecated: bool = False
 
 
 def _urlopen_with_retries(
@@ -461,7 +462,7 @@ def main() -> int:
         ProviderSpec("glesys", lambda: fetch_ripe_prefixes("42708")),
         ProviderSpec("gthost", lambda: fetch_ripe_prefixes("63023")),
         ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), is_cdn=False),
-        ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), is_cdn=False),
+        ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), is_cdn=False, is_deprecated=True),
         ProviderSpec("scaleway", lambda: list(fetch_ripe_prefixes("12876")) + list(fetch_ripe_prefixes("29447"))),
         ProviderSpec("scalaxy", lambda: fetch_ripe_prefixes("58061")),
         ProviderSpec(
@@ -507,9 +508,10 @@ def main() -> int:
             if spec.is_cdn:
                 cdn_only_prefixes.extend(aggregated)
 
-            # all and CSV: every provider without exception
-            all_prefixes.extend(aggregated)
-            all_csv_entries.extend((spec.name, entry) for entry in prefixes)
+            # all and CSV: active providers only
+            if not spec.is_deprecated:
+                all_prefixes.extend(aggregated)
+                all_csv_entries.extend((spec.name, entry) for entry in prefixes)
         except Exception as exc:
             print(f"FAILED  {spec.name}: {exc}", file=sys.stderr)
             failed_providers.append(spec.name)
