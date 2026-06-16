@@ -48,6 +48,7 @@
 | GTHost | AS63023 | ✅ | ✅ |
 | Hetzner | AS24940, AS213230, AS212317 | ✅ | ✅ |
 | MelBiCom | AS8849, AS56630 | ✅ | ✅ |
+| Netify | AS202425 | ✅ | ✅ |
 | Meta | AS32934 | ✅ | ❌ |
 | Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ | ✅ |
 | OVH | AS16276 | ✅ | ✅ |
