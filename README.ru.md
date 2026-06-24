@@ -33,6 +33,7 @@
 |---|---|:---:|:---:|
 | Akamai | AS20940, AS63949 | ✅ | ✅ |
 | AWS | [ip-ranges.json](scripts/update_cdn_lists.py#L94-L108) | ✅ | ✅ |
+| Bunny | AS200325 | ✅ | ✅ |
 | BuyVM | AS53667 | ✅ | ✅ |
 | CDN77 | AS60068 | ✅ | ✅ |
 | Cloudflare | AS13335 | ✅ | ✅ |

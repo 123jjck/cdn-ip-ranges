@@ -445,6 +445,7 @@ def main() -> int:
     providers: Sequence[ProviderSpec] = (
         ProviderSpec("akamai", lambda: list(fetch_ripe_prefixes("20940")) + list(fetch_ripe_prefixes("63949"))),
         ProviderSpec("aws", fetch_aws_ranges),
+        ProviderSpec("bunny", lambda: fetch_ripe_prefixes("200325")),
         ProviderSpec("buyvm", lambda: fetch_ripe_prefixes("53667")),
         ProviderSpec("cdn77", lambda: fetch_ripe_prefixes("60068")),
         ProviderSpec("cloudflare", lambda: fetch_ripe_prefixes("13335")),
