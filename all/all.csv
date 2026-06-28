@@ -2043,7 +2043,7 @@ aws,52.95.168.0/24,ap-southeast-4
 aws,54.239.1.224/28,ap-southeast-4
 aws,56.96.0.0/14,ap-southeast-4
 aws,63.249.179.0/24,ap-southeast-4
-aws,63.249.181.0/24,ap-southeast-4
+aws,63.249.180.0/23,ap-southeast-4
 aws,64.66.142.0/24,ap-southeast-4
 aws,69.107.12.160/28,ap-southeast-4
 aws,70.232.64.0/20,ap-southeast-4
@@ -3207,7 +3207,7 @@ aws,54.240.236.93/32,eu-south-1
 aws,54.240.236.94/32,eu-south-1
 aws,56.6.0.0/16,eu-south-1
 aws,56.8.0.0/16,eu-south-1
-aws,63.249.182.0/24,eu-south-1
+aws,63.249.182.0/23,eu-south-1
 aws,63.249.184.0/24,eu-south-1
 aws,64.66.158.0/24,eu-south-1
 aws,69.107.10.208/28,eu-south-1
@@ -4040,6 +4040,8 @@ aws,54.5.0.0/16,il-central-1
 aws,54.6.0.0/15,il-central-1
 aws,54.8.0.0/16,il-central-1
 aws,54.239.1.240/28,il-central-1
+aws,63.249.195.0/24,il-central-1
+aws,63.249.196.0/23,il-central-1
 aws,64.66.148.0/24,il-central-1
 aws,99.77.163.0/24,il-central-1
 aws,99.151.152.0/21,il-central-1
@@ -16719,6 +16721,7 @@ gcore,85.234.84.0/22,
 gcore,85.234.88.0/23,
 gcore,85.234.91.11/32,
 gcore,85.234.91.133/32,
+gcore,85.234.91.150/32,
 gcore,85.234.91.211/32,
 gcore,85.234.91.235/32,
 gcore,85.234.91.251/32,
