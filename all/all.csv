@@ -2807,6 +2807,7 @@ aws,2600:1ffd:80e1::/48,eu-central-1
 aws,2600:1ffd:80f0::/48,eu-central-1
 aws,2600:9000:520b::/48,eu-central-1
 aws,2600:f002:c000::/40,eu-central-1
+aws,2600:f008:100::/40,eu-central-1
 aws,2600:f00e:600::/40,eu-central-1
 aws,2600:f0f0:1:1700::/56,eu-central-1
 aws,2600:f0f0:4::/48,eu-central-1
@@ -3314,6 +3315,7 @@ aws,136.18.2.0/24,eu-south-2
 aws,150.222.50.32/27,eu-south-2
 aws,150.222.50.64/26,eu-south-2
 aws,2600:f003:a200::/40,eu-south-2
+aws,2600:f008:200::/40,eu-south-2
 aws,2600:f00e:400::/40,eu-south-2
 aws,2600:f0f0:6116::/48,eu-south-2
 aws,2600:f0f1:8c::/48,eu-south-2
@@ -5260,6 +5262,7 @@ aws,2600:f0f2:7010::/47,us-east-1
 aws,2600:f0f2:7012::/48,us-east-1
 aws,2600:f0f2:7101::/48,us-east-1
 aws,2600:f0f3:f010::/56,us-east-1
+aws,2600:f0fb:c000::/48,us-east-1
 aws,2600:f0fb:e000::/39,us-east-1
 aws,2600:f0fb:e300::/40,us-east-1
 aws,2600:f0fb:e500::/40,us-east-1
@@ -5558,6 +5561,8 @@ aws,52.46.96.0/19,us-gov-east-1
 aws,52.94.22.0/24,us-gov-east-1
 aws,52.94.249.112/28,us-gov-east-1
 aws,54.239.1.64/28,us-gov-east-1
+aws,64.73.198.0/23,us-gov-east-1
+aws,64.73.200.0/24,us-gov-east-1
 aws,99.77.183.0/24,us-gov-east-1
 aws,99.151.96.0/21,us-gov-east-1
 aws,103.13.189.0/24,us-gov-east-1
@@ -5631,6 +5636,8 @@ aws,52.119.208.0/23,us-gov-west-1
 aws,52.222.0.0/17,us-gov-west-1
 aws,54.239.0.128/28,us-gov-west-1
 aws,56.136.0.0/14,us-gov-west-1
+aws,64.73.192.0/23,us-gov-west-1
+aws,64.73.194.0/24,us-gov-west-1
 aws,75.79.0.0/16,us-gov-west-1
 aws,76.223.168.0/24,us-gov-west-1
 aws,96.127.0.0/17,us-gov-west-1
@@ -6254,6 +6261,7 @@ aws,2600:9000:5202::/48,us-west-2
 aws,2600:9000:5204::/48,us-west-2
 aws,2600:9000:5211::/48,us-west-2
 aws,2600:f000:8000::/39,us-west-2
+aws,2600:f008::/40,us-west-2
 aws,2600:f00c:8000::/39,us-west-2
 aws,2600:f0f0:0:300::/56,us-west-2
 aws,2600:f0f0:1:a00::/56,us-west-2
@@ -6420,6 +6428,7 @@ aws,2631:0:a::/48,us-west-2
 aws,2631:0:1600::/39,us-west-2
 aws,2631:0:1800::/39,us-west-2
 aws,2631:1:105::/48,us-west-2
+aws,2631:1:200::/40,us-west-2
 bunny,38.92.173.0/24,
 bunny,91.200.176.0/24,
 bunny,103.180.114.0/23,
@@ -6475,7 +6484,6 @@ buyvm,2406:840:e351::/48,
 buyvm,2406:840:e354::/48,
 buyvm,2406:840:e35d::/48,
 buyvm,2602:2b7:c44::/48,
-buyvm,2602:fcd3:107::/48,
 buyvm,2604:4d40:2000::/36,
 buyvm,2605:6400:1::/48,
 buyvm,2605:6400:2::/47,
@@ -11242,7 +11250,6 @@ constant,2a10:ccc1:41e::/48,
 constant,2a10:ccc1:420::/45,
 constant,2a10:ccc1:429::/48,
 constant,2a10:ccc1:42a::/47,
-constant,2a10:ccc1:42c::/48,
 constant,2a10:ccc1:42e::/47,
 constant,2a10:ccc1:431::/48,
 constant,2a10:ccc1:432::/48,
@@ -11260,7 +11267,6 @@ constant,2a10:ccc1:44a::/47,
 constant,2a10:ccc1:44c::/46,
 constant,2a10:ccc1:451::/48,
 constant,2a10:ccc1:452::/47,
-constant,2a10:ccc1:454::/48,
 constant,2a10:ccc1:457::/48,
 constant,2a10:ccc1:459::/48,
 constant,2a10:ccc1:45c::/48,
@@ -11276,7 +11282,7 @@ constant,2a10:ccc1:46e::/48,
 constant,2a10:ccc1:471::/48,
 constant,2a10:ccc1:473::/48,
 constant,2a10:ccc1:475::/48,
-constant,2a10:ccc1:476::/48,
+constant,2a10:ccc1:476::/47,
 constant,2a10:ccc1:478::/48,
 constant,2a10:ccc1:47b::/48,
 constant,2a10:ccc1:47c::/47,
@@ -17323,9 +17329,9 @@ gthost,172.99.188.0/22,
 gthost,172.111.36.0/22,
 gthost,172.252.212.0/24,
 gthost,178.130.132.0/22,
-gthost,179.255.185.0/24,
 gthost,179.255.186.0/23,
-gthost,179.255.188.0/22,
+gthost,179.255.188.0/23,
+gthost,179.255.190.0/24,
 gthost,185.161.70.0/24,
 gthost,185.177.229.0/24,
 gthost,185.189.32.0/24,
