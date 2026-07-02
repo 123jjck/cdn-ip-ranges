@@ -1939,6 +1939,7 @@ aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,2631:0:2600::/39,ap-southeast-2
 aws,2631:1:107::/48,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
+aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -3701,6 +3702,7 @@ aws,35.96.80.0/20,eu-west-2
 aws,35.96.248.0/24,eu-west-2
 aws,35.98.16.0/20,eu-west-2
 aws,35.176.0.0/14,eu-west-2
+aws,45.33.181.0/24,eu-west-2
 aws,51.24.0.0/16,eu-west-2
 aws,51.200.0.0/14,eu-west-2
 aws,52.56.0.0/16,eu-west-2
@@ -5267,6 +5269,7 @@ aws,2600:f0f2:7101::/48,us-east-1
 aws,2600:f0f3:f010::/56,us-east-1
 aws,2600:f0f3:f010:300::/56,us-east-1
 aws,2600:f0fb:c000::/48,us-east-1
+aws,2600:f0fb:c002::/56,us-east-1
 aws,2600:f0fb:e000::/39,us-east-1
 aws,2600:f0fb:e300::/40,us-east-1
 aws,2600:f0fb:e500::/40,us-east-1
@@ -7587,7 +7590,6 @@ cloudflare,209.55.253.0/24,
 cloudflare,209.55.254.0/24,
 cloudflare,209.236.210.0/24,
 cloudflare,210.1.232.0/23,
-cloudflare,211.181.187.0/24,
 cloudflare,211.188.26.0/23,
 cloudflare,212.6.39.0/24,
 cloudflare,212.104.128.0/24,
@@ -9420,7 +9422,6 @@ cogent,70.39.136.0/24,
 cogent,70.39.141.0/24,
 cogent,70.39.158.0/24,
 cogent,70.39.164.0/24,
-cogent,70.39.171.0/24,
 cogent,70.39.231.0/24,
 cogent,70.39.241.0/24,
 cogent,70.39.252.0/24,
@@ -11260,7 +11261,7 @@ constant,2a10:ccc1:436::/48,
 constant,2a10:ccc1:438::/48,
 constant,2a10:ccc1:43b::/48,
 constant,2a10:ccc1:43c::/48,
-constant,2a10:ccc1:43f::/48,
+constant,2a10:ccc1:442::/48,
 constant,2a10:ccc1:444::/47,
 constant,2a10:ccc1:446::/48,
 constant,2a10:ccc1:448::/48,
@@ -11283,7 +11284,7 @@ constant,2a10:ccc1:473::/48,
 constant,2a10:ccc1:475::/48,
 constant,2a10:ccc1:476::/47,
 constant,2a10:ccc1:478::/48,
-constant,2a10:ccc1:47a::/47,
+constant,2a10:ccc1:47a::/48,
 constant,2a10:ccc1:47c::/47,
 constant,2a10:fa80:5::/48,
 constant,2a10:fa80:6::/48,
@@ -17991,6 +17992,7 @@ oracle,130.110.220.0/22,
 oracle,130.110.236.0/23,
 oracle,130.162.92.0/23,
 oracle,130.162.200.0/21,
+oracle,130.210.0.0/17,
 oracle,131.186.8.0/21,
 oracle,131.186.48.0/22,
 oracle,131.186.52.0/23,
@@ -18062,6 +18064,7 @@ oracle,136.248.224.0/20,
 oracle,136.248.248.0/24,
 oracle,136.248.250.0/23,
 oracle,136.248.253.0/24,
+oracle,137.23.32.0/19,
 oracle,137.131.64.0/22,
 oracle,137.131.68.0/23,
 oracle,137.131.72.0/21,
@@ -21173,3 +21176,17 @@ telegram,2001:67c:4e8::/48,
 telegram,2001:b28:f23c::/47,
 telegram,2001:b28:f23f::/48,
 telegram,2a0a:f280::/32,
+vercel,64.29.17.0/24,
+vercel,64.239.109.0/24,
+vercel,64.239.123.0/24,
+vercel,66.33.60.0/24,
+vercel,76.76.21.0/24,
+vercel,143.13.0.0/16,
+vercel,155.121.0.0/16,
+vercel,198.169.1.0/24,
+vercel,198.169.2.0/24,
+vercel,216.150.1.0/24,
+vercel,216.150.16.0/24,
+vercel,216.198.79.0/24,
+vercel,216.230.84.0/24,
+vercel,216.230.86.0/24,
