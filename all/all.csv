@@ -1939,6 +1939,7 @@ aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,2631:0:2600::/39,ap-southeast-2
 aws,2631:1:107::/48,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
+aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -6412,6 +6413,7 @@ aws,2606:7b40:3006::/47,us-west-2
 aws,2606:7b40:3008::/50,us-west-2
 aws,2606:7b40:3009:c000::/52,us-west-2
 aws,2606:7b40:300a::/56,us-west-2
+aws,2606:7b40:300b::/54,us-west-2
 aws,2606:7b40:f000:1500::/56,us-west-2
 aws,2606:7b40:f000:1600::/55,us-west-2
 aws,2606:8140:400::/40,us-west-2
@@ -6931,7 +6933,8 @@ cloudflare,104.22.155.0/24,
 cloudflare,104.22.156.0/22,
 cloudflare,104.22.165.0/24,
 cloudflare,104.22.168.0/24,
-cloudflare,104.22.170.0/24,
+cloudflare,104.22.170.0/23,
+cloudflare,104.22.172.0/24,
 cloudflare,104.23.160.0/20,
 cloudflare,104.23.176.0/23,
 cloudflare,104.23.178.0/24,
@@ -7697,7 +7700,6 @@ cloudflare,2400:cb00:228::/47,
 cloudflare,2400:cb00:232::/48,
 cloudflare,2400:cb00:235::/48,
 cloudflare,2400:cb00:238::/48,
-cloudflare,2400:cb00:241::/48,
 cloudflare,2400:cb00:242::/47,
 cloudflare,2400:cb00:246::/48,
 cloudflare,2400:cb00:250::/48,
@@ -7960,6 +7962,7 @@ cloudflare,2400:cb00:1340::/48,
 cloudflare,2400:cb00:1342::/48,
 cloudflare,2400:cb00:1380::/48,
 cloudflare,2400:cb00:1386::/48,
+cloudflare,2400:cb00:1396::/48,
 cloudflare,2400:cb00:2049::/48,
 cloudflare,2400:cb00:3006::/48,
 cloudflare,2400:cb00:a041::/48,
@@ -8211,6 +8214,7 @@ cloudflare,2400:cb00:ad84::/48,
 cloudflare,2400:cb00:ada1::/48,
 cloudflare,2400:cb00:ae81::/48,
 cloudflare,2400:cb00:b0c2::/48,
+cloudflare,2400:cb00:b0d1::/48,
 cloudflare,2400:cb00:b0e1::/48,
 cloudflare,2400:cb00:b0e2::/47,
 cloudflare,2400:cb00:b0e4::/48,
@@ -18435,6 +18439,7 @@ oracle,161.115.172.0/24,
 oracle,161.115.176.0/21,
 oracle,161.115.184.0/23,
 oracle,161.115.188.0/23,
+oracle,161.118.32.0/23,
 oracle,161.210.108.0/24,
 oracle,161.221.24.0/23,
 oracle,161.221.28.0/24,
