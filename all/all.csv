@@ -1940,6 +1940,7 @@ aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,2631:0:2600::/39,ap-southeast-2
 aws,2631:1:107::/48,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
+aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -6410,6 +6411,8 @@ aws,2606:7b40:1b0f:fa00::/56,us-west-2
 aws,2606:7b40:1b0f:fd00::/56,us-west-2
 aws,2606:7b40:1f00::/40,us-west-2
 aws,2606:7b40:3000::/49,us-west-2
+aws,2606:7b40:3001:c000::/52,us-west-2
+aws,2606:7b40:3002::/56,us-west-2
 aws,2606:7b40:3004:c000::/50,us-west-2
 aws,2606:7b40:3005::/48,us-west-2
 aws,2606:7b40:3006::/47,us-west-2
@@ -7213,6 +7216,7 @@ cloudflare,172.64.176.0/24,
 cloudflare,172.64.178.0/23,
 cloudflare,172.64.184.0/22,
 cloudflare,172.64.188.0/23,
+cloudflare,172.64.190.0/24,
 cloudflare,172.64.192.0/22,
 cloudflare,172.64.197.0/24,
 cloudflare,172.64.198.0/23,
@@ -9155,7 +9159,7 @@ cloudflare,2a06:98c0:1c90::/47,
 cloudflare,2a06:98c0:1c93::/48,
 cloudflare,2a06:98c0:1c96::/47,
 cloudflare,2a06:98c0:1c98::/48,
-cloudflare,2a06:98c0:1c9a::/48,
+cloudflare,2a06:98c0:1c9a::/47,
 cloudflare,2a06:98c0:1e00::/47,
 cloudflare,2a06:98c0:1f00::/48,
 cloudflare,2a06:98c0:3609::/48,
@@ -11434,7 +11438,6 @@ constant,2a14:67c1:b700::/40,
 constant,2a14:67c1:b800::/40,
 constant,2a14:67c1:c400::/40,
 constant,2a14:7583:e500::/40,
-constant,2a14:7583:f004::/46,
 constant,2a14:7583:f008::/45,
 constant,2a14:7583:f010::/44,
 constant,2a14:7584:8000::/35,
@@ -16766,6 +16769,7 @@ gcore,85.90.215.0/24,
 gcore,85.90.216.0/23,
 gcore,85.204.246.0/24,
 gcore,85.234.65.0/24,
+gcore,85.234.66.146/32,
 gcore,85.234.68.0/22,
 gcore,85.234.72.0/22,
 gcore,85.234.76.0/23,
@@ -16877,6 +16881,7 @@ gcore,93.114.68.0/24,
 gcore,93.114.98.0/24,
 gcore,93.115.240.0/23,
 gcore,93.119.169.36/32,
+gcore,93.119.169.49/32,
 gcore,93.119.169.243/32,
 gcore,93.119.170.0/24,
 gcore,93.123.11.0/24,
