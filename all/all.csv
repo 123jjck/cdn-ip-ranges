@@ -1935,7 +1935,6 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
-aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -11287,7 +11286,8 @@ constant,2a10:ccc1:43d::/48,
 constant,2a10:ccc1:440::/47,
 constant,2a10:ccc1:442::/48,
 constant,2a10:ccc1:447::/48,
-constant,2a10:ccc1:448::/46,
+constant,2a10:ccc1:448::/47,
+constant,2a10:ccc1:44a::/48,
 constant,2a10:ccc1:44c::/48,
 constant,2a10:ccc1:44e::/47,
 constant,2a10:ccc1:453::/48,
@@ -11297,7 +11297,7 @@ constant,2a10:ccc1:458::/47,
 constant,2a10:ccc1:45a::/48,
 constant,2a10:ccc1:45d::/48,
 constant,2a10:ccc1:45f::/48,
-constant,2a10:ccc1:461::/48,
+constant,2a10:ccc1:460::/47,
 constant,2a10:ccc1:463::/48,
 constant,2a10:ccc1:464::/47,
 constant,2a10:ccc1:46b::/48,
