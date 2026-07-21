@@ -2675,6 +2675,7 @@ aws,35.55.18.0/24,eu-central-1
 aws,35.71.105.0/24,eu-central-1
 aws,35.156.0.0/14,eu-central-1
 aws,37.203.157.0/24,eu-central-1
+aws,45.33.182.0/24,eu-central-1
 aws,51.102.0.0/16,eu-central-1
 aws,52.28.0.0/15,eu-central-1
 aws,52.46.184.0/22,eu-central-1
@@ -2721,6 +2722,7 @@ aws,64.252.86.0/23,eu-central-1
 aws,64.252.88.0/23,eu-central-1
 aws,69.107.11.152/29,eu-central-1
 aws,69.107.11.160/29,eu-central-1
+aws,69.107.13.32/28,eu-central-1
 aws,75.45.128.0/18,eu-central-1
 aws,83.119.128.0/18,eu-central-1
 aws,99.77.136.0/24,eu-central-1
@@ -2784,7 +2786,7 @@ aws,2406:dafc:ff80::/46,eu-central-1
 aws,2406:dafc:ffa0::/46,eu-central-1
 aws,2600:1f01:4830::/47,eu-central-1
 aws,2600:1f01:48f2::/47,eu-central-1
-aws,2600:1f01:4902::/63,eu-central-1
+aws,2600:1f01:4902::/62,eu-central-1
 aws,2600:1f01:4902:100::/56,eu-central-1
 aws,2600:1ffd:80a7::/48,eu-central-1
 aws,2600:1ffd:80c8::/48,eu-central-1
@@ -10922,7 +10924,7 @@ constant,2a10:ccc1:410::/45,
 constant,2a10:ccc1:418::/47,
 constant,2a10:ccc1:41b::/48,
 constant,2a10:ccc1:41d::/48,
-constant,2a10:ccc1:41e::/47,
+constant,2a10:ccc1:41f::/48,
 constant,2a10:ccc1:420::/45,
 constant,2a10:ccc1:428::/47,
 constant,2a10:ccc1:42b::/48,
@@ -10941,6 +10943,7 @@ constant,2a10:ccc1:444::/46,
 constant,2a10:ccc1:449::/48,
 constant,2a10:ccc1:44d::/48,
 constant,2a10:ccc1:450::/48,
+constant,2a10:ccc1:452::/48,
 constant,2a10:ccc1:454::/46,
 constant,2a10:ccc1:45a::/47,
 constant,2a10:ccc1:45d::/48,
@@ -10950,7 +10953,8 @@ constant,2a10:ccc1:464::/48,
 constant,2a10:ccc1:467::/48,
 constant,2a10:ccc1:468::/47,
 constant,2a10:ccc1:46a::/48,
-constant,2a10:ccc1:470::/46,
+constant,2a10:ccc1:470::/47,
+constant,2a10:ccc1:472::/48,
 constant,2a10:ccc1:477::/48,
 constant,2a10:ccc1:479::/48,
 constant,2a10:ccc1:47a::/47,
@@ -15608,9 +15612,7 @@ fastly,140.248.98.0/24,
 fastly,140.248.104.0/22,
 fastly,140.248.108.0/23,
 fastly,140.248.110.0/24,
-fastly,140.248.112.0/22,
-fastly,140.248.116.0/23,
-fastly,140.248.119.0/24,
+fastly,140.248.112.0/21,
 fastly,140.248.120.0/22,
 fastly,140.248.124.0/23,
 fastly,140.248.128.0/17,
@@ -16241,6 +16243,7 @@ fastly,2a04:4e44:100::/48,
 fastly,2a04:4e44:200::/48,
 fastly,2a04:4e44:300::/48,
 fastly,2a04:4e44:400::/48,
+fastly,2a04:4e44:500::/48,
 fastly,2a04:4e44:600::/48,
 fastly,2a04:4e47::/45,
 fastly,2a0d:8000:1::/48,
@@ -16383,7 +16386,6 @@ gcore,85.234.84.0/22,
 gcore,85.234.88.0/23,
 gcore,85.234.91.51/32,
 gcore,85.234.91.87/32,
-gcore,85.234.91.104/32,
 gcore,85.234.91.109/32,
 gcore,85.234.91.150/32,
 gcore,85.234.91.193/32,
@@ -17051,6 +17053,7 @@ gthost,170.101.102.0/24,
 gthost,170.101.105.0/24,
 gthost,170.101.106.0/23,
 gthost,170.101.108.0/23,
+gthost,170.101.110.0/24,
 gthost,170.168.61.0/24,
 gthost,170.168.103.0/24,
 gthost,171.22.111.0/24,
