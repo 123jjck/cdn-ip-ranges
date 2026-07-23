@@ -630,6 +630,7 @@ aws,64.66.156.0/24,ap-east-1
 aws,69.107.7.16/29,ap-east-1
 aws,69.107.12.64/28,ap-east-1
 aws,76.162.0.0/15,ap-east-1
+aws,80.126.2.0/24,ap-east-1
 aws,95.40.0.0/15,ap-east-1
 aws,99.77.142.0/24,ap-east-1
 aws,99.77.241.0/24,ap-east-1
@@ -1328,6 +1329,7 @@ aws,65.0.0.0/14,ap-south-1
 aws,69.107.11.112/28,ap-south-1
 aws,69.107.12.96/28,ap-south-1
 aws,69.107.12.192/28,ap-south-1
+aws,80.126.1.0/24,ap-south-1
 aws,88.108.0.0/14,ap-south-1
 aws,96.0.60.0/22,ap-south-1
 aws,96.0.64.0/21,ap-south-1
@@ -1947,7 +1949,6 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
-aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -5242,8 +5243,8 @@ aws,2600:f0f2:7012::/48,us-east-1
 aws,2600:f0f2:7101::/48,us-east-1
 aws,2600:f0f3:f010::/56,us-east-1
 aws,2600:f0f3:f010:300::/56,us-east-1
-aws,2600:f0f3:f010:3400::/63,us-east-1
-aws,2600:f0f3:f010:3800::/63,us-east-1
+aws,2600:f0f3:f010:3400::/56,us-east-1
+aws,2600:f0f3:f010:3800::/56,us-east-1
 aws,2600:f0fb:c001::/56,us-east-1
 aws,2600:f0fb:c002::/56,us-east-1
 aws,2600:f0fb:c800::/56,us-east-1
@@ -6304,10 +6305,8 @@ aws,2606:7b40:9fc::/47,us-west-2
 aws,2606:7b40:a3e:200::/60,us-west-2
 aws,2606:7b40:a3e:270::/60,us-west-2
 aws,2606:7b40:a3e:280::/60,us-west-2
-aws,2606:7b40:a3e:400::/54,us-west-2
-aws,2606:7b40:a3e:c00::/54,us-west-2
-aws,2606:7b40:a3e:1000::/54,us-west-2
-aws,2606:7b40:a3e:3000::/52,us-west-2
+aws,2606:7b40:a3e:3000::/54,us-west-2
+aws,2606:7b40:a3e:3c00::/54,us-west-2
 aws,2606:7b40:1000:2000::/55,us-west-2
 aws,2606:7b40:1000:2270::/60,us-west-2
 aws,2606:7b40:1000:3000::/56,us-west-2
@@ -6384,9 +6383,7 @@ aws,2606:7b40:1b0f:fd00::/56,us-west-2
 aws,2606:7b40:1f00::/40,us-west-2
 aws,2606:7b40:3000:8000::/52,us-west-2
 aws,2606:7b40:3001:8000::/52,us-west-2
-aws,2606:7b40:3001:c000::/52,us-west-2
 aws,2606:7b40:3002::/56,us-west-2
-aws,2606:7b40:3009:c000::/52,us-west-2
 aws,2606:7b40:300a::/56,us-west-2
 aws,2606:7b40:300b::/54,us-west-2
 aws,2606:7b40:f000:1500::/56,us-west-2
@@ -7523,6 +7520,7 @@ cloudflare,202.27.69.0/24,
 cloudflare,202.49.114.0/24,
 cloudflare,203.5.33.0/24,
 cloudflare,203.15.65.0/24,
+cloudflare,203.117.53.0/24,
 cloudflare,203.168.192.0/20,
 cloudflare,204.4.235.0/24,
 cloudflare,204.69.207.0/24,
@@ -10891,7 +10889,7 @@ constant,2a0a:bb06:1000::/48,
 constant,2a0b:64c4::/31,
 constant,2a0d:2680:2111::/48,
 constant,2a0d:2680:bf90::/48,
-constant,2a0e:4001:11::/48,
+constant,2a0e:4001:10::/47,
 constant,2a0e:7d45:3301::/48,
 constant,2a0e:7d45:3312::/48,
 constant,2a0e:7d45:3324::/48,
@@ -10965,7 +10963,7 @@ constant,2a10:ccc1:42f::/48,
 constant,2a10:ccc1:431::/48,
 constant,2a10:ccc1:432::/47,
 constant,2a10:ccc1:434::/48,
-constant,2a10:ccc1:437::/48,
+constant,2a10:ccc1:436::/47,
 constant,2a10:ccc1:438::/47,
 constant,2a10:ccc1:43a::/48,
 constant,2a10:ccc1:43c::/47,
@@ -11023,6 +11021,7 @@ constant,2a14:7583:f020::/44,
 constant,2a14:7583:f030::/46,
 constant,2a14:7583:f03c::/46,
 constant,2a14:7583:f040::/45,
+constant,2a14:7583:f04c::/46,
 constant,2a14:7583:f188::/46,
 constant,2a14:7584:8000::/35,
 constant,2a14:ae00:c::/48,
@@ -16603,7 +16602,6 @@ gcore,185.105.0.0/22,
 gcore,185.109.31.0/24,
 gcore,185.145.113.0/24,
 gcore,185.160.60.0/23,
-gcore,185.160.63.0/24,
 gcore,185.163.0.0/22,
 gcore,185.183.128.0/24,
 gcore,185.183.131.0/24,
