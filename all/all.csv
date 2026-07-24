@@ -867,7 +867,7 @@ aws,54.248.0.0/15,ap-northeast-1
 aws,54.250.0.0/16,ap-northeast-1
 aws,57.180.0.0/14,ap-northeast-1
 aws,63.249.185.0/24,ap-northeast-1
-aws,63.249.186.0/23,ap-northeast-1
+aws,63.249.186.0/24,ap-northeast-1
 aws,63.249.188.0/24,ap-northeast-1
 aws,64.66.140.0/24,ap-northeast-1
 aws,64.252.110.0/23,ap-northeast-1
@@ -1947,7 +1947,6 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
-aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -2499,8 +2498,6 @@ aws,54.222.112.0/20,cn-north-1
 aws,54.222.128.0/17,cn-north-1
 aws,54.223.0.0/16,cn-north-1
 aws,54.239.0.144/28,cn-north-1
-aws,63.249.134.0/23,cn-north-1
-aws,63.249.136.0/23,cn-north-1
 aws,71.131.192.0/18,cn-north-1
 aws,71.132.0.0/18,cn-north-1
 aws,71.136.64.0/18,cn-north-1
@@ -2561,8 +2558,6 @@ aws,52.93.127.92/30,cn-northwest-1
 aws,52.93.127.96/29,cn-northwest-1
 aws,52.93.127.104/31,cn-northwest-1
 aws,54.239.0.176/28,cn-northwest-1
-aws,63.249.210.0/23,cn-northwest-1
-aws,63.249.212.0/24,cn-northwest-1
 aws,68.79.0.0/18,cn-northwest-1
 aws,69.230.192.0/18,cn-northwest-1
 aws,69.231.128.0/18,cn-northwest-1
@@ -5546,8 +5541,6 @@ aws,52.46.96.0/19,us-gov-east-1
 aws,52.94.22.0/24,us-gov-east-1
 aws,52.94.249.112/28,us-gov-east-1
 aws,54.239.1.64/28,us-gov-east-1
-aws,64.73.198.0/23,us-gov-east-1
-aws,64.73.200.0/24,us-gov-east-1
 aws,99.77.183.0/24,us-gov-east-1
 aws,99.151.96.0/21,us-gov-east-1
 aws,103.13.189.0/24,us-gov-east-1
@@ -5620,8 +5613,6 @@ aws,52.119.208.0/23,us-gov-west-1
 aws,52.222.0.0/17,us-gov-west-1
 aws,54.239.0.128/28,us-gov-west-1
 aws,56.136.0.0/14,us-gov-west-1
-aws,64.73.192.0/23,us-gov-west-1
-aws,64.73.194.0/24,us-gov-west-1
 aws,75.79.0.0/16,us-gov-west-1
 aws,76.223.168.0/24,us-gov-west-1
 aws,96.127.0.0/17,us-gov-west-1
@@ -5906,6 +5897,8 @@ aws,2600:1f00:c000::/40,us-west-1
 aws,2600:1f01:480a::/47,us-west-1
 aws,2600:1f01:48a0::/47,us-west-1
 aws,2600:1f01:4904::/47,us-west-1
+aws,2600:1f01:492a:2::/63,us-west-1
+aws,2600:1f01:492a:4::/63,us-west-1
 aws,2600:1f01:4930::/47,us-west-1
 aws,2600:1f1c::/36,us-west-1
 aws,2600:1f2c::/36,us-west-1
@@ -11037,6 +11030,7 @@ constant,2a14:7583:f030::/46,
 constant,2a14:7583:f03c::/46,
 constant,2a14:7583:f040::/45,
 constant,2a14:7583:f04c::/46,
+constant,2a14:7583:f050::/46,
 constant,2a14:7583:f188::/46,
 constant,2a14:7584:8000::/35,
 constant,2a14:ae00:c::/48,
@@ -17577,6 +17571,7 @@ oracle,75.125.147.0/24,
 oracle,75.125.148.0/23,
 oracle,75.125.150.0/24,
 oracle,75.125.152.0/24,
+oracle,75.125.154.0/24,
 oracle,79.72.22.0/23,
 oracle,79.72.36.0/23,
 oracle,79.72.39.0/24,
@@ -18952,6 +18947,7 @@ oracle,2606:f4c0:be30::/44,
 oracle,2606:f4c0:bea0::/44,
 oracle,2606:f4c0:bf90::/44,
 oracle,2606:f4c0:bfa0::/43,
+oracle,2606:f4c0:bfe0::/44,
 oracle,2620:9:a008::/48,
 oracle,2620:123:208b::/48,
 oracle,2620:123:208c::/48,
