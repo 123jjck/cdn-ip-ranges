@@ -1952,6 +1952,7 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
+aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -10961,7 +10962,9 @@ constant,2a10:ccc1:401::/48,
 constant,2a10:ccc1:402::/48,
 constant,2a10:ccc1:405::/48,
 constant,2a10:ccc1:407::/48,
-constant,2a10:ccc1:408::/45,
+constant,2a10:ccc1:408::/46,
+constant,2a10:ccc1:40c::/48,
+constant,2a10:ccc1:40e::/47,
 constant,2a10:ccc1:410::/45,
 constant,2a10:ccc1:418::/47,
 constant,2a10:ccc1:41b::/48,
@@ -10983,7 +10986,7 @@ constant,2a10:ccc1:443::/48,
 constant,2a10:ccc1:444::/46,
 constant,2a10:ccc1:44b::/48,
 constant,2a10:ccc1:44d::/48,
-constant,2a10:ccc1:44f::/48,
+constant,2a10:ccc1:44e::/47,
 constant,2a10:ccc1:450::/47,
 constant,2a10:ccc1:452::/48,
 constant,2a10:ccc1:454::/48,
@@ -20583,6 +20586,7 @@ ovh,194.61.44.0/23,
 ovh,194.62.119.0/24,
 ovh,194.76.36.0/23,
 ovh,194.76.173.0/24,
+ovh,194.77.220.0/24,
 ovh,194.87.205.0/24,
 ovh,194.88.232.0/24,
 ovh,194.104.138.0/24,
