@@ -1968,7 +1968,6 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
-aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -5293,7 +5292,6 @@ aws,2600:f0f0:8180::/48,us-east-1
 aws,2600:f0f0:c000::/48,us-east-1
 aws,2600:f0f0:c002::/48,us-east-1
 aws,2600:f0f0:c040::/48,us-east-1
-aws,2600:f0f0:c102::/48,us-east-1
 aws,2600:f0f0:c115::/48,us-east-1
 aws,2600:f0f0:c12a::/47,us-east-1
 aws,2600:f0f1:10::/45,us-east-1
@@ -10488,7 +10486,6 @@ constant,178.94.235.0/24,
 constant,178.94.241.0/24,
 constant,178.94.248.0/24,
 constant,178.94.250.0/24,
-constant,178.95.26.0/24,
 constant,178.95.46.0/24,
 constant,178.95.154.0/24,
 constant,178.95.197.0/24,
@@ -11703,6 +11700,7 @@ constant,2a10:ccc1:419::/48,
 constant,2a10:ccc1:41a::/47,
 constant,2a10:ccc1:41c::/48,
 constant,2a10:ccc1:41e::/48,
+constant,2a10:ccc1:420::/48,
 constant,2a10:ccc1:422::/47,
 constant,2a10:ccc1:425::/48,
 constant,2a10:ccc1:426::/48,
@@ -11725,7 +11723,6 @@ constant,2a10:ccc1:454::/47,
 constant,2a10:ccc1:457::/48,
 constant,2a10:ccc1:45c::/48,
 constant,2a10:ccc1:45e::/48,
-constant,2a10:ccc1:460::/48,
 constant,2a10:ccc1:462::/47,
 constant,2a10:ccc1:464::/46,
 constant,2a10:ccc1:469::/48,
@@ -19871,6 +19868,7 @@ oracle,2a0e:46c4:24a1::/48,
 oracle,2a0e:97c0:aba::/48,
 oracle,2a0e:b107:361::/48,
 oracle,2a0e:b107:362::/48,
+oracle,2a0f:6282:210b::/48,
 oracle,2a0f:6284:41ff::/48,
 oracle,2a0f:85c1:c18::/48,
 oracle,2a0f:85c1:cc0::/48,
