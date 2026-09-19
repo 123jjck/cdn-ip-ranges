@@ -463,6 +463,7 @@ def main() -> int:
         ProviderSpec("glesys", lambda: fetch_ripe_prefixes("42708")),
         ProviderSpec("gthost", lambda: fetch_ripe_prefixes("63023")),
         ProviderSpec("meta", lambda: fetch_ripe_prefixes("32934"), is_cdn=False),
+        ProviderSpec("railway", lambda: fetch_ripe_prefixes("400940")),
         ProviderSpec("roblox", lambda: fetch_ripe_prefixes("22697"), is_cdn=False, is_deprecated=True),
         ProviderSpec("scaleway", lambda: list(fetch_ripe_prefixes("12876")) + list(fetch_ripe_prefixes("29447"))),
         ProviderSpec("scalaxy", lambda: fetch_ripe_prefixes("58061")),
