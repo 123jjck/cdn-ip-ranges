@@ -50,6 +50,7 @@ Most common files (IPv4 plain text):
 | Meta | AS32934 | ✅ | ❌ |
 | Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ | ✅ |
 | OVH | AS16276 | ✅ | ✅ |
+| Railway | AS400940 | ✅ | ✅ |
 | Roblox | AS22697 (Deprecated) | ❌ | ❌ |
 | Scaleway | AS12876, AS29447 | ✅ | ✅ |
 | Scalaxy | AS58061 | ✅ | ✅ |
