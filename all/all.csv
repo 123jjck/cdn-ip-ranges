@@ -2016,7 +2016,6 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
-aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -21800,6 +21799,16 @@ ovh,2001:41d0::/32,
 ovh,2402:1f00::/32,
 ovh,2604:2dc0::/32,
 ovh,2607:5300::/32,
+railway,66.33.22.0/23,
+railway,69.46.46.0/24,
+railway,152.55.176.0/21,
+railway,152.55.184.0/22,
+railway,153.52.224.0/23,
+railway,162.220.232.0/22,
+railway,208.77.244.0/22,
+railway,2607:99c0::/38,
+railway,2607:99c0:800::/39,
+railway,2607:99c0:a00::/40,
 scalaxy,2.56.112.0/24,
 scalaxy,2.56.243.0/24,
 scalaxy,2.58.99.0/24,
