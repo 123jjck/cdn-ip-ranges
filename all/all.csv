@@ -5303,6 +5303,7 @@ aws,173.83.200.0/22,us-east-1
 aws,173.83.222.0/24,us-east-1
 aws,173.83.233.0/24,us-east-1
 aws,173.83.234.0/23,us-east-1
+aws,173.83.237.0/24,us-east-1
 aws,174.129.0.0/16,us-east-1
 aws,176.32.96.0/21,us-east-1
 aws,176.32.120.0/22,us-east-1
@@ -7466,7 +7467,6 @@ cloudflare,104.31.20.0/24,
 cloudflare,104.156.176.0/23,
 cloudflare,104.233.58.0/24,
 cloudflare,104.234.133.0/24,
-cloudflare,104.234.177.0/24,
 cloudflare,104.239.8.0/24,
 cloudflare,104.239.29.0/24,
 cloudflare,104.239.58.0/23,
@@ -10536,7 +10536,6 @@ cogent,209.236.214.0/23,
 cogent,209.236.217.0/24,
 cogent,212.20.128.0/19,
 cogent,212.134.168.0/23,
-cogent,212.135.192.0/22,
 cogent,213.146.160.0/19,
 cogent,213.178.143.0/24,
 cogent,213.206.128.0/19,
@@ -10672,7 +10671,7 @@ constant,44.30.57.0/24,
 constant,44.30.75.0/24,
 constant,44.30.182.0/23,
 constant,44.30.211.0/24,
-constant,44.30.213.0/24,
+constant,44.30.212.0/23,
 constant,44.30.223.0/24,
 constant,44.31.8.0/24,
 constant,44.31.11.0/24,
@@ -11014,9 +11013,6 @@ constant,124.198.249.0/24,
 constant,124.198.250.0/24,
 constant,130.51.67.0/24,
 constant,131.226.41.0/24,
-constant,134.49.192.0/24,
-constant,134.49.194.0/24,
-constant,134.49.205.0/24,
 constant,134.199.64.0/19,
 constant,135.132.48.0/20,
 constant,136.227.160.0/19,
@@ -11038,7 +11034,7 @@ constant,147.79.4.0/24,
 constant,147.79.26.0/24,
 constant,147.160.55.0/24,
 constant,148.135.161.0/24,
-constant,149.18.228.0/22,
+constant,149.18.224.0/21,
 constant,149.19.225.0/24,
 constant,149.19.226.0/23,
 constant,149.19.228.0/22,
@@ -11201,7 +11197,6 @@ constant,178.95.36.0/22,
 constant,178.95.46.0/24,
 constant,178.95.58.0/23,
 constant,178.95.132.0/23,
-constant,178.95.154.0/24,
 constant,178.95.197.0/24,
 constant,178.214.212.0/24,
 constant,181.215.70.0/24,
@@ -11494,6 +11489,7 @@ constant,2602:ff03:a8::/47,
 constant,2602:ff03:ab::/48,
 constant,2602:ff03:ac::/48,
 constant,2602:ff03:ae::/48,
+constant,2602:ff03:b5::/48,
 constant,2602:ff03:b9::/48,
 constant,2602:ff03:be::/48,
 constant,2602:ff03:c0::/48,
@@ -11575,6 +11571,7 @@ constant,2602:ff03:2ce::/48,
 constant,2602:ff03:2d2::/48,
 constant,2602:ff03:2d4::/48,
 constant,2602:ff03:2db::/48,
+constant,2602:ff03:2df::/48,
 constant,2602:ff03:2e0::/48,
 constant,2602:ff03:2e6::/48,
 constant,2602:ff03:2ea::/48,
@@ -11654,7 +11651,6 @@ constant,2602:ff03:4d3::/48,
 constant,2602:ff03:4d7::/48,
 constant,2602:ff03:4dc::/48,
 constant,2602:ff03:4e1::/48,
-constant,2602:ff03:4e8::/48,
 constant,2602:ff03:4ea::/48,
 constant,2602:ff03:4ed::/48,
 constant,2602:ff03:4f6::/48,
@@ -11706,7 +11702,6 @@ constant,2602:ff03:610::/48,
 constant,2602:ff03:613::/48,
 constant,2602:ff03:617::/48,
 constant,2602:ff03:623::/48,
-constant,2602:ff03:624::/48,
 constant,2602:ff03:629::/48,
 constant,2602:ff03:633::/48,
 constant,2602:ff03:638::/47,
@@ -11739,7 +11734,6 @@ constant,2602:ff03:6dc::/47,
 constant,2602:ff03:6e8::/48,
 constant,2602:ff03:6eb::/48,
 constant,2602:ff03:6fd::/48,
-constant,2602:ff03:6ff::/48,
 constant,2602:ff03:704::/48,
 constant,2602:ff03:70a::/48,
 constant,2602:ff03:70d::/48,
@@ -11833,7 +11827,6 @@ constant,2602:ff03:916::/48,
 constant,2602:ff03:91a::/48,
 constant,2602:ff03:91f::/48,
 constant,2602:ff03:920::/48,
-constant,2602:ff03:925::/48,
 constant,2602:ff03:926::/48,
 constant,2602:ff03:92c::/48,
 constant,2602:ff03:93c::/48,
@@ -12020,7 +12013,6 @@ constant,2602:ff03:d0b::/48,
 constant,2602:ff03:d1d::/48,
 constant,2602:ff03:d1e::/47,
 constant,2602:ff03:d25::/48,
-constant,2602:ff03:d29::/48,
 constant,2602:ff03:d2b::/48,
 constant,2602:ff03:d2c::/48,
 constant,2602:ff03:d2e::/48,
@@ -12131,9 +12123,6 @@ constant,2602:ff03:ff8::/48,
 constant,2602:ff03:ffc::/48,
 constant,2602:ffc5:108::/48,
 constant,2602:ffc5:200::/48,
-constant,2604:5c00:1c0::/48,
-constant,2604:5c00:1c2::/48,
-constant,2604:5c00:1cd::/48,
 constant,2606:f180:5::/48,
 constant,2606:f180:15::/48,
 constant,2607:7180::/32,
@@ -12202,12 +12191,11 @@ constant,2a10:ccc1:402::/48,
 constant,2a10:ccc1:404::/46,
 constant,2a10:ccc1:408::/47,
 constant,2a10:ccc1:40a::/48,
-constant,2a10:ccc1:40c::/48,
 constant,2a10:ccc1:40e::/47,
 constant,2a10:ccc1:410::/48,
 constant,2a10:ccc1:412::/48,
 constant,2a10:ccc1:415::/48,
-constant,2a10:ccc1:416::/47,
+constant,2a10:ccc1:416::/48,
 constant,2a10:ccc1:418::/46,
 constant,2a10:ccc1:41c::/47,
 constant,2a10:ccc1:41e::/48,
@@ -12238,9 +12226,8 @@ constant,2a10:ccc1:45c::/47,
 constant,2a10:ccc1:45e::/48,
 constant,2a10:ccc1:460::/48,
 constant,2a10:ccc1:462::/48,
-constant,2a10:ccc1:464::/47,
+constant,2a10:ccc1:465::/48,
 constant,2a10:ccc1:468::/48,
-constant,2a10:ccc1:46b::/48,
 constant,2a10:ccc1:46d::/48,
 constant,2a10:ccc1:46e::/47,
 constant,2a10:ccc1:470::/48,
@@ -12258,8 +12245,7 @@ constant,2a10:ccc1:488::/48,
 constant,2a10:ccc1:48a::/48,
 constant,2a10:ccc1:48c::/46,
 constant,2a10:ccc1:490::/47,
-constant,2a10:ccc1:495::/48,
-constant,2a10:ccc1:496::/47,
+constant,2a10:ccc1:494::/46,
 constant,2a10:ccc1:499::/48,
 constant,2a10:ccc1:49a::/47,
 constant,2a10:ccc1:49c::/46,
@@ -12267,7 +12253,6 @@ constant,2a10:ccc1:4a1::/48,
 constant,2a10:ccc1:4a4::/47,
 constant,2a10:ccc1:4a8::/47,
 constant,2a10:ccc1:4ab::/48,
-constant,2a10:ccc1:4ac::/48,
 constant,2a10:ccc1:4af::/48,
 constant,2a10:ccc1:4b0::/48,
 constant,2a10:ccc1:4b2::/47,
@@ -12275,7 +12260,6 @@ constant,2a10:ccc1:4b5::/48,
 constant,2a10:ccc1:4b6::/47,
 constant,2a10:ccc1:4b8::/48,
 constant,2a10:ccc1:4ba::/47,
-constant,2a10:ccc1:4bc::/48,
 constant,2a10:ccc1:4c0::/48,
 constant,2a10:ccc1:4c2::/48,
 constant,2a10:ccc1:4c4::/46,
@@ -12300,7 +12284,7 @@ constant,2a10:ccc1:4ee::/48,
 constant,2a10:ccc1:4f0::/47,
 constant,2a10:ccc1:4f2::/48,
 constant,2a10:ccc1:4f5::/48,
-constant,2a10:ccc1:4f6::/47,
+constant,2a10:ccc1:4f6::/48,
 constant,2a10:ccc1:4f8::/48,
 constant,2a10:ccc1:4fc::/47,
 constant,2a10:ccc1:4fe::/48,
@@ -12336,7 +12320,7 @@ constant,2a13:9500:1ec::/48,
 constant,2a14:7583:e500::/40,
 constant,2a14:7583:ef30::/48,
 constant,2a14:7583:f028::/46,
-constant,2a14:7583:f040::/45,
+constant,2a14:7583:f044::/46,
 constant,2a14:7583:f054::/46,
 constant,2a14:7583:f058::/46,
 constant,2a14:7583:f060::/45,
@@ -12347,7 +12331,7 @@ constant,2a14:7583:f0a4::/46,
 constant,2a14:7583:f0ac::/46,
 constant,2a14:7583:f0b0::/46,
 constant,2a14:7583:f0d8::/46,
-constant,2a14:7583:f0e8::/45,
+constant,2a14:7583:f0ec::/46,
 constant,2a14:7583:f0fc::/46,
 constant,2a14:7583:f100::/45,
 constant,2a14:7583:f110::/45,
@@ -13330,6 +13314,7 @@ datacamp,82.198.246.0/23,
 datacamp,83.94.64.0/23,
 datacamp,83.94.67.0/24,
 datacamp,83.94.69.0/24,
+datacamp,83.94.70.0/24,
 datacamp,83.229.28.0/23,
 datacamp,84.17.36.0/24,
 datacamp,84.17.43.0/24,
@@ -13506,6 +13491,7 @@ datacamp,92.112.119.0/24,
 datacamp,92.112.128.0/24,
 datacamp,92.112.137.0/24,
 datacamp,92.112.143.0/24,
+datacamp,92.113.48.0/24,
 datacamp,92.113.194.0/24,
 datacamp,92.118.46.0/24,
 datacamp,92.119.32.0/24,
@@ -15400,6 +15386,7 @@ datacamp,213.201.252.0/23,
 datacamp,213.209.130.0/24,
 datacamp,213.210.41.0/24,
 datacamp,213.254.174.0/24,
+datacamp,216.74.69.0/24,
 datacamp,216.75.85.0/24,
 datacamp,216.97.228.0/24,
 datacamp,216.107.137.0/24,
@@ -15687,7 +15674,6 @@ digitalocean,162.243.128.0/19,
 digitalocean,162.243.188.0/22,
 digitalocean,164.90.248.0/23,
 digitalocean,164.90.250.0/24,
-digitalocean,168.144.196.0/22,
 digitalocean,168.144.224.0/24,
 digitalocean,192.241.160.0/19,
 digitalocean,192.241.192.0/19,
@@ -15696,7 +15682,6 @@ digitalocean,198.199.92.0/22,
 digitalocean,198.199.96.0/20,
 digitalocean,198.199.112.0/21,
 digitalocean,198.211.96.0/20,
-digitalocean,201.79.48.0/20,
 digitalocean,2400:6180::/48,
 digitalocean,2400:6180:10::/48,
 digitalocean,2400:6180:100::/40,
@@ -15741,6 +15726,7 @@ digitalocean,165.245.224.0/20,CA-ON
 digitalocean,167.99.176.0/20,CA-ON
 digitalocean,174.138.112.0/22,CA-ON
 digitalocean,178.128.224.0/20,CA-ON
+digitalocean,201.79.48.0/20,CA-ON
 digitalocean,209.38.0.0/22,CA-ON
 digitalocean,209.38.8.0/21,CA-ON
 digitalocean,2604:a880:cad:d0::/64,CA-ON
@@ -16243,6 +16229,7 @@ digitalocean,165.245.128.0/20,US-GA
 digitalocean,2604:a880:5:1::/64,US-GA
 digitalocean,168.144.52.0/22,US-MEM
 digitalocean,168.144.56.0/21,US-MEM
+digitalocean,168.144.196.0/23,US-MEM
 digitalocean,201.79.16.0/20,US-MEM
 digitalocean,2604:a880:8:7::/64,US-MEM
 digitalocean,165.245.156.0/22,US-MO
@@ -16458,6 +16445,8 @@ digitalocean,2604:a880:800:c1::/64,US-NJ
 digitalocean,2604:a880:803::/48,US-NJ
 digitalocean,165.245.148.0/22,US-VA
 digitalocean,165.245.160.0/20,US-VA
+digitalocean,168.144.198.0/23,US-VA
+digitalocean,201.79.64.0/22,US-VA
 digitalocean,2604:a880:6:7::/64,US-VA
 discord-voice,35.217.20.191/32,finland14000
 discord-voice,35.217.52.93/32,finland14001
@@ -16603,7 +16592,6 @@ discord-voice,35.207.246.246/32,india11003
 discord-voice,35.207.249.9/32,india11004
 discord-voice,35.207.253.82/32,india11005
 discord-voice,35.207.227.5/32,india11006
-discord-voice,35.207.229.15/32,india11007
 discord-voice,35.207.201.227/32,india11008
 discord-voice,35.207.253.122/32,india11009
 discord-voice,35.207.243.60/32,india11010
@@ -16660,6 +16648,7 @@ discord-voice,35.213.98.127/32,japan13016
 discord-voice,35.213.102.65/32,japan13017
 discord-voice,35.213.57.157/32,japan13018
 discord-voice,35.213.85.126/32,japan13019
+discord-voice,35.213.5.6/32,japan13020
 discord-voice,35.213.7.11/32,japan13021
 discord-voice,35.213.27.198/32,japan13022
 discord-voice,35.213.83.73/32,japan13023
@@ -16756,7 +16745,6 @@ discord-voice,35.213.118.214/32,south-korea-streams14055
 discord-voice,35.213.116.136/32,south-korea-streams14056
 discord-voice,35.213.17.190/32,south-korea-streams14058
 discord-voice,35.213.59.235/32,south-korea-streams14059
-discord-voice,35.213.43.1/32,south-korea-streams14061
 discord-voice,35.213.89.237/32,south-korea-streams14062
 discord-voice,35.213.76.233/32,south-korea-streams14063
 discord-voice,35.213.10.217/32,south-korea-streams14064
@@ -16788,7 +16776,6 @@ discord-voice,35.213.6.71/32,south-korea-streams14091
 discord-voice,35.213.31.3/32,south-korea-streams14092
 discord-voice,35.213.120.241/32,south-korea-streams14093
 discord-voice,35.213.118.19/32,south-korea-streams14094
-discord-voice,35.213.65.165/32,south-korea-streams14095
 discord-voice,35.213.27.139/32,south-korea-streams14096
 discord-voice,35.213.88.124/32,south-korea-streams14097
 discord-voice,35.213.38.139/32,south-korea-streams14098
@@ -16801,7 +16788,6 @@ discord-voice,35.213.97.28/32,south-korea-streams14105
 discord-voice,35.213.3.135/32,south-korea-streams14106
 discord-voice,35.213.44.153/32,south-korea-streams14107
 discord-voice,35.213.84.203/32,south-korea-streams14108
-discord-voice,35.213.77.201/32,south-korea-streams14109
 discord-voice,35.213.114.37/32,south-korea-streams14110
 discord-voice,35.213.1.223/32,south-korea-streams14112
 discord-voice,35.213.37.114/32,south-korea-streams14113
@@ -16815,7 +16801,6 @@ discord-voice,35.213.20.236/32,south-korea-streams14121
 discord-voice,35.213.118.196/32,south-korea-streams14123
 discord-voice,35.213.85.135/32,south-korea-streams14124
 discord-voice,35.213.54.100/32,south-korea-streams14125
-discord-voice,35.213.80.149/32,south-korea-streams14126
 discord-voice,35.213.39.215/32,south-korea-streams14128
 discord-voice,35.213.124.234/32,south-korea-streams14129
 discord-voice,35.213.26.215/32,south-korea-streams14130
@@ -16823,7 +16808,6 @@ discord-voice,35.213.29.126/32,south-korea-streams14131
 discord-voice,35.213.64.159/32,south-korea-streams14132
 discord-voice,35.213.23.63/32,south-korea-streams14133
 discord-voice,35.213.22.23/32,south-korea-streams14134
-discord-voice,35.213.33.36/32,south-korea-streams14135
 discord-voice,35.213.59.190/32,south-korea-streams14136
 discord-voice,35.213.21.220/32,south-korea-streams14137
 discord-voice,35.213.46.102/32,south-korea-streams14138
@@ -16844,7 +16828,6 @@ discord-voice,35.216.29.202/32,south-korea12002
 discord-voice,35.216.81.126/32,south-korea12003
 discord-voice,35.216.43.219/32,south-korea12004
 discord-voice,35.216.27.55/32,south-korea12005
-discord-voice,35.216.45.103/32,south-korea12006
 discord-voice,35.216.15.80/32,south-korea12007
 discord-voice,35.216.24.87/32,south-korea12008
 discord-voice,35.216.25.211/32,south-korea12009
@@ -16857,7 +16840,6 @@ discord-voice,35.216.69.63/32,south-korea12019
 discord-voice,35.216.45.28/32,south-korea12020
 discord-voice,35.216.73.186/32,south-korea12021
 discord-voice,35.216.18.124/32,south-korea12023
-discord-voice,35.216.116.176/32,south-korea12024
 discord-voice,35.216.86.169/32,south-korea12025
 discord-voice,35.216.85.150/32,south-korea12026
 discord-voice,35.216.7.48/32,south-korea12027
@@ -16917,7 +16899,6 @@ discord-voice,35.216.11.127/32,south-korea13031
 discord-voice,35.216.47.219/32,south-korea13032
 discord-voice,35.216.123.155/32,south-korea13033
 discord-voice,35.216.10.207/32,south-korea13034
-discord-voice,35.216.47.100/32,south-korea13035
 discord-voice,35.216.126.251/32,south-korea13036
 discord-voice,35.216.107.190/32,south-korea13037
 discord-voice,35.216.101.192/32,south-korea13038
@@ -16967,7 +16948,6 @@ discord-voice,35.216.23.2/32,south-korea13083
 discord-voice,35.216.85.134/32,south-korea13084
 discord-voice,35.216.1.2/32,south-korea13085
 discord-voice,35.216.16.253/32,south-korea13086
-discord-voice,35.216.67.218/32,south-korea13089
 discord-voice,35.216.22.198/32,south-korea13090
 discord-voice,35.216.48.198/32,south-korea13091
 discord-voice,35.216.58.5/32,south-korea13092
@@ -17048,7 +17028,6 @@ discord-voice,34.0.130.230/32,us-south12035
 discord-voice,34.0.143.65/32,us-south12036
 discord-voice,34.0.129.171/32,us-south12037
 discord-voice,34.0.150.147/32,us-south12038
-discord-voice,34.0.144.143/32,us-south12039
 discord-voice,34.0.130.183/32,us-south12040
 discord-voice,34.0.135.222/32,us-south12041
 discord-voice,34.0.155.135/32,us-south12042
@@ -22295,6 +22274,7 @@ ovh,2001:41d0::/32,
 ovh,2402:1f00::/32,
 ovh,2604:2dc0::/32,
 ovh,2607:5300::/32,
+ovh,2a03:bf80::/48,
 railway,66.33.22.0/23,
 railway,69.46.46.0/24,
 railway,152.55.176.0/20,
