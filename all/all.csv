@@ -2018,6 +2018,7 @@ aws,2606:7b40:1a47:4340::/60,ap-southeast-2
 aws,2606:7b40:1b07:4000::/55,ap-southeast-2
 aws,2606:7b40:1b07:4200::/56,ap-southeast-2
 aws,1.178.19.0/24,ap-southeast-3
+aws,1.178.86.0/24,ap-southeast-3
 aws,3.2.98.0/24,ap-southeast-3
 aws,3.5.36.0/22,ap-southeast-3
 aws,13.248.71.0/24,ap-southeast-3
@@ -11305,6 +11306,7 @@ constant,192.121.195.0/24,
 constant,192.124.183.0/24,
 constant,192.136.64.0/24,
 constant,192.153.64.0/21,
+constant,192.172.221.0/24,
 constant,192.195.68.0/24,
 constant,192.206.23.0/24,
 constant,192.248.128.0/18,
@@ -11484,6 +11486,7 @@ constant,2602:f6ac::/36,
 constant,2602:f70f:100::/48,
 constant,2602:f96d:103::/48,
 constant,2602:f992:d1::/48,
+constant,2602:fa6b::/40,
 constant,2602:fb1b::/48,
 constant,2602:fed2:7100::/48,
 constant,2602:fed2:710e::/48,
@@ -11493,7 +11496,6 @@ constant,2602:fed2:719e::/48,
 constant,2602:fed2:7309::/48,
 constant,2602:fed2:730d::/48,
 constant,2602:fed2:731c::/48,
-constant,2602:ff03:1::/48,
 constant,2602:ff03:7::/48,
 constant,2602:ff03:1d::/48,
 constant,2602:ff03:1e::/47,
@@ -11529,7 +11531,7 @@ constant,2602:ff03:da::/48,
 constant,2602:ff03:dc::/48,
 constant,2602:ff03:df::/48,
 constant,2602:ff03:f2::/47,
-constant,2602:ff03:fe::/47,
+constant,2602:ff03:ff::/48,
 constant,2602:ff03:109::/48,
 constant,2602:ff03:10a::/47,
 constant,2602:ff03:10c::/48,
@@ -12156,7 +12158,6 @@ constant,2a10:ccc1:422::/47,
 constant,2a10:ccc1:424::/47,
 constant,2a10:ccc1:426::/48,
 constant,2a10:ccc1:428::/47,
-constant,2a10:ccc1:42b::/48,
 constant,2a10:ccc1:42c::/46,
 constant,2a10:ccc1:433::/48,
 constant,2a10:ccc1:434::/47,
@@ -12201,21 +12202,21 @@ constant,2a10:ccc1:48c::/46,
 constant,2a10:ccc1:490::/47,
 constant,2a10:ccc1:494::/46,
 constant,2a10:ccc1:499::/48,
-constant,2a10:ccc1:49a::/47,
+constant,2a10:ccc1:49a::/48,
 constant,2a10:ccc1:49c::/47,
 constant,2a10:ccc1:49f::/48,
 constant,2a10:ccc1:4a0::/47,
 constant,2a10:ccc1:4a4::/47,
 constant,2a10:ccc1:4a8::/48,
 constant,2a10:ccc1:4ab::/48,
-constant,2a10:ccc1:4af::/48,
+constant,2a10:ccc1:4ae::/47,
 constant,2a10:ccc1:4b2::/48,
 constant,2a10:ccc1:4b5::/48,
 constant,2a10:ccc1:4b6::/47,
 constant,2a10:ccc1:4b8::/48,
 constant,2a10:ccc1:4bb::/48,
 constant,2a10:ccc1:4c0::/48,
-constant,2a10:ccc1:4c2::/48,
+constant,2a10:ccc1:4c2::/47,
 constant,2a10:ccc1:4c4::/46,
 constant,2a10:ccc1:4c8::/48,
 constant,2a10:ccc1:4cb::/48,
@@ -12274,7 +12275,6 @@ constant,2a14:7583:ef30::/48,
 constant,2a14:7583:f028::/46,
 constant,2a14:7583:f044::/46,
 constant,2a14:7583:f054::/46,
-constant,2a14:7583:f058::/46,
 constant,2a14:7583:f060::/46,
 constant,2a14:7583:f074::/46,
 constant,2a14:7583:f078::/45,
@@ -16464,7 +16464,6 @@ discord-voice,35.217.53.23/32,finland14070
 discord-voice,35.217.58.188/32,finland14071
 discord-voice,35.217.22.66/32,finland14072
 discord-voice,35.217.36.87/32,finland14073
-discord-voice,35.217.34.169/32,finland14074
 discord-voice,35.217.57.150/32,finland14075
 discord-voice,35.217.54.23/32,finland14076
 discord-voice,35.217.19.177/32,finland14078
@@ -16673,6 +16672,7 @@ discord-voice,35.213.96.14/32,south-korea-streams14029
 discord-voice,35.213.100.87/32,south-korea-streams14030
 discord-voice,35.213.75.143/32,south-korea-streams14032
 discord-voice,35.213.100.244/32,south-korea-streams14033
+discord-voice,35.213.34.144/32,south-korea-streams14034
 discord-voice,35.213.37.239/32,south-korea-streams14035
 discord-voice,35.213.0.110/32,south-korea-streams14036
 discord-voice,35.213.23.156/32,south-korea-streams14037
@@ -16777,7 +16777,6 @@ discord-voice,35.216.27.55/32,south-korea12005
 discord-voice,35.216.15.80/32,south-korea12007
 discord-voice,35.216.24.87/32,south-korea12008
 discord-voice,35.216.25.211/32,south-korea12009
-discord-voice,35.216.23.33/32,south-korea12010
 discord-voice,35.216.45.86/32,south-korea12012
 discord-voice,35.216.13.2/32,south-korea12015
 discord-voice,35.216.62.146/32,south-korea12016
@@ -16882,7 +16881,6 @@ discord-voice,35.216.107.43/32,south-korea13076
 discord-voice,35.216.77.242/32,south-korea13077
 discord-voice,35.216.108.255/32,south-korea13078
 discord-voice,35.216.14.188/32,south-korea13079
-discord-voice,35.216.8.199/32,south-korea13080
 discord-voice,35.216.7.156/32,south-korea13082
 discord-voice,35.216.23.2/32,south-korea13083
 discord-voice,35.216.85.134/32,south-korea13084
@@ -16944,7 +16942,6 @@ discord-voice,34.0.148.233/32,us-south12008
 discord-voice,34.0.151.252/32,us-south12009
 discord-voice,34.0.140.88/32,us-south12010
 discord-voice,34.0.147.234/32,us-south12011
-discord-voice,34.0.158.180/32,us-south12012
 discord-voice,34.0.148.187/32,us-south12013
 discord-voice,34.0.144.13/32,us-south12014
 discord-voice,34.0.131.252/32,us-south12015
@@ -18950,7 +18947,9 @@ oracle,75.125.167.0/24,
 oracle,75.125.168.0/24,
 oracle,75.125.170.0/23,
 oracle,75.125.172.0/22,
-oracle,75.125.176.0/24,
+oracle,75.125.176.0/23,
+oracle,75.125.178.0/24,
+oracle,75.125.180.0/24,
 oracle,79.72.22.0/23,
 oracle,79.72.36.0/23,
 oracle,79.72.39.0/24,
@@ -22052,7 +22051,6 @@ ovh,178.32.0.0/15,
 ovh,178.83.45.0/24,
 ovh,178.83.46.0/24,
 ovh,178.83.166.0/24,
-ovh,178.92.111.0/24,
 ovh,178.92.120.0/24,
 ovh,178.93.247.0/24,
 ovh,178.94.22.0/24,
