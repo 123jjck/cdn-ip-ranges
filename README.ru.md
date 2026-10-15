@@ -47,7 +47,7 @@
 | GCore | AS199524, AS202422 | ✅ | ✅ |
 | GleSYS | AS42708 | ✅ | ✅ |
 | GTHost | AS63023 | ✅ | ✅ |
-| Hetzner | AS24940, AS213230, AS212317 | ✅ | ✅ |
+| Hetzner | AS24940, AS213230, AS212317, AS215859 | ✅ | ✅ |
 | MelBiCom | AS8849, AS56630 | ✅ | ✅ |
 | Meta | AS32934 | ✅ | ❌ |
 | Oracle | AS31898, AS6142, AS20054, AS54253 | ✅ | ✅ |

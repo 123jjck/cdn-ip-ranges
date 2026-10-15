@@ -455,7 +455,7 @@ def main() -> int:
         ProviderSpec("datacamp", lambda: fetch_ripe_prefixes("212238")),
         ProviderSpec("digitalocean", lambda: list(fetch_digitalocean_ranges()) + list(fetch_ripe_prefixes("14061"))),
         ProviderSpec("fastly", lambda: fetch_ripe_prefixes("54113")),
-        ProviderSpec("hetzner", lambda: list(fetch_ripe_prefixes("24940")) + list(fetch_ripe_prefixes("213230")) + list(fetch_ripe_prefixes("212317"))),
+        ProviderSpec("hetzner", lambda: list(fetch_ripe_prefixes("24940")) + list(fetch_ripe_prefixes("213230")) + list(fetch_ripe_prefixes("212317")) + list(fetch_ripe_prefixes("215859"))),
         ProviderSpec("melbicom", lambda: list(fetch_ripe_prefixes("8849")) + list(fetch_ripe_prefixes("56630"))),
         ProviderSpec("oracle", lambda: list(fetch_oracle_ranges()) + list(fetch_ripe_prefixes("31898")) + list(fetch_ripe_prefixes("6142")) + list(fetch_ripe_prefixes("20054")) + list(fetch_ripe_prefixes("54253"))),
         ProviderSpec("ovh", lambda: fetch_ripe_prefixes("16276")),
