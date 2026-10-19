@@ -11986,6 +11986,7 @@ constant,2602:ff03:9bd::/48,
 constant,2602:ff03:9c1::/48,
 constant,2602:ff03:9c3::/48,
 constant,2602:ff03:9cc::/48,
+constant,2602:ff03:9d2::/48,
 constant,2602:ff03:9e1::/48,
 constant,2602:ff03:9e5::/48,
 constant,2602:ff03:9ec::/48,
@@ -12254,6 +12255,7 @@ constant,2602:ff03:f8a::/48,
 constant,2602:ff03:f8f::/48,
 constant,2602:ff03:f94::/48,
 constant,2602:ff03:fa4::/48,
+constant,2602:ff03:fa9::/48,
 constant,2602:ff03:fb7::/48,
 constant,2602:ff03:fc5::/48,
 constant,2602:ff03:fc7::/48,
@@ -12338,12 +12340,13 @@ constant,2a10:ccc1:40f::/48,
 constant,2a10:ccc1:410::/48,
 constant,2a10:ccc1:412::/47,
 constant,2a10:ccc1:414::/47,
-constant,2a10:ccc1:41a::/47,
+constant,2a10:ccc1:41b::/48,
 constant,2a10:ccc1:41d::/48,
 constant,2a10:ccc1:41e::/48,
 constant,2a10:ccc1:423::/48,
 constant,2a10:ccc1:424::/48,
 constant,2a10:ccc1:428::/47,
+constant,2a10:ccc1:42a::/48,
 constant,2a10:ccc1:42c::/46,
 constant,2a10:ccc1:432::/48,
 constant,2a10:ccc1:434::/47,
@@ -12358,7 +12361,8 @@ constant,2a10:ccc1:448::/48,
 constant,2a10:ccc1:44a::/47,
 constant,2a10:ccc1:44c::/48,
 constant,2a10:ccc1:44e::/47,
-constant,2a10:ccc1:450::/46,
+constant,2a10:ccc1:451::/48,
+constant,2a10:ccc1:452::/47,
 constant,2a10:ccc1:454::/48,
 constant,2a10:ccc1:457::/48,
 constant,2a10:ccc1:458::/47,
@@ -12413,7 +12417,7 @@ constant,2a10:ccc1:4d4::/46,
 constant,2a10:ccc1:4d8::/47,
 constant,2a10:ccc1:4db::/48,
 constant,2a10:ccc1:4dc::/47,
-constant,2a10:ccc1:4e0::/47,
+constant,2a10:ccc1:4e0::/48,
 constant,2a10:ccc1:4e4::/46,
 constant,2a10:ccc1:4e8::/47,
 constant,2a10:ccc1:4ed::/48,
@@ -12475,8 +12479,7 @@ constant,2a14:7583:f144::/46,
 constant,2a14:7583:f148::/46,
 constant,2a14:7583:f154::/46,
 constant,2a14:7583:f158::/45,
-constant,2a14:7583:f160::/45,
-constant,2a14:7583:f168::/46,
+constant,2a14:7583:f160::/44,
 constant,2a14:7583:f184::/46,
 constant,2a14:7583:f188::/46,
 constant,2a14:7583:f198::/45,
@@ -14630,6 +14633,8 @@ datacamp,176.57.50.0/24,
 datacamp,176.57.55.0/24,
 datacamp,176.110.107.0/24,
 datacamp,176.110.112.0/23,
+datacamp,176.116.32.0/24,
+datacamp,176.116.34.0/24,
 datacamp,177.202.124.0/23,
 datacamp,178.83.96.0/24,
 datacamp,178.83.114.0/24,
@@ -14871,8 +14876,7 @@ datacamp,185.198.36.0/24,
 datacamp,185.198.155.0/24,
 datacamp,185.203.86.0/23,
 datacamp,185.203.122.0/24,
-datacamp,185.204.93.0/24,
-datacamp,185.204.94.0/23,
+datacamp,185.204.92.0/22,
 datacamp,185.205.190.0/24,
 datacamp,185.205.207.0/24,
 datacamp,185.206.56.0/23,
@@ -15776,6 +15780,7 @@ datacamp,2a10:9007:6::/48,
 datacamp,2a10:9fc0::/29,
 datacamp,2a10:a040::/29,
 datacamp,2a10:aa40::/30,
+datacamp,2a10:d940::/29,
 datacamp,2a11:140::/29,
 datacamp,2a11:d40::/29,
 datacamp,2a11:2f40::/29,
@@ -16635,7 +16640,6 @@ discord-voice,35.217.20.191/32,finland14000
 discord-voice,35.217.52.93/32,finland14001
 discord-voice,35.217.1.66/32,finland14002
 discord-voice,35.217.7.247/32,finland14003
-discord-voice,35.217.51.155/32,finland14004
 discord-voice,35.217.0.45/32,finland14006
 discord-voice,35.217.63.180/32,finland14007
 discord-voice,35.217.42.214/32,finland14009
@@ -16663,6 +16667,7 @@ discord-voice,35.217.47.71/32,finland14034
 discord-voice,35.217.9.94/32,finland14035
 discord-voice,35.217.41.43/32,finland14038
 discord-voice,35.217.41.124/32,finland14039
+discord-voice,35.217.24.252/32,finland14040
 discord-voice,35.217.38.9/32,finland14041
 discord-voice,35.217.38.111/32,finland14042
 discord-voice,35.217.32.212/32,finland14043
@@ -16700,7 +16705,6 @@ discord-voice,35.217.57.225/32,finland14085
 discord-voice,35.217.7.100/32,finland14086
 discord-voice,35.217.42.91/32,finland14088
 discord-voice,35.217.0.67/32,finland14089
-discord-voice,35.217.1.178/32,finland14091
 discord-voice,35.217.51.121/32,finland14092
 discord-voice,35.217.0.212/32,finland14093
 discord-voice,35.217.3.118/32,finland14094
@@ -16862,7 +16866,6 @@ discord-voice,34.0.55.215/32,santiago11035
 discord-voice,34.0.56.6/32,santiago11036
 discord-voice,34.0.54.68/32,santiago11038
 discord-voice,35.213.46.184/32,south-korea-streams14000
-discord-voice,35.213.28.165/32,south-korea-streams14001
 discord-voice,35.213.94.211/32,south-korea-streams14002
 discord-voice,35.213.107.182/32,south-korea-streams14003
 discord-voice,35.213.53.88/32,south-korea-streams14004
@@ -16893,7 +16896,6 @@ discord-voice,35.213.75.143/32,south-korea-streams14032
 discord-voice,35.213.100.244/32,south-korea-streams14033
 discord-voice,35.213.34.144/32,south-korea-streams14034
 discord-voice,35.213.37.239/32,south-korea-streams14035
-discord-voice,35.213.0.110/32,south-korea-streams14036
 discord-voice,35.213.23.156/32,south-korea-streams14037
 discord-voice,35.213.68.77/32,south-korea-streams14038
 discord-voice,35.213.111.138/32,south-korea-streams14039
@@ -17104,7 +17106,6 @@ discord-voice,35.216.82.138/32,south-korea13103
 discord-voice,35.216.69.12/32,south-korea13105
 discord-voice,35.216.23.160/32,south-korea13106
 discord-voice,35.216.52.72/32,south-korea13107
-discord-voice,34.1.209.230/32,southafrica12000
 discord-voice,34.1.211.7/32,southafrica12001
 discord-voice,34.1.209.151/32,southafrica12002
 discord-voice,35.215.78.86/32,stage-scale10020
@@ -19151,6 +19152,7 @@ oracle,75.125.172.0/22,
 oracle,75.125.176.0/23,
 oracle,75.125.178.0/24,
 oracle,75.125.180.0/24,
+oracle,75.125.182.0/24,
 oracle,79.72.22.0/23,
 oracle,79.72.36.0/23,
 oracle,79.72.39.0/24,
@@ -21790,6 +21792,7 @@ oracle,192.22.44.128/25,us-shawnee-1
 oracle,192.22.48.0/23,us-shawnee-1
 ovh,2.26.132.0/24,
 ovh,2.26.153.0/24,
+ovh,2.27.87.0/24,
 ovh,2.27.97.0/24,
 ovh,2.27.164.0/24,
 ovh,2.58.85.0/24,
@@ -21869,6 +21872,7 @@ ovh,45.94.49.0/24,
 ovh,45.94.50.0/23,
 ovh,45.112.195.0/24,
 ovh,45.128.77.0/24,
+ovh,45.140.187.0/24,
 ovh,45.149.185.0/24,
 ovh,45.149.243.0/24,
 ovh,45.152.164.0/24,
@@ -22092,6 +22096,7 @@ ovh,107.189.64.0/18,
 ovh,108.174.65.0/24,
 ovh,109.66.59.0/24,
 ovh,109.66.76.0/24,
+ovh,109.66.242.0/24,
 ovh,109.105.195.0/24,
 ovh,109.110.184.0/24,
 ovh,109.122.15.0/24,
@@ -22353,6 +22358,7 @@ ovh,194.87.205.0/24,
 ovh,194.88.232.0/24,
 ovh,194.104.138.0/24,
 ovh,194.110.171.0/24,
+ovh,194.147.56.0/24,
 ovh,194.147.159.0/24,
 ovh,194.150.165.0/24,
 ovh,194.156.227.0/24,
@@ -22425,6 +22431,7 @@ ovh,217.182.0.0/16,
 ovh,217.216.128.0/24,
 ovh,217.216.169.0/24,
 ovh,217.217.26.0/24,
+ovh,217.217.92.0/24,
 ovh,222.167.237.0/24,
 ovh,2001:41d0::/32,
 ovh,2402:1f00::/32,
