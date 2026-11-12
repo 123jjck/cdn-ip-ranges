@@ -16637,6 +16637,7 @@ discord-voice,35.217.20.191/32,finland14000
 discord-voice,35.217.52.93/32,finland14001
 discord-voice,35.217.1.66/32,finland14002
 discord-voice,35.217.7.247/32,finland14003
+discord-voice,35.217.51.155/32,finland14004
 discord-voice,35.217.0.45/32,finland14006
 discord-voice,35.217.63.180/32,finland14007
 discord-voice,35.217.42.214/32,finland14009
@@ -16684,6 +16685,7 @@ discord-voice,35.217.41.192/32,finland14060
 discord-voice,35.217.42.230/32,finland14061
 discord-voice,35.217.51.254/32,finland14062
 discord-voice,35.217.50.234/32,finland14063
+discord-voice,35.217.42.9/32,finland14064
 discord-voice,35.217.60.24/32,finland14066
 discord-voice,35.217.17.117/32,finland14067
 discord-voice,35.217.5.93/32,finland14068
@@ -16697,10 +16699,12 @@ discord-voice,35.217.19.177/32,finland14078
 discord-voice,35.217.41.106/32,finland14079
 discord-voice,35.217.22.178/32,finland14080
 discord-voice,35.217.43.188/32,finland14082
+discord-voice,35.217.38.5/32,finland14084
 discord-voice,35.217.57.225/32,finland14085
 discord-voice,35.217.7.100/32,finland14086
 discord-voice,35.217.42.91/32,finland14088
 discord-voice,35.217.0.67/32,finland14089
+discord-voice,35.217.1.178/32,finland14091
 discord-voice,35.217.51.121/32,finland14092
 discord-voice,35.217.0.212/32,finland14093
 discord-voice,35.217.3.118/32,finland14094
@@ -16789,6 +16793,7 @@ discord-voice,34.0.55.215/32,santiago11035
 discord-voice,34.0.56.6/32,santiago11036
 discord-voice,34.0.54.68/32,santiago11038
 discord-voice,35.213.46.184/32,south-korea-streams14000
+discord-voice,35.213.28.165/32,south-korea-streams14001
 discord-voice,35.213.94.211/32,south-korea-streams14002
 discord-voice,35.213.107.182/32,south-korea-streams14003
 discord-voice,35.213.53.88/32,south-korea-streams14004
@@ -16827,6 +16832,7 @@ discord-voice,35.213.102.22/32,south-korea-streams14042
 discord-voice,35.213.33.4/32,south-korea-streams14043
 discord-voice,35.213.88.251/32,south-korea-streams14045
 discord-voice,35.213.25.53/32,south-korea-streams14046
+discord-voice,35.213.22.153/32,south-korea-streams14047
 discord-voice,35.213.80.218/32,south-korea-streams14049
 discord-voice,35.213.113.40/32,south-korea-streams14050
 discord-voice,35.213.58.176/32,south-korea-streams14051
@@ -16837,6 +16843,7 @@ discord-voice,35.213.116.136/32,south-korea-streams14056
 discord-voice,35.213.7.179/32,south-korea-streams14057
 discord-voice,35.213.17.190/32,south-korea-streams14058
 discord-voice,35.213.59.235/32,south-korea-streams14059
+discord-voice,35.213.43.1/32,south-korea-streams14061
 discord-voice,35.213.89.237/32,south-korea-streams14062
 discord-voice,35.213.76.233/32,south-korea-streams14063
 discord-voice,35.213.10.217/32,south-korea-streams14064
@@ -16868,6 +16875,7 @@ discord-voice,35.213.6.71/32,south-korea-streams14091
 discord-voice,35.213.31.3/32,south-korea-streams14092
 discord-voice,35.213.120.241/32,south-korea-streams14093
 discord-voice,35.213.118.19/32,south-korea-streams14094
+discord-voice,35.213.65.165/32,south-korea-streams14095
 discord-voice,35.213.27.139/32,south-korea-streams14096
 discord-voice,35.213.38.139/32,south-korea-streams14098
 discord-voice,35.213.77.78/32,south-korea-streams14099
@@ -16877,6 +16885,7 @@ discord-voice,35.213.91.140/32,south-korea-streams14104
 discord-voice,35.213.97.28/32,south-korea-streams14105
 discord-voice,35.213.3.135/32,south-korea-streams14106
 discord-voice,35.213.44.153/32,south-korea-streams14107
+discord-voice,35.213.77.201/32,south-korea-streams14109
 discord-voice,35.213.114.37/32,south-korea-streams14110
 discord-voice,35.213.1.223/32,south-korea-streams14112
 discord-voice,35.213.37.114/32,south-korea-streams14113
@@ -16987,6 +16996,8 @@ discord-voice,35.216.23.2/32,south-korea13083
 discord-voice,35.216.85.134/32,south-korea13084
 discord-voice,35.216.1.2/32,south-korea13085
 discord-voice,35.216.16.253/32,south-korea13086
+discord-voice,35.216.91.11/32,south-korea13088
+discord-voice,35.216.67.218/32,south-korea13089
 discord-voice,35.216.22.198/32,south-korea13090
 discord-voice,35.216.48.198/32,south-korea13091
 discord-voice,35.216.58.5/32,south-korea13092
