@@ -5624,6 +5624,7 @@ aws,2606:f40:8000::/39,us-east-1
 aws,2606:f40:fffc::/48,us-east-1
 aws,2606:f40:fffe::/48,us-east-1
 aws,2606:7b40:1a2f::/60,us-east-1
+aws,2606:7b40:1a2f:340::/60,us-east-1
 aws,2606:7b40:1a4f::/60,us-east-1
 aws,2606:7b40:1a4f:340::/60,us-east-1
 aws,2606:7b40:1b0f::/53,us-east-1
@@ -7383,7 +7384,6 @@ cloudflare,77.90.139.0/24,
 cloudflare,77.90.148.0/24,
 cloudflare,77.90.156.0/24,
 cloudflare,77.90.170.0/24,
-cloudflare,77.90.173.0/24,
 cloudflare,77.90.190.0/23,
 cloudflare,77.216.20.0/24,
 cloudflare,78.105.145.0/24,
@@ -7427,7 +7427,6 @@ cloudflare,89.46.251.0/24,
 cloudflare,89.167.240.0/21,
 cloudflare,90.96.176.0/20,
 cloudflare,91.192.106.0/23,
-cloudflare,91.206.71.0/24,
 cloudflare,91.213.221.0/24,
 cloudflare,91.224.186.0/24,
 cloudflare,92.44.1.0/24,
@@ -8136,7 +8135,6 @@ cloudflare,178.239.123.0/24,
 cloudflare,180.255.25.0/24,
 cloudflare,181.215.196.0/24,
 cloudflare,182.23.210.0/24,
-cloudflare,185.7.240.0/24,
 cloudflare,185.18.184.0/24,
 cloudflare,185.29.76.0/24,
 cloudflare,185.38.25.0/24,
@@ -8747,6 +8745,7 @@ cloudflare,2400:cb00:a1c7::/48,
 cloudflare,2400:cb00:a1d1::/48,
 cloudflare,2400:cb00:a1d2::/47,
 cloudflare,2400:cb00:a1d4::/47,
+cloudflare,2400:cb00:a1d6::/48,
 cloudflare,2400:cb00:a1f1::/48,
 cloudflare,2400:cb00:a1f2::/47,
 cloudflare,2400:cb00:a1f4::/48,
@@ -9286,6 +9285,7 @@ cloudflare,2400:cb00:ca82::/48,
 cloudflare,2400:cb00:cac1::/48,
 cloudflare,2400:cb00:cac2::/47,
 cloudflare,2400:cb00:cac4::/47,
+cloudflare,2400:cb00:cac6::/48,
 cloudflare,2400:cb00:cb61::/48,
 cloudflare,2400:cb00:cb62::/47,
 cloudflare,2400:cb00:cb80::/46,
@@ -9372,9 +9372,11 @@ cloudflare,2400:cb00:d004::/48,
 cloudflare,2400:cb00:d111::/48,
 cloudflare,2400:cb00:d112::/48,
 cloudflare,2400:cb00:d114::/47,
+cloudflare,2400:cb00:d116::/48,
 cloudflare,2400:cb00:d121::/48,
 cloudflare,2400:cb00:d122::/47,
 cloudflare,2400:cb00:d124::/47,
+cloudflare,2400:cb00:d126::/48,
 cloudflare,2400:cb00:d190::/45,
 cloudflare,2400:cb00:d871::/48,
 cloudflare,2400:cb00:d881::/48,
@@ -9852,6 +9854,10 @@ cloudflare,2400:cb00:f8e6::/48,
 cloudflare,2400:cb00:f8f1::/48,
 cloudflare,2400:cb00:f8f2::/47,
 cloudflare,2400:cb00:f8f4::/48,
+cloudflare,2400:cb00:f921::/48,
+cloudflare,2400:cb00:f922::/47,
+cloudflare,2400:cb00:f924::/47,
+cloudflare,2400:cb00:f926::/48,
 cloudflare,2400:cb00:f931::/48,
 cloudflare,2400:cb00:f932::/47,
 cloudflare,2400:cb00:f934::/47,
@@ -10083,8 +10089,6 @@ cogent,46.229.240.0/24,
 cogent,46.236.240.0/24,
 cogent,50.2.121.0/24,
 cogent,50.114.38.0/23,
-cogent,51.194.192.0/24,
-cogent,51.194.207.0/24,
 cogent,52.128.192.0/22,
 cogent,52.128.220.0/22,
 cogent,61.13.160.0/20,
@@ -12303,7 +12307,6 @@ constant,2a0f:9400:8020::/48,
 constant,2a10:1c80::/29,
 constant,2a10:2500::/29,
 constant,2a10:ccc1:400::/47,
-constant,2a10:ccc1:403::/48,
 constant,2a10:ccc1:405::/48,
 constant,2a10:ccc1:409::/48,
 constant,2a10:ccc1:40a::/47,
@@ -12385,7 +12388,6 @@ constant,2a10:ccc1:4c4::/47,
 constant,2a10:ccc1:4c6::/48,
 constant,2a10:ccc1:4c8::/48,
 constant,2a10:ccc1:4cd::/48,
-constant,2a10:ccc1:4cf::/48,
 constant,2a10:ccc1:4d1::/48,
 constant,2a10:ccc1:4d2::/47,
 constant,2a10:ccc1:4d5::/48,
@@ -12455,6 +12457,7 @@ constant,2a14:7583:f118::/45,
 constant,2a14:7583:f120::/46,
 constant,2a14:7583:f138::/46,
 constant,2a14:7583:f148::/45,
+constant,2a14:7583:f150::/46,
 constant,2a14:7583:f168::/46,
 constant,2a14:7583:f178::/46,
 constant,2a14:7583:f198::/45,
@@ -13095,6 +13098,7 @@ datacamp,46.203.185.0/24,
 datacamp,46.203.190.0/24,
 datacamp,46.203.195.0/24,
 datacamp,46.236.222.0/24,
+datacamp,48.103.159.0/24,
 datacamp,50.2.157.0/24,
 datacamp,50.31.139.0/24,
 datacamp,50.31.161.0/24,
@@ -13206,7 +13210,8 @@ datacamp,66.225.238.0/24,
 datacamp,66.225.242.0/24,
 datacamp,66.251.128.0/24,
 datacamp,66.253.93.0/24,
-datacamp,67.215.189.0/24,
+datacamp,67.215.172.0/24,
+datacamp,67.215.188.0/23,
 datacamp,68.165.240.0/22,
 datacamp,68.167.11.0/24,
 datacamp,68.167.38.0/24,
@@ -13990,7 +13995,7 @@ datacamp,107.149.17.0/24,
 datacamp,107.149.35.0/24,
 datacamp,107.149.152.0/24,
 datacamp,107.149.164.0/24,
-datacamp,107.182.123.0/24,
+datacamp,107.182.122.0/23,
 datacamp,107.182.124.0/24,
 datacamp,108.165.8.0/23,
 datacamp,108.165.10.0/24,
@@ -16659,7 +16664,6 @@ discord-voice,35.217.20.191/32,finland14000
 discord-voice,35.217.52.93/32,finland14001
 discord-voice,35.217.1.66/32,finland14002
 discord-voice,35.217.7.247/32,finland14003
-discord-voice,35.217.51.155/32,finland14004
 discord-voice,35.217.0.45/32,finland14006
 discord-voice,35.217.63.180/32,finland14007
 discord-voice,35.217.42.214/32,finland14009
@@ -16707,7 +16711,6 @@ discord-voice,35.217.41.192/32,finland14060
 discord-voice,35.217.42.230/32,finland14061
 discord-voice,35.217.51.254/32,finland14062
 discord-voice,35.217.50.234/32,finland14063
-discord-voice,35.217.42.9/32,finland14064
 discord-voice,35.217.60.24/32,finland14066
 discord-voice,35.217.17.117/32,finland14067
 discord-voice,35.217.5.93/32,finland14068
@@ -16721,12 +16724,10 @@ discord-voice,35.217.19.177/32,finland14078
 discord-voice,35.217.41.106/32,finland14079
 discord-voice,35.217.22.178/32,finland14080
 discord-voice,35.217.43.188/32,finland14082
-discord-voice,35.217.38.5/32,finland14084
 discord-voice,35.217.57.225/32,finland14085
 discord-voice,35.217.7.100/32,finland14086
 discord-voice,35.217.42.91/32,finland14088
 discord-voice,35.217.0.67/32,finland14089
-discord-voice,35.217.1.178/32,finland14091
 discord-voice,35.217.51.121/32,finland14092
 discord-voice,35.217.0.212/32,finland14093
 discord-voice,35.217.3.118/32,finland14094
@@ -16815,7 +16816,6 @@ discord-voice,34.0.55.215/32,santiago11035
 discord-voice,34.0.56.6/32,santiago11036
 discord-voice,34.0.54.68/32,santiago11038
 discord-voice,35.213.46.184/32,south-korea-streams14000
-discord-voice,35.213.28.165/32,south-korea-streams14001
 discord-voice,35.213.94.211/32,south-korea-streams14002
 discord-voice,35.213.107.182/32,south-korea-streams14003
 discord-voice,35.213.53.88/32,south-korea-streams14004
@@ -16854,7 +16854,6 @@ discord-voice,35.213.102.22/32,south-korea-streams14042
 discord-voice,35.213.33.4/32,south-korea-streams14043
 discord-voice,35.213.88.251/32,south-korea-streams14045
 discord-voice,35.213.25.53/32,south-korea-streams14046
-discord-voice,35.213.22.153/32,south-korea-streams14047
 discord-voice,35.213.80.218/32,south-korea-streams14049
 discord-voice,35.213.113.40/32,south-korea-streams14050
 discord-voice,35.213.58.176/32,south-korea-streams14051
@@ -16865,7 +16864,6 @@ discord-voice,35.213.116.136/32,south-korea-streams14056
 discord-voice,35.213.7.179/32,south-korea-streams14057
 discord-voice,35.213.17.190/32,south-korea-streams14058
 discord-voice,35.213.59.235/32,south-korea-streams14059
-discord-voice,35.213.43.1/32,south-korea-streams14061
 discord-voice,35.213.89.237/32,south-korea-streams14062
 discord-voice,35.213.76.233/32,south-korea-streams14063
 discord-voice,35.213.10.217/32,south-korea-streams14064
@@ -16897,7 +16895,6 @@ discord-voice,35.213.6.71/32,south-korea-streams14091
 discord-voice,35.213.31.3/32,south-korea-streams14092
 discord-voice,35.213.120.241/32,south-korea-streams14093
 discord-voice,35.213.118.19/32,south-korea-streams14094
-discord-voice,35.213.65.165/32,south-korea-streams14095
 discord-voice,35.213.27.139/32,south-korea-streams14096
 discord-voice,35.213.38.139/32,south-korea-streams14098
 discord-voice,35.213.77.78/32,south-korea-streams14099
@@ -16907,7 +16904,6 @@ discord-voice,35.213.91.140/32,south-korea-streams14104
 discord-voice,35.213.97.28/32,south-korea-streams14105
 discord-voice,35.213.3.135/32,south-korea-streams14106
 discord-voice,35.213.44.153/32,south-korea-streams14107
-discord-voice,35.213.77.201/32,south-korea-streams14109
 discord-voice,35.213.114.37/32,south-korea-streams14110
 discord-voice,35.213.1.223/32,south-korea-streams14112
 discord-voice,35.213.37.114/32,south-korea-streams14113
@@ -17018,8 +17014,6 @@ discord-voice,35.216.23.2/32,south-korea13083
 discord-voice,35.216.85.134/32,south-korea13084
 discord-voice,35.216.1.2/32,south-korea13085
 discord-voice,35.216.16.253/32,south-korea13086
-discord-voice,35.216.91.11/32,south-korea13088
-discord-voice,35.216.67.218/32,south-korea13089
 discord-voice,35.216.22.198/32,south-korea13090
 discord-voice,35.216.48.198/32,south-korea13091
 discord-voice,35.216.58.5/32,south-korea13092
@@ -17036,7 +17030,6 @@ discord-voice,35.216.82.138/32,south-korea13103
 discord-voice,35.216.69.12/32,south-korea13105
 discord-voice,35.216.23.160/32,south-korea13106
 discord-voice,35.216.52.72/32,south-korea13107
-discord-voice,34.4.28.170/32,stage-scale10021
 discord-voice,35.215.85.252/32,stage-scale10023
 discord-voice,35.215.83.0/32,stage-scale10024
 discord-voice,35.215.126.35/32,stage-scale10026
@@ -17107,7 +17100,6 @@ discord-voice,35.215.118.138/32,us-west20003
 discord-voice,35.215.97.70/32,us-west20004
 discord-voice,35.215.121.15/32,us-west20005
 discord-voice,35.215.85.208/32,us-west20008
-discord-voice,35.215.93.85/32,us-west20009
 fastly,16.5.61.0/24,
 fastly,23.154.64.0/24,
 fastly,23.185.0.0/24,
@@ -18460,6 +18452,7 @@ gthost,45.89.98.0/24,
 gthost,45.89.197.0/24,
 gthost,45.89.198.0/23,
 gthost,45.136.115.0/24,
+gthost,45.140.16.0/24,
 gthost,45.142.216.0/22,
 gthost,45.149.112.0/24,
 gthost,45.192.2.0/24,
@@ -18500,6 +18493,7 @@ gthost,72.14.148.0/23,
 gthost,72.56.149.0/24,
 gthost,74.112.12.0/24,
 gthost,74.112.14.0/24,
+gthost,77.83.83.0/24,
 gthost,87.76.129.0/24,
 gthost,87.232.83.0/24,
 gthost,87.232.228.0/24,
@@ -18554,6 +18548,7 @@ gthost,143.14.67.0/24,
 gthost,143.14.220.0/24,
 gthost,144.56.0.0/24,
 gthost,144.225.85.0/24,
+gthost,146.19.187.0/24,
 gthost,147.125.205.0/24,
 gthost,149.7.16.0/24,
 gthost,151.123.179.0/24,
@@ -18576,6 +18571,11 @@ gthost,163.5.49.0/24,
 gthost,166.1.36.0/24,
 gthost,167.17.64.0/21,
 gthost,167.88.60.0/22,
+gthost,168.113.62.0/23,
+gthost,168.113.65.0/24,
+gthost,168.113.78.0/24,
+gthost,168.113.103.0/24,
+gthost,168.113.109.0/24,
 gthost,169.197.140.0/22,
 gthost,170.101.96.0/22,
 gthost,170.101.100.0/23,
@@ -18594,6 +18594,8 @@ gthost,172.99.188.0/22,
 gthost,172.111.36.0/22,
 gthost,172.252.212.0/24,
 gthost,178.251.204.0/24,
+gthost,179.66.241.0/24,
+gthost,179.255.189.0/24,
 gthost,185.161.70.0/24,
 gthost,185.176.204.0/24,
 gthost,185.176.206.0/24,
@@ -18606,6 +18608,9 @@ gthost,186.190.213.0/24,
 gthost,186.190.215.0/24,
 gthost,186.190.223.0/24,
 gthost,186.246.53.0/24,
+gthost,187.13.85.0/24,
+gthost,187.13.99.0/24,
+gthost,187.15.27.0/24,
 gthost,187.52.43.0/24,
 gthost,187.55.162.0/24,
 gthost,187.55.175.0/24,
@@ -18625,10 +18630,13 @@ gthost,193.151.163.0/24,
 gthost,193.233.19.0/24,
 gthost,194.36.38.0/24,
 gthost,194.87.87.0/24,
+gthost,194.93.1.0/24,
 gthost,198.17.175.0/24,
 gthost,199.91.96.0/24,
 gthost,201.3.227.0/24,
 gthost,201.7.17.0/24,
+gthost,201.67.3.0/24,
+gthost,201.67.17.0/24,
 gthost,204.28.128.0/24,
 gthost,207.180.38.0/24,
 gthost,208.69.76.0/24,
